@@ -5,6 +5,7 @@
   "dependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^6.0.1",
+    "prettier": "^1.10.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
@@ -18,6 +19,9 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"]
+    "src/**/*.{js,jsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
