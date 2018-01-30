@@ -7,12 +7,19 @@ import auth from '../auth/auth'
 const PublicRoute = Route
 
 // Route to only if authed else go to '/'
-const PrivateRoute = ({ render, component, ...rest }) => {
-  return !auth.isAuthenticated ? (
-    <Redirect to="/" />
-  ) : (
-    <Route {...rest} component={component} render={render} />
-  )
-}
+const PrivateRoute = ({ render, component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      !auth.isAuthenticated ? (
+        <Redirect to="/login" />
+      ) : Component ? (
+        <Component />
+      ) : (
+        render(props)
+      )
+    }
+  />
+)
 
 export { PublicRoute, PrivateRoute }
