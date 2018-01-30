@@ -3,25 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "auth0-js": "^9.1.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2"
+    "micro": "^9.1.0",
+    "micro-route": "^2.5.0"
   },
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
-    "prettier": "^1.10.2",
-    "react-scripts": "1.1.0"
+    "prettier": "^1.10.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "precommit": "lint-staged"
+    "postinstall": "cd client && yarn && cd ..",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server/src/index.js",
+    "client": "node start-client.js",
+    "precommit": "lint-staged",
+    "deploy:stage": "now deploy --public && now alias staging-alwaysinmind",
+    "deploy:live": "now alias alwaysinmind"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"]
+    "{client|server}/src/**/*.{js,jsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
