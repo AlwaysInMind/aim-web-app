@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import { PublicRoute, PrivateRoute } from './AuthRoute'
 import Home from './Home'
+import Photos from './Photos'
 import Login from './Login'
 import Callback from './Callback'
 import auth from '../auth/auth'
@@ -55,6 +56,12 @@ class App extends React.Component {
               }
               return <Callback {...props} />
             }}
+          />
+          <PrivateRoute
+            path="/photos/:id"
+            render={({ match: { params: { id } } }) => (
+              <Photos fetchURLProps={{ id }} />
+            )}
           />
         </div>
       </Router>

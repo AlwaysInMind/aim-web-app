@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import withFetchJSON from '../hocs/withFetchJSON'
 import withAuth from '../hocs/withAuth'
@@ -10,7 +11,7 @@ const Home = ({ auth, error, isLoaded, data }) => {
     <div>
       {error ? (
         <div>
-          Unable to get users.
+          Unable to get albums
           {console.log(error.message)}
         </div>
       ) : !isLoaded ? (
@@ -18,11 +19,19 @@ const Home = ({ auth, error, isLoaded, data }) => {
       ) : (
         <div>
           <Red>Welcome {auth.user}</Red>
-          <div>{data.map(item => <div>{item.name}</div>)}</div>
+          <div>
+            {data.map(item => (
+              <div>
+                <Link to={`/photos/${item.id}`} key={item.id}>
+                  {item.title}
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
   )
 }
 
-export default withAuth(withFetchJSON(Home, '/api/users'))
+export default withAuth(withFetchJSON(Home, '/api/albums'))

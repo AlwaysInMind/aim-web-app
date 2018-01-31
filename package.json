@@ -3,28 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "micro": "^9.1.0",
-    "micro-route": "^2.5.0"
+    "express-jwt": "5.3.0",
+    "micro": "9.1.0",
+    "microrouter": "3.0.0",
+    "request": "2.83.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.1",
-    "husky": "^0.14.3",
+    "concurrently": "3.5.1",
+    "husky": "0.14.3",
     "lint-staged": "^6.1.0",
-    "prettier": "^1.10.2"
+    "micro-dev": "2.2.0",
+    "prettier": "1.10.2"
   },
   "scripts": {
     "postinstall": "cd client && yarn && cd ..",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "node server/src/index.js",
+    "start": "concurrently \"yarn run server\" \"yarn run client\"",
+    "dev": "concurrently \"yarn run devserver\" \"yarn run client\"",
+    "server": "micro ./server/src/index.js",
+    "devserver": "micro-dev ./server/src/index.js -p 3001",
     "client": "node start-client.js",
     "precommit": "lint-staged",
     "deploy:stage": "now deploy --public && now alias staging-alwaysinmind",
     "deploy:live": "now alias alwaysinmind"
   },
   "lint-staged": {
-    "{client|server}/src/**/*.{js,jsx,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "client/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"],
+    "server/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"]
   }
 }

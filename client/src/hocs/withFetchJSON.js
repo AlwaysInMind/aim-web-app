@@ -17,7 +17,7 @@ async function fetchJSON(url, accessToken = undefined) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Auth-Token': accessToken, // better to exclude it if undefined
+      Authorization: `Bearer ${accessToken}`, // better to exclude it if undefined
     },
   })
   return await res.json()

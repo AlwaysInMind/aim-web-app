@@ -1,11 +1,23 @@
-const micro = require('micro')
-const serviceConfig = require('./micro.config.js')
+const { send } = require('micro')
+const { router, get } = require('microrouter')
 
-const server = micro(serviceConfig)
+const { getAlbums, getPhotos } = require('./api/')
 
-const host = process.env.HOST || 'localhost'
-const port = process.env.PORT || '3001'
+const handleGetAlbums = async (req, res) => {
+  const titles = await getAlbums(req, res)
+  res.setHeader('Content-Type', 'application/json')
+  const body = JSON.stringify(titles)
+  send(res, 200, body)
+}
 
-// Listen the server
-server.listen(port, host)
-console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console
+const handleGetPhotos = async (req, res) => {
+  const photos = await getPhotos(req, res, req.params.id)
+  res.setHeader('Content-Type', 'application/json')
+  const body = JSON.stringify(photos)
+  send(res, 200, body)
+}
+
+module.exports = router(
+  get('/api/albums', handleGetAlbums),
+  get('/api/albums/:id', handleGetPhotos)
+)
