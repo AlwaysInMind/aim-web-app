@@ -2,7 +2,6 @@ import React from 'react'
 
 const APIDOMAIN =
   process.env.NODE_ENV === 'production' ? 'https://alwaysinmindapi.now.sh' : ''
-console.log('zzz', process.env.NODE_ENV, `api: ${APIDOMAIN}`)
 
 // simple tagged template string function to apply a dict to a string
 export function template(strings, ...keys) {
