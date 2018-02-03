@@ -37,18 +37,18 @@ module.exports = options => {
   })
 
   return wrapped => {
-    return (req, res, ...args) => {
-      return new Promise(resolve => {
+    return async (req, res, ...args) => {
+      return new Promise((resolve, reject) => {
         middleware(req, res, async err => {
+          // NB sometime middleware returns our result!
           if (err) {
-            throw createError(
-              err.status || 500,
-              `Auth error: ${err.message}`,
-              err
+            reject(
+              createError(err.status || 500, `Auth error: ${err.message}`, err)
             )
+          } else {
+            const r = await wrapped(req, res, ...args)
+            resolve(r)
           }
-          const r = await wrapped(req, res, ...args)
-          resolve(r)
         })
       })
     }

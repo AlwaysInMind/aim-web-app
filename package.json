@@ -19,15 +19,28 @@
     "postinstall": "cd client && yarn && cd ..",
     "start": "concurrently \"yarn run server\" \"yarn run client\"",
     "dev": "concurrently \"yarn run devserver\" \"yarn run client\"",
-    "server": "micro ./server/src/index.js",
-    "devserver": "micro-dev ./server/src/index.js -p 3001",
+    "server": "micro ./api/src/index.js",
+    "devserver": "micro-dev ./api/src/index.js -p 3001",
     "client": "node start-client.js",
     "precommit": "lint-staged",
-    "deploy:stage": "now deploy --public && now alias staging-alwaysinmind",
-    "deploy:live": "now alias alwaysinmind"
+    "predeploy:api": "now rm -y alwaysinmindapi",
+    "deploy:api": "now --public deploy api/src && now alias alwaysinmindapi",
+    "predeploy:client": "now rm -y alwaysinmind",
+    "deploy:client": "cd client && yarn run deploy && cd ..",
+    "deploy:both": "yarn run deploy:api && yarn run deploy:client",
+    "deploy:clean": "now rm -s alwaysinmind alwaysinmindapi"
   },
   "lint-staged": {
-    "client/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"],
-    "server/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"]
+    "client/src/**/*.{js,jsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "server/src/**/*.{js,jsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "now": {
+    "name": "alwaysinmindapi"
   }
 }

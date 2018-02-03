@@ -1,5 +1,9 @@
 import React from 'react'
 
+const APIDOMAIN =
+  process.env.NODE_ENV === 'production' ? 'https://alwaysinmindapi.now.sh' : ''
+console.log('zzz', process.env.NODE_ENV, `api: ${APIDOMAIN}`)
+
 // simple tagged template string function to apply a dict to a string
 export function template(strings, ...keys) {
   return function(dict) {
@@ -35,8 +39,9 @@ export default function withFetchJSON(WrappedComponent, url) {
 
     async componentDidMount() {
       try {
-        const endpoint =
+        const endpoint = `${APIDOMAIN}${
           typeof url === 'function' ? url(this.props.fetchURLProps) : url
+        }`
         const auth = this.props.auth
         const token = auth && auth.accessToken
         const data = await fetchJSON(endpoint, token)

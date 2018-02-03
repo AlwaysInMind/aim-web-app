@@ -1,0 +1,17 @@
+{
+  "name": "always-in-mind",
+  "version": "0.1.0",
+  "dependencies": {
+    "serve": "latest"
+  },
+  "scripts": {
+    "start": "serve --single"
+  },
+  "now": {
+    "name": "alwaysinmind",
+    "public": false,
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }
+}

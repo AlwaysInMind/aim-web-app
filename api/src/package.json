@@ -1,0 +1,22 @@
+{
+  "name": "always-in-mind-api",
+  "version": "0.1.0",
+  "dependencies": {
+    "express-jwt": "5.3.0",
+    "micro": "9.1.0",
+    "microrouter": "3.0.0",
+    "request": "2.83.0"
+  },
+  "scripts": {
+    "zzstart": "micro -p ${PORT:-3001}",
+    "start": "micro"
+  },
+  "zzmain": "index.js",
+  "now": {
+    "name": "alwaysinmindapi",
+    "public": false,
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }
+}

@@ -6,9 +6,9 @@
       "request": "launch",
       "name": "Launch API Server",
       "sourceMaps": true,
-      "cwd": "${workspaceFolder}/server/src",
+      "cwd": "${workspaceFolder}/api/src",
       "program": "${workspaceFolder}/node_modules/micro/bin/micro.js",
-      "args": ["${workspaceFolder}/server/src/index.js", "-p 3001"]
+      "args": ["${workspaceFolder}/api/src/index.js", "-p 3001"]
     },
     {
       "name": "Chrome",
