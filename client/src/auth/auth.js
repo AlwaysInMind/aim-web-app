@@ -81,7 +81,7 @@ class Auth {
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
-    console.warn('logout')
+    localStorage.removeItem('gtoken')
   }
 
   get isAuthenticated() {
@@ -90,7 +90,9 @@ class Auth {
   }
 
   get user() {
-    return this.isAuthenticated ? 'Steve' : '<none>'
+    const gtoken = localStorage.getItem('gtoken')
+    const name = JSON.parse(gtoken).name
+    return this.isAuthenticated ? name : '<none>'
   }
 
   get accessToken() {
