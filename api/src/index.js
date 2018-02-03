@@ -16,14 +16,12 @@ const stopTraces = fn => async (req, res, ...args) => {
 const handleGetAlbums = async (req, res) => {
   const titles = await getAlbums(req, res)
   res.setHeader('Content-Type', 'application/json')
-  const body = JSON.stringify(titles)
   send(res, 200, titles)
 }
 
 const handleGetPhotos = async (req, res) => {
   const photos = await getPhotos(req, res, req.params.id)
   res.setHeader('Content-Type', 'application/json')
-  const body = JSON.stringify(photos)
   send(res, 200, photos)
 }
 
