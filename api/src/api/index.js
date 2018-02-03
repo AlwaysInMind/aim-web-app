@@ -34,7 +34,7 @@ module.exports.getAlbums = jwtValidateDecorator(async (req, res) => {
   }
 })
 
-module.exports.getPhotos = jwtValidateDecorator(async (req, res, id) => {
+module.exports.getPhotos = jwtValidateDecorator(async (req, res, albumId) => {
   if (!req.user) {
     throw createError(400, 'Problem with Authorization token', err)
   } // Get a token to access the admin API
@@ -47,17 +47,20 @@ module.exports.getPhotos = jwtValidateDecorator(async (req, res, id) => {
     // Get the album list from google
     const { object: { feed: { entry } } } = await getPhotos(
       google_access_token,
-      id
+      userId.split('|')[1],
+      albumId
     )
-
-    const titles = entry.map(ent => ({
-      id: ent.gphoto$id.$t,
-      title: ent.title.$t,
-      src: ent.content.src,
-    }))
+    let titles = []
+    if (entry) {
+      titles = entry.map(ent => ({
+        id: ent.gphoto$id.$t,
+        title: ent.title.$t,
+        src: ent.content.src,
+      }))
+    }
     return titles
   } catch (err) {
-    throw createError(400, err.message, err)
+    throw createError(400, err.message, err) // TODO fix this
   }
 })
 
@@ -118,7 +121,6 @@ function getUserProfile(accessToken, userID) {
 function getAlbums(accessToken) {
   const options = {
     method: 'GET',
-    //url: `https://www.googleapis.com/gmail/v1/users/me/labels`,
     url: 'https://picasaweb.google.com/data/feed/api/user/default?alt=json',
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -128,11 +130,13 @@ function getAlbums(accessToken) {
 }
 
 // Get user Google Photos album list
-function getPhotos(accessToken, albumID) {
+function getPhotos(accessToken, userId, albumId) {
   const options = {
     method: 'GET',
-    //url: `https://www.googleapis.com/gmail/v1/users/me/labels`,
-    url: `https://picasaweb.google.com/data/feed/api/user/default/albumid/${albumID}?alt=json`,
+    url:
+      albumId === 'latest'
+        ? `https://picasaweb.google.com/data/feed/api/user/${userId}?kind=photo&max-results=10&alt=json`
+        : `https://picasaweb.google.com/data/feed/api/user/${userId}/albumid/${albumId}?&max-results=10&alt=json`,
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },

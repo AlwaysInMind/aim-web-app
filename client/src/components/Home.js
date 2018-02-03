@@ -21,12 +21,13 @@ const Home = ({ auth, error, isLoaded, data }) => {
           <Red>Welcome {auth.user}</Red>
           <div>
             {data.map(item => (
-              <div>
-                <Link to={`/photos/${item.id}`} key={item.id}>
-                  {item.title}
-                </Link>
+              <div key={item.id}>
+                <Link to={`/photos/${item.id}`}>{item.title}</Link>
               </div>
             ))}
+            <div>
+              <Link to={`/photos/latest`}>My Latest Photos</Link>
+            </div>
           </div>
         </div>
       )}

@@ -31,6 +31,7 @@ const notFound = (req, res) => send(res, 404, 'Unknown route')
 
 module.exports = cors(
   router(
+    //    get('/api/photos/recent', handleGetRecentPhotos),
     get('/api/albums', handleGetAlbums),
     get('/api/albums/:id', handleGetPhotos),
     get('/*', notFound),
