@@ -17,10 +17,8 @@
   },
   "scripts": {
     "postinstall": "cd client && yarn && cd ..",
-    "start": "concurrently \"yarn run server\" \"yarn run client\"",
-    "dev": "concurrently \"yarn run devserver\" \"yarn run client\"",
-    "server": "micro ./api/src/index.js",
-    "devserver": "micro-dev ./api/src/index.js -p 3001",
+    "start": "concurrently \"yarn run devapi\" \"yarn run client\"",
+    "devapi": "micro-dev ./api/src/index.js -p 3001",
     "client": "node start-client.js",
     "precommit": "lint-staged",
     "predeploy:api": "now rm -y alwaysinmindapi",
@@ -31,14 +29,8 @@
     "deploy:clean": "now rm -s alwaysinmind alwaysinmindapi"
   },
   "lint-staged": {
-    "client/src/**/*.{js,jsx,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ],
-    "server/src/**/*.{js,jsx,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "client/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"],
+    "api/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"]
   },
   "now": {
     "name": "alwaysinmindapi"

@@ -8,10 +8,8 @@
     "request": "2.83.0"
   },
   "scripts": {
-    "zzstart": "micro -p ${PORT:-3001}",
     "start": "micro"
   },
-  "zzmain": "index.js",
   "now": {
     "name": "alwaysinmindapi",
     "public": false,
