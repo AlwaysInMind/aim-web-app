@@ -9,11 +9,12 @@
     "request": "2.83.0"
   },
   "devDependencies": {
-    "concurrently": "3.5.1",
-    "husky": "0.14.3",
+    "concurrently": "^3.5.1",
+    "eslint": "^4.17.0",
+    "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
-    "micro-dev": "2.2.0",
-    "prettier": "1.10.2"
+    "micro-dev": "^2.2.0",
+    "prettier": "^1.10.2"
   },
   "scripts": {
     "postinstall": "cd client && yarn && cd ..",
