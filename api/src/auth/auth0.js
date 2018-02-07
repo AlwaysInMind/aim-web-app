@@ -1,9 +1,9 @@
-const { createError, sendError } = require('micro')
+const { createError } = require('micro')
 
 const jwt = require('express-jwt')
-//var jwks = require('jwks-rsa')
+// var jwks = require('jwks-rsa')
 
-//import ArgumentError from './errors/ArgumentError';
+// import ArgumentError from './errors/ArgumentError';
 const ArgumentError = Error
 
 module.exports = options => {
@@ -30,7 +30,7 @@ module.exports = options => {
       rateLimit: true,
       jwksRequestsPerMinute: 5,
       jwksUri: `${domain}.well-known/jwks.json`,
-    }),*/
+    }), */
     audience: options.clientId,
     issuer: options.domain,
     algorithms: options.algorithms,

@@ -10,10 +10,12 @@ const jwtValidateDecorator = require('../auth/auth0')({
   domain: `${AUTH_CONFIG.AUTH0_DOMAIN_URL}/`,
 })
 
+/* eslint-disable camelcase */
+
 // The main Function
 module.exports.getAlbums = jwtValidateDecorator(async (req, res) => {
   if (!req.user) {
-    throw createError(400, 'Problem with Authorization token', err)
+    throw createError(400, 'Problem with Authorization token')
   } // Get a token to access the admin API
   try {
     const { object: { access_token } } = await getAdminAccessToken()
@@ -36,7 +38,7 @@ module.exports.getAlbums = jwtValidateDecorator(async (req, res) => {
 
 module.exports.getPhotos = jwtValidateDecorator(async (req, res, albumId) => {
   if (!req.user) {
-    throw createError(400, 'Problem with Authorization token', err)
+    throw createError(400, 'Problem with Authorization token')
   } // Get a token to access the admin API
   try {
     const { object: { access_token } } = await getAdminAccessToken()
@@ -72,7 +74,7 @@ function requestObject(options) {
     request(options, function(error, response, body) {
       if (error) {
         reject(error)
-      } else if (200 > response.statusCode || 299 < response.statusCode) {
+      } else if (response.statusCode < 200 || response.statusCode > 299) {
         reject(
           new Error(
             `Remote resource ${options.url} returned status code: ${
