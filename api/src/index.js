@@ -1,17 +1,8 @@
-const { send, createError } = require('micro')
+const { send } = require('micro')
 const { router, get, options } = require('microrouter')
 
 const cors = require('./cors')()
 const { getAlbums, getPhotos } = require('./api/')
-
-// custom handler to stop traces
-const stopTraces = fn => async (req, res, ...args) => {
-  try {
-    return await fn(req, res, ...args)
-  } catch (err) {
-    send(res, err.statusCode || 500, err.message)
-  }
-}
 
 const handleGetAlbums = async (req, res) => {
   const titles = await getAlbums(req, res)
