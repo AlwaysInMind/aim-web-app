@@ -4,13 +4,13 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
-    "auth0-js": "^9.2.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2"
+    "auth0-js": "9.2.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-router-dom": "4.2.2"
   },
   "devDependencies": {
-    "react-scripts": "1.1.0"
+    "react-scripts": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
