@@ -68,7 +68,7 @@ function getUserProfile(accessToken, userID) {
 }
 
 /* eslint-disable camelcase */
-/* Google API payloads include snakecase identifiers */
+/* API payloads include snakecase identifiers */
 exports.getIdPIdent = async userId => {
   const { object: { access_token } } = await exports.getAdminAccessToken()
   const { object: profile } = await getUserProfile(access_token, userId)
