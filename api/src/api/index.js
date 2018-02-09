@@ -14,10 +14,13 @@ module.exports.getAlbums = withAuth0(async (req, res) => {
     const { object: { feed: { entry } } } = await requestAlbums(
       googleAccessToken
     )
-    const titles = entry.map(ent => ({
-      id: ent.gphoto$id.$t,
-      title: ent.title.$t,
-    }))
+    const titles = entry
+      .filter(ent => ent.title.$t !== 'Profile Photos')
+      .map(ent => ({
+        id: ent.gphoto$id.$t,
+        title: ent.title.$t,
+        thumbnail: ent.media$group.media$thumbnail.pop().url,
+      }))
     return titles
   } catch (err) {
     throw createError(400, err.message, err)
@@ -44,8 +47,9 @@ exports.getPhotos = withAuth0(async (req, res, albumId) => {
     if (entry) {
       titles = entry.map(ent => ({
         id: ent.gphoto$id.$t,
-        title: ent.title.$t,
+        //        title: ent.title.$t,
         src: ent.content.src,
+        //        timestamp: ent.gphoto$timestamp.$t,
       }))
     }
     return titles
@@ -58,7 +62,8 @@ exports.getPhotos = withAuth0(async (req, res, albumId) => {
 function requestAlbums(accessToken) {
   const options = {
     method: 'GET',
-    url: 'https://picasaweb.google.com/data/feed/api/user/default?alt=json',
+    url:
+      'https://picasaweb.google.com/data/feed/api/user/default?max-results=10&alt=json',
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
