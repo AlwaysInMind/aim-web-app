@@ -1,6 +1,6 @@
 //import history from '../history'
 import auth0 from 'auth0-js'
-import { AUTH0_CONFIG } from './auth0-variables'
+import { AUTH0_CONFIG, LOGIN_CALLBACK_PATH } from './auth0-variables'
 
 // A basic promisify for functions with node style callbacks ie (err, value)
 function promisify(original) {
@@ -25,11 +25,16 @@ function promisify(original) {
   return Object.defineProperties(fn, Object.getOwnPropertyDescriptors(original))
 }
 
+function pathToURL(path) {
+  return `${window.location.protocol}//${window.location.hostname}:${
+    window.location.port
+  }${path}`
+}
+
 class Auth {
   auth0 = new auth0.WebAuth({
     domain: AUTH0_CONFIG.DOMAIN,
     clientID: AUTH0_CONFIG.CLIENTID,
-    redirectUri: AUTH0_CONFIG.CALLBACKURL,
     audience: AUTH0_CONFIG.APIID,
     responseType: 'token id_token',
     scope: 'openid profile photos',
@@ -41,10 +46,12 @@ class Auth {
     this.handleAuthentication = this.handleAuthentication.bind(this)
   }
 
-  callbackPath = AUTH0_CONFIG.CALLBACKPATH
+  loginCallbackRoute = LOGIN_CALLBACK_PATH
 
   login() {
-    this.auth0.authorize()
+    this.auth0.authorize({
+      redirectUri: pathToURL(LOGIN_CALLBACK_PATH),
+    })
   }
 
   async handleAuthentication() {
@@ -78,6 +85,7 @@ class Auth {
   }
 
   logout() {
+    this.auth0.logout({ /*federated: false,*/ returnTo: pathToURL('/login') })
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
