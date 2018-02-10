@@ -27,21 +27,27 @@ class Photos extends React.Component {
         errorText="Unable to get photos"
         {...props}
       >
-        {() => [
-          <div className="slides-container">
-            <ul style={{ display: 'block' }} className="slides">
-              {data.length
-                ? data.map(item => (
-                    <li className="slide" key={item.id}>
-                      <img style={{ display: 'block' }} src={item.src} alt="" />
-                    </li>
-                  ))
-                : 'No photos'}
-            </ul>
-          </div>,
-          <BackButton className="button-goback" label="More Photos" />,
-          <PauseButton className="button-pause" pausable={this.slideShow} />,
-        ]}
+        {() => (
+          <React.Fragment>
+            <div className="slides-container">
+              <ul style={{ display: 'block' }} className="slides">
+                {data.length
+                  ? data.map(item => (
+                      <li className="slide" key={item.id}>
+                        <img
+                          style={{ display: 'block' }}
+                          src={item.src}
+                          alt=""
+                        />
+                      </li>
+                    ))
+                  : 'No photos'}
+              </ul>
+            </div>,
+            <BackButton className="button-goback" label="More Photos" />,
+            <PauseButton className="button-pause" pausable={this.slideShow} />,
+          </React.Fragment>
+        )}
       </Page>
     )
   }
