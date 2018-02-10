@@ -2,12 +2,12 @@ import React from 'react'
 
 import withFetchJSON from '../hocs/withFetchJSON'
 import withAuth from '../hocs/withAuth'
-import { Button, AuthButton } from '../components/Button.js'
+import { Button, RouterButton, AuthButton } from '../components/Button.js'
 
 const Albums = ({ auth, error, isLoaded, data }) => {
   return (
     <React.Fragment>
-      <Button className="header-main" label="View photos" />
+      <Button className="header-main" label="Choose Photo Album" />
       <AuthButton className="header-log" />
       {error ? (
         <div className="page-error">
@@ -18,10 +18,10 @@ const Albums = ({ auth, error, isLoaded, data }) => {
         <div className="page-loading">Loading your albums...</div>
       ) : (
         data.map(item => (
-          <Button
+          <RouterButton
             image={item.thumbnail}
             label={item.title}
-            action={{ verb: 'route', route: `/photos/${item.id}` }}
+            route={`/photos/${item.id}`}
             key={item.id}
           />
         ))

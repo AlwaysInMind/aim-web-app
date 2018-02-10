@@ -2,28 +2,28 @@ import React from 'react'
 
 import withFetchJSON, { template } from '../hocs/withFetchJSON'
 import withAuth from '../hocs/withAuth'
-import { Button, AuthButton } from '../components/Button.js'
+import {
+  Button,
+  BackButton,
+  AuthButton,
+  PauseButton,
+} from '../components/Button.js'
+import mkSlideShow from '../components/SlideShow'
 
 const options = { slideshowRate: 5000 }
 
 class Photos extends React.Component {
-  componentDidUpdate() {
-    var slides = document.querySelectorAll('.slides .slide')
-    var currentSlide = 0
-    slides[currentSlide].className = 'slide showing'
-    if (!this.timerID) {
-      this.timerID = setInterval(nextSlide, options.slideshowRate)
-    }
+  constructor(props) {
+    super(props)
+    this.slideShow = mkSlideShow(options.slideshowRate)
+  }
 
-    function nextSlide() {
-      slides[currentSlide].className = 'slide'
-      currentSlide = (currentSlide + 1) % slides.length
-      slides[currentSlide].className = 'slide showing'
-    }
+  componentDidUpdate() {
+    this.slideShow.play()
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerID)
+    this.slideShow.kill()
   }
 
   render() {
@@ -57,11 +57,8 @@ class Photos extends React.Component {
                   : 'No photos'}
               </ul>
             </div>
-            <Button
-              className="button-goback"
-              label="More Photos"
-              action={{ verb: 'goback' }}
-            />
+            <BackButton className="button-goback" label="More Photos" />
+            <PauseButton className="button-pause" pausable={this.slideShow} />
           </React.Fragment>
         )}
       </React.Fragment>

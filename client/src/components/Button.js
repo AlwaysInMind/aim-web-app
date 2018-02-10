@@ -3,58 +3,80 @@ import { withRouter } from 'react-router-dom'
 
 import auth from '../auth/auth'
 
-function selectAction(actions, action) {
-  const noop = () => {}
-  const verb = action ? action.verb : 'default'
-  const actionsWithDef = { ...actions, default: noop }
-  return actionsWithDef[verb] || noop
-}
-
-const buttonAction = (action, history) =>
-  selectAction(
-    {
-      route: () => history.push(action.route),
-      goback: () => history.goBack(),
-      login: () => auth.login(),
-      logout: () => auth.logout(),
-    },
-    action
-  )
-
-const Button = withRouter(
-  ({
-    id,
-    image,
-    label,
-    action,
-    history,
-    match: unused1,
-    location: unused2,
-    staticContext: unused3,
-    ...props
-  }) => {
-    const actionFn = buttonAction(action, history)
-    return (
-      <button {...props} type="button" key={id} onClick={actionFn}>
-        {image ? <img className="button-image" src={image} alt="" /> : ''}
-        {image && label ? <br /> : ''}
-        {label ? <span className="button-label">{label}</span> : ''}
-      </button>
-    )
-  }
+const Button = ({ image, label, actionFn, ...props }) => (
+  <button type="button" onClick={actionFn} {...props}>
+    {image ? <img className="button-image" src={image} alt="" /> : ''}
+    {image && label ? <br /> : ''}
+    {label ? <span className="button-label">{label}</span> : ''}
+  </button>
 )
 
-const AuthButton = ({ onAuthChanged, ...props }) => {
-  return (
-    <button
-      onClick={() =>
-        buttonAction({ verb: auth.isAuthenticated ? 'logout' : 'login' })()
-      }
-      {...props}
-    >
-      {auth.isAuthenticated ? `Logout` : 'Login'}
-    </button>
-  )
+const RouterButton = withRouter(
+  ({
+    route,
+    history,
+    match: ignore1,
+    location: ignore2,
+    staticContext: ignore3,
+    ...props
+  }) => <Button actionFn={() => history.push(route)} {...props} />
+)
+
+const BackButton = withRouter(
+  ({
+    history,
+    match: ignore1,
+    location: ignore2,
+    staticContext: ignore3,
+    ...props
+  }) => <Button actionFn={() => history.goBack()} {...props} />
+)
+
+const mkToggleButton = ({
+  actionA,
+  actionB,
+  labelA,
+  labelB,
+  imageA,
+  imageB,
+}) => {
+  return class _ extends React.Component {
+    update = () => this.forceUpdate()
+    render() {
+      const { stateFn, ...props } = this.props
+      return (
+        <Button
+          actionFn={() => {
+            ;(stateFn() ? actionB : actionA)()
+            this.update()
+          }}
+          label={stateFn() ? labelB : labelA}
+          image={stateFn() ? imageB : imageA}
+          {...props}
+        />
+      )
+    }
+  }
 }
 
-export { Button, AuthButton }
+const PauseButton = ({ pausable, ...props }) => {
+  const ToggleButton = mkToggleButton({
+    labelA: 'Pause',
+    labelB: 'Play',
+    actionA: pausable.pause,
+    actionB: pausable.play,
+  })
+  return <ToggleButton stateFn={() => !pausable.isPlaying()} {...props} />
+}
+
+const AuthButton = props => {
+  const ToggleButton = mkToggleButton({
+    labelA: 'Login',
+    labelB: 'Logout',
+    actionA: auth.login,
+    actionB: auth.logout,
+  })
+  return <ToggleButton stateFn={() => auth.isAuthenticated} {...props} />
+}
+
+export { Button, RouterButton, BackButton, AuthButton, PauseButton }
