@@ -20,6 +20,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
     "micro-dev": "^2.2.0",
+    "now": "^9.3.0",
     "prettier": "^1.10.2"
   },
   "scripts": {
@@ -33,17 +34,12 @@
     "predeploy:client": "now rm -y alwaysinmind",
     "deploy:client": "cd client && yarn run deploy && cd ..",
     "deploy:both": "yarn run deploy:api && yarn run deploy:client",
-    "deploy:clean": "now rm -s alwaysinmind alwaysinmindapi"
+    "deploy:clean": "now rm -s alwaysinmind alwaysinmindapi",
+    "deploy:ls": "now ls && now alias ls"
   },
   "lint-staged": {
-    "client/src/**/*.{js,jsx,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ],
-    "api/src/**/*.{js,jsx,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
+    "client/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"],
+    "api/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"]
   },
   "now": {
     "name": "alwaysinmindapi"
