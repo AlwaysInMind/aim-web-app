@@ -2,36 +2,27 @@ import React from 'react'
 
 import withFetchJSON from '../hocs/withFetchJSON'
 import withAuth from '../hocs/withAuth'
-import {
-  SpeakingButton,
-  RouterButton,
-  AuthButton,
-} from '../components/Button.js'
+import { RouterButton } from '../components/Button'
+import Page from '../components/Page'
 
-const Albums = ({ auth, error, isLoaded, data }) => {
-  return (
-    <React.Fragment>
-      <SpeakingButton className="header-main" label="Choose Photo Album" />
-      <AuthButton className="header-log" />
-      {error ? (
-        <div className="page-error">
-          Unable to get albums
-          {console.log(error.message)}
-        </div>
-      ) : !isLoaded ? (
-        <div className="page-loading">Loading your albums...</div>
-      ) : (
-        data.map(item => (
-          <RouterButton
-            image={item.thumbnail}
-            label={item.title}
-            route={`/photos/${item.id}`}
-            key={item.id}
-          />
-        ))
-      )}
-    </React.Fragment>
-  )
-}
+const Albums = ({ data, ...props }) => (
+  <Page
+    title="Choose Photo Album"
+    loadingText="Loading your albums..."
+    errorText="Unable to get albums"
+    {...props}
+  >
+    {() =>
+      data.map(item => (
+        <RouterButton
+          image={item.thumbnail}
+          label={item.title}
+          route={`/photos/${item.id}`}
+          key={item.id}
+        />
+      ))
+    }
+  </Page>
+)
 
 export default withAuth(withFetchJSON(Albums, '/api/albums'))

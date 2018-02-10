@@ -2,10 +2,11 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import { PublicRoute, PrivateRoute } from './AuthRoute'
-import Albums from '../pages/Albums'
-import Photos from '../pages/Photos'
 import Login from '../pages/Login'
 import Callback from '../pages/Callback'
+import Albums from '../pages/Albums'
+import Photos from '../pages/Photos'
+import Options from '../pages/Options'
 import auth from '../auth/auth'
 
 import './App.css'
@@ -22,7 +23,6 @@ class App extends React.Component {
     return (
       <Router>
         <div className="container">
-          <PrivateRoute exact path="/" render={props => <Albums />} />
           <PublicRoute path="/login" render={props => <Login />} />
           <PublicRoute
             path={auth.loginCallbackRoute}
@@ -33,12 +33,14 @@ class App extends React.Component {
               return <Callback {...props} />
             }}
           />
+          <PrivateRoute exact path="/" render={props => <Albums />} />
           <PrivateRoute
             path="/photos/:id"
             render={({ match: { params: { id } } }) => (
               <Photos fetchURLProps={{ id }} />
             )}
           />
+          <PrivateRoute path="/options" render={props => <Options />} />
         </div>
       </Router>
     )

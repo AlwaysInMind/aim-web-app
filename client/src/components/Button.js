@@ -33,6 +33,16 @@ const BackButton = withRouter(
   }) => <Button actionFn={() => history.goBack()} {...props} />
 )
 
+const HomeButton = withRouter(
+  ({
+    history,
+    match: ignore1,
+    location: ignore2,
+    staticContext: ignore3,
+    ...props
+  }) => <Button actionFn={() => history.push('/')} {...props} />
+)
+
 const SpeakingButton = ({ label, ...props }) => (
   <Button actionFn={() => speak(label)} label={label} {...props} />
 )
@@ -90,6 +100,7 @@ export {
   Button,
   RouterButton,
   BackButton,
+  HomeButton,
   SpeakingButton,
   AuthButton,
   PauseButton,
