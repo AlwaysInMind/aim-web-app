@@ -15,6 +15,8 @@ const buttonAction = (action, history) =>
     {
       route: () => history.push(action.route),
       goback: () => history.goBack(),
+      login: () => auth.login(),
+      logout: () => auth.logout(),
     },
     action
   )
@@ -35,11 +37,10 @@ const Button = withRouter(
 const AuthButton = ({ onAuthChanged, ...props }) => {
   return (
     <button
+      onClick={() =>
+        buttonAction({ verb: auth.isAuthenticated ? 'logout' : 'login' })()
+      }
       {...props}
-      onClick={() => {
-        const authed = auth.isAuthenticated
-        ;(authed ? auth.logout : auth.login)()
-      }}
     >
       {auth.isAuthenticated ? `Logout` : 'Login'}
     </button>
