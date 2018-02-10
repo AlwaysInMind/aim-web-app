@@ -2,6 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 
 import auth from '../auth/auth'
+import speak from '../drivers/speech'
 
 const Button = ({ image, label, actionFn, ...props }) => (
   <button type="button" onClick={actionFn} {...props}>
@@ -30,6 +31,10 @@ const BackButton = withRouter(
     staticContext: ignore3,
     ...props
   }) => <Button actionFn={() => history.goBack()} {...props} />
+)
+
+const SpeakingButton = ({ label, ...props }) => (
+  <Button actionFn={() => speak(label)} label={label} {...props} />
 )
 
 const mkToggleButton = ({
@@ -79,4 +84,11 @@ const AuthButton = props => {
   return <ToggleButton stateFn={() => auth.isAuthenticated} {...props} />
 }
 
-export { Button, RouterButton, BackButton, AuthButton, PauseButton }
+export {
+  Button,
+  RouterButton,
+  BackButton,
+  SpeakingButton,
+  AuthButton,
+  PauseButton,
+}

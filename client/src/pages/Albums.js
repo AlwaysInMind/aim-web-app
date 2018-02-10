@@ -2,12 +2,16 @@ import React from 'react'
 
 import withFetchJSON from '../hocs/withFetchJSON'
 import withAuth from '../hocs/withAuth'
-import { Button, RouterButton, AuthButton } from '../components/Button.js'
+import {
+  SpeakingButton,
+  RouterButton,
+  AuthButton,
+} from '../components/Button.js'
 
 const Albums = ({ auth, error, isLoaded, data }) => {
   return (
     <React.Fragment>
-      <Button className="header-main" label="Choose Photo Album" />
+      <SpeakingButton className="header-main" label="Choose Photo Album" />
       <AuthButton className="header-log" />
       {error ? (
         <div className="page-error">

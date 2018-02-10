@@ -3,7 +3,7 @@ import React from 'react'
 import withFetchJSON, { template } from '../hocs/withFetchJSON'
 import withAuth from '../hocs/withAuth'
 import {
-  Button,
+  SpeakingButton,
   BackButton,
   AuthButton,
   PauseButton,
@@ -31,7 +31,7 @@ class Photos extends React.Component {
 
     return (
       <React.Fragment>
-        <Button className="header-main" label="View photos" />
+        <SpeakingButton className="header-main" label="View photos" />
         <AuthButton className="header-log" />
         {error ? (
           <div className="page-error">
