@@ -18,10 +18,6 @@ class Photos extends React.Component {
     this.slideShow = mkSlideShow(options.slideshowRate)
   }
 
-  componentDidUpdate() {
-    this.slideShow.play()
-  }
-
   componentWillUnmount() {
     this.slideShow.kill()
   }

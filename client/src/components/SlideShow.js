@@ -5,6 +5,7 @@ export default function mkSlideShow(rate = 3000) {
   var currentSlide = -1
   var timerID
 
+  const getSlides = () => document.querySelectorAll('.slides .slide')
   const nextSlide = (slides, slide) => (slide + 1) % slides.length
   const showSlide = (slides, slide) => {
     slides[slide].className = 'slide showing'
@@ -15,17 +16,20 @@ export default function mkSlideShow(rate = 3000) {
 
   function start() {
     if (!timerID) {
-      slides = document.querySelectorAll('.slides .slide')
       if (currentSlide !== -1) {
+        //        slides = getSlides()
         advanceSlide()
       } else {
-        currentSlide = 0
-        showSlide(slides, 0)
+        setTimeout(() => {
+          currentSlide = 0
+          slides = getSlides()
+          showSlide(slides, 0)
+        }, 250) // let the slides load
       }
+
       timerID = setInterval(advanceSlide, rate)
     }
   }
-
   function stop() {
     if (timerID) {
       clearInterval(timerID)

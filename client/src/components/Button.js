@@ -66,12 +66,13 @@ const mkToggleButton = ({
 
 const PauseButton = ({ pausable, ...props }) => {
   const ToggleButton = mkToggleButton({
-    labelA: 'Pause',
-    labelB: 'Play',
-    actionA: pausable.pause,
-    actionB: pausable.play,
+    labelA: 'Play',
+    labelB: 'Pause',
+    actionA: pausable.play,
+    actionB: pausable.pause,
   })
-  return <ToggleButton stateFn={() => !pausable.isPlaying()} {...props} />
+  pausable.play()
+  return <ToggleButton stateFn={pausable.isPlaying} {...props} />
 }
 
 const AuthButton = props => {
