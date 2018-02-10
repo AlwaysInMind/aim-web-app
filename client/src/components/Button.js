@@ -49,14 +49,15 @@ const mkToggleButton = ({
     update = () => this.forceUpdate()
     render() {
       const { stateFn, ...props } = this.props
+      const state = stateFn()
       return (
         <Button
           actionFn={() => {
             ;(stateFn() ? actionB : actionA)()
             this.update()
           }}
-          label={stateFn() ? labelB : labelA}
-          image={stateFn() ? imageB : imageA}
+          label={state ? labelB : labelA}
+          image={state ? imageB : imageA}
           {...props}
         />
       )
