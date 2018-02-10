@@ -90,6 +90,15 @@ button {
   padding: 0.5rem;
 }
 
+.button-label {
+  text-overflow: wrap;
+}
+.button-image {
+  width: 80%;
+  object-fit: contain;
+  border-radius: 0.4rem;
+}
+
 .button-goback {
   color: white;
   background-color: rgb(139, 190, 64);
@@ -98,15 +107,6 @@ button {
 
 button:focus {
   border-color: red;
-}
-
-.button-label {
-  text-overflow: wrap;
-}
-.button-image {
-  width: 80%;
-  object-fit: contain;
-  border-radius: 0.4rem;
 }
 
 .page-error,

@@ -22,7 +22,17 @@ const buttonAction = (action, history) =>
   )
 
 const Button = withRouter(
-  ({ id, image, label, action, history, staticContext: unused, ...props }) => {
+  ({
+    id,
+    image,
+    label,
+    action,
+    history,
+    match: unused1,
+    location: unused2,
+    staticContext: unused3,
+    ...props
+  }) => {
     const actionFn = buttonAction(action, history)
     return (
       <button {...props} type="button" key={id} onClick={actionFn}>
