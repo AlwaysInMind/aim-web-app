@@ -84,8 +84,16 @@ class Auth {
     localStorage.setItem('gtoken', JSON.stringify(user))
   }
 
-  logout() {
-    this.auth0.logout({ /*federated: false,*/ returnTo: pathToURL('/login') })
+  logout(logoutIdP = false) {
+    const logoutGoogle = function() {
+      document.location.href = `https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=${pathToURL(
+        '/login'
+      )}`
+    }
+    this.auth0.logout(/*{ federated: false, returnTo: pathToURL('/login') }*/)
+    if (logoutIdP) {
+      logoutGoogle()
+    }
     localStorage.removeItem('access_token')
     localStorage.removeItem('id_token')
     localStorage.removeItem('expires_at')
