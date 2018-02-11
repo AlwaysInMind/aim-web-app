@@ -9,8 +9,6 @@ import Photos from '../pages/Photos'
 import Options from '../pages/Options'
 import auth from '../auth/auth'
 
-import './App.css'
-
 const handleAuthentication = ({ location }) => {
   if (/access_token|id_token|error/.test(location.hash)) {
     return auth.handleAuthentication()

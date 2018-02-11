@@ -97,6 +97,8 @@ button {
   width: 80%;
   object-fit: contain;
   border-radius: 0.4rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .button-goback {
