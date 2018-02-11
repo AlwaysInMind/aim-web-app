@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom'
 import auth from '../auth/auth'
 import speak from '../drivers/speech'
 
+import './Button.css'
+
 const Button = ({ image, label, actionFn, ...props }) => (
   <button type="button" onClick={actionFn} {...props}>
     {image ? <img className="button-image" src={image} alt="" /> : ''}

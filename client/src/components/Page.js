@@ -1,8 +1,33 @@
 import React from 'react'
-import { SpeakingButton, AuthButton } from '../components/Button.js'
+import {
+  RouterButton,
+  SpeakingButton,
+  AuthButton,
+} from '../components/Button.js'
+
+import './Page.css'
+import './Button.css'
+
+const OptionsButton = ({ optionsPage }) =>
+  !optionsPage ? (
+    <RouterButton
+      class="header-options"
+      route="/options"
+      className="header-options"
+      image={`${process.env.PUBLIC_URL}/options.svg`}
+    />
+  ) : (
+    <RouterButton
+      class="header-options"
+      route="/"
+      className="header-options"
+      label="AIM"
+    />
+  )
 
 const Page = ({ error, isLoaded, title, loadingText, errorText, children }) => (
-  <React.Fragment>
+  <div className="container">
+    <OptionsButton optionsPage={title === 'Options'} />
     <SpeakingButton className="header-main" label={title} />
     <AuthButton className="header-log" />
     {isLoaded !== undefined && error ? (
@@ -15,7 +40,7 @@ const Page = ({ error, isLoaded, title, loadingText, errorText, children }) => (
     ) : (
       children()
     )}
-  </React.Fragment>
+  </div>
 )
 
 export default Page

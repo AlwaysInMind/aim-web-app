@@ -15,6 +15,7 @@ const Albums = ({ data, ...props }) => (
     {() =>
       data.map(item => (
         <RouterButton
+          style={{ gridColumn: 'span 2' }}
           image={item.thumbnail}
           label={item.title}
           route={`/photos/${item.id}`}

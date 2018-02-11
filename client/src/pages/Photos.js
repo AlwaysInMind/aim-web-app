@@ -6,7 +6,11 @@ import { BackButton, PauseButton } from '../components/Button.js'
 import Page from '../components/Page'
 import mkSlideShow from '../components/SlideShow'
 
+import '../components/SlideShow.css'
+
 const options = { slideshowRate: 5000 }
+
+const btn = { gridColumn: 'span 2' }
 
 class Photos extends React.Component {
   constructor(props) {
@@ -30,7 +34,7 @@ class Photos extends React.Component {
         {() => (
           <React.Fragment>
             <div className="slides-container">
-              <ul style={{ display: 'block' }} className="slides">
+              <ul className="slides">
                 {data.length
                   ? data.map(item => (
                       <li className="slide" key={item.id}>
@@ -44,8 +48,16 @@ class Photos extends React.Component {
                   : 'No photos'}
               </ul>
             </div>,
-            <BackButton className="button-goback" label="More Photos" />,
-            <PauseButton className="button-pause" pausable={this.slideShow} />,
+            <BackButton
+              style={btn}
+              className="button-goback"
+              label="More Photos"
+            />,
+            <PauseButton
+              style={btn}
+              className="button-pause"
+              pausable={this.slideShow}
+            />,
           </React.Fragment>
         )}
       </Page>

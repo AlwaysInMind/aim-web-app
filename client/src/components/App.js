@@ -9,6 +9,8 @@ import Photos from '../pages/Photos'
 import Options from '../pages/Options'
 import auth from '../auth/auth'
 
+import './App.css'
+
 const handleAuthentication = ({ location }) => {
   if (/access_token|id_token|error/.test(location.hash)) {
     return auth.handleAuthentication()
@@ -20,7 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="container">
+        <React.Fragment>
           <PublicRoute path="/login" render={props => <Login />} />
           <PublicRoute
             path={auth.loginCallbackRoute}
@@ -39,7 +41,7 @@ class App extends React.Component {
             )}
           />
           <PrivateRoute path="/options" render={props => <Options />} />
-        </div>
+        </React.Fragment>
       </Router>
     )
   }
