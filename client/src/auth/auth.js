@@ -90,7 +90,10 @@ class Auth {
         '/login'
       )}`
     }
-    this.auth0.logout(/*{ federated: false, returnTo: pathToURL('/login') }*/)
+    this.auth0.logout({
+      /*federated: logoutIdP,*/ // google ognores this and URL is incorrect
+      returnTo: pathToURL('/login'),
+    })
     if (logoutIdP) {
       logoutGoogle()
     }
