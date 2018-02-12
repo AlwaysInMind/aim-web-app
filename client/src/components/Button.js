@@ -6,13 +6,19 @@ import speak from '../drivers/speech'
 
 import './Button.css'
 
-const Button = ({ image, label, actionFn, ...props }) => (
-  <button type="button" onClick={actionFn} {...props}>
-    {image ? <img className="button-image" src={image} alt="" /> : null}
-    {image && label ? <br /> : null}
-    {label ? <span className="button-label">{label}</span> : null}
-  </button>
-)
+const Button = ({ image, label, actionFn, ...props }) => {
+  function detectLongPress(e) {
+    console.info(e)
+    actionFn(e)
+  }
+  return (
+    <button type="button" onClick={detectLongPress} {...props}>
+      {image ? <img className="button-image" src={image} alt="" /> : null}
+      {image && label ? <br /> : null}
+      {label ? <span className="button-label">{label}</span> : null}
+    </button>
+  )
+}
 
 const RouterButton = withRouter(
   ({

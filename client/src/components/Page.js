@@ -14,22 +14,16 @@ import './Button.css'
 const OptionsButton = ({ optionsPage }) =>
   !optionsPage ? (
     <RouterButton
-      class="header-options"
       route="/options"
       className="header-options"
       image={`${process.env.PUBLIC_URL}/options.svg`}
     />
   ) : (
-    <RouterButton
-      class="header-options"
-      route="/"
-      className="header-options"
-      label="Back"
-    />
+    <RouterButton route="/" className="header-options" label="Back" />
   )
 
 const HelpButton = ({ helpFn }) => {
-  return <Button class="header-help" label="Explain" actionFn={helpFn} />
+  return <Button className="header-help" label="Explain" actionFn={helpFn} />
 }
 
 class Page extends React.Component {
