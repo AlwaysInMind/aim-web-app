@@ -5,6 +5,16 @@ import withAuth from '../hocs/withAuth'
 import { RouterButton } from '../components/Button'
 import Page from '../components/Page'
 
+const AlbumButton = ({ id, title, thumbnail, ...props }) => (
+  <RouterButton
+    style={{ gridColumn: 'span 2' }}
+    image={thumbnail}
+    label={title}
+    route={`/photos/${id}`}
+    helpText={`View photos in the album '${title}'`}
+  />
+)
+
 const Albums = ({ data, ...props }) => (
   <Page
     title="Choose Photo Album"
@@ -16,12 +26,10 @@ const Albums = ({ data, ...props }) => (
     {() =>
       // closure so can access data prop
       data.map(item => (
-        <RouterButton
-          className="button-router"
-          style={{ gridColumn: 'span 2' }}
-          image={item.thumbnail}
-          label={item.title}
-          route={`/photos/${item.id}`}
+        <AlbumButton
+          id={item.id}
+          thumbnail={item.thumbnail}
+          title={item.title}
           key={item.id}
         />
       ))

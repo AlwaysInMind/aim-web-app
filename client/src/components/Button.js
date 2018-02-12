@@ -6,13 +6,54 @@ import speak from '../drivers/speech'
 
 import './Button.css'
 
-const Button = ({ image, label, actionFn, ...props }) => {
-  function detectLongPress(e) {
-    console.info(e)
-    actionFn(e)
+function helpFn(helpText) {
+  speak(helpText + '.')
+}
+
+const mkf = (actionFn, helpText) => {
+  let t
+  let l
+  return e => {
+    const type = e.type
+    const isStartEvent = new Set(['mousedown', 'keydown', 'touchstart']).has(
+      type
+    )
+    const isEndEvent = new Set(['mouseup', 'keyup', 'touchend']).has(type)
+    const isMatchingEvent =
+      isEndEvent &&
+      { mouseup: 'mousedown', keyup: 'keydown', touchstart: 'touchend' }[
+        type
+      ] === l
+    // TODO we assume end event will match start event
+    if (isStartEvent) {
+      l = type
+      t = setTimeout(() => {
+        t = undefined
+      }, 1000)
+    } else if (isMatchingEvent && t) {
+      clearTimeout(t)
+      t = l = undefined
+      actionFn(e)
+    } else if (isMatchingEvent && !t) {
+      l = undefined
+      helpFn(helpText)
+    }
   }
+}
+
+const Button = ({ image, label, actionFn, helpText, ...props }) => {
+  const detectLongPress = mkf(actionFn, helpText)
   return (
-    <button type="button" onClick={detectLongPress} {...props}>
+    <button
+      type="button"
+      onMouseDown={detectLongPress}
+      onMouseUp={detectLongPress}
+      onKeyDown={detectLongPress}
+      onKeyUp={detectLongPress}
+      onTouchStart={detectLongPress}
+      onTouchEnd={detectLongPress}
+      {...props}
+    >
       {image ? <img className="button-image" src={image} alt="" /> : null}
       {image && label ? <br /> : null}
       {label ? <span className="button-label">{label}</span> : null}
@@ -28,7 +69,9 @@ const RouterButton = withRouter(
     location: ignore2,
     staticContext: ignore3,
     ...props
-  }) => <Button actionFn={() => history.push(route)} {...props} />
+  }) => {
+    return <Button actionFn={() => history.push(route)} {...props} />
+  }
 )
 
 const BackButton = withRouter(

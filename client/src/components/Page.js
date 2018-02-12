@@ -11,19 +11,27 @@ import HelpModal from './HelpModal'
 import './Page.css'
 import './Button.css'
 
-const OptionsButton = ({ optionsPage }) =>
+const OptionsButton = ({ optionsPage, ...props }) =>
   !optionsPage ? (
     <RouterButton
       route="/options"
       className="header-options"
       image={`${process.env.PUBLIC_URL}/options.svg`}
+      {...props}
     />
   ) : (
     <RouterButton route="/" className="header-options" label="Back" />
   )
 
-const HelpButton = ({ helpFn }) => {
-  return <Button className="header-help" label="Explain" actionFn={helpFn} />
+const HelpButton = ({ helpFn, ...props }) => {
+  return (
+    <Button
+      className="header-help"
+      label="Explain"
+      actionFn={helpFn}
+      {...props}
+    />
+  )
 }
 
 class Page extends React.Component {
@@ -52,10 +60,17 @@ class Page extends React.Component {
 
     return (
       <div className="container">
-        <OptionsButton optionsPage={title === 'Options'} />
-        <HelpButton helpFn={this.handleOpenModal} />
-        <SpeakingButton className="header-main" label={title} />
-        <AuthButton className="header-log" />
+        <OptionsButton
+          optionsPage={title === 'Options'}
+          helpText="Change options"
+        />
+        <HelpButton helpFn={this.handleOpenModal} helpText="Learn how to use" />
+        <SpeakingButton
+          className="header-main"
+          label={title}
+          helpText={title}
+        />
+        <AuthButton className="header-log" helpText="Press to logout" />
         <HelpModal
           isOpen={this.state.showModal}
           closeFn={this.handleCloseModal}
