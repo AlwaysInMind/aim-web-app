@@ -8,9 +8,9 @@ import './Button.css'
 
 const Button = ({ image, label, actionFn, ...props }) => (
   <button type="button" onClick={actionFn} {...props}>
-    {image ? <img className="button-image" src={image} alt="" /> : ''}
-    {image && label ? <br /> : ''}
-    {label ? <span className="button-label">{label}</span> : ''}
+    {image ? <img className="button-image" src={image} alt="" /> : null}
+    {image && label ? <br /> : null}
+    {label ? <span className="button-label">{label}</span> : null}
   </button>
 )
 
@@ -46,7 +46,7 @@ const HomeButton = withRouter(
 )
 
 const SpeakingButton = ({ label, ...props }) => (
-  <Button actionFn={() => speak(label)} label={label} {...props} />
+  <Button actionFn={() => speak(label + '.')} label={label} {...props} />
 )
 
 const mkToggleButton = ({

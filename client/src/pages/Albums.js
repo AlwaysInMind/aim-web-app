@@ -10,11 +10,14 @@ const Albums = ({ data, ...props }) => (
     title="Choose Photo Album"
     loadingText="Loading your albums..."
     errorText="Unable to get albums"
+    pageHelpText="You can view the photos in an album pressing the button for the one you'd like to see."
     {...props}
   >
     {() =>
+      // closure so can access data prop
       data.map(item => (
         <RouterButton
+          className="button-router"
           style={{ gridColumn: 'span 2' }}
           image={item.thumbnail}
           label={item.title}

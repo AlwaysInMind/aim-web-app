@@ -274,9 +274,9 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-auth0-js@9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-9.2.0.tgz#59eaf2a325dc2d11eac15dbb6fabad3ce88655d2"
+auth0-js@9.2.2:
+  version "9.2.2"
+  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-9.2.2.tgz#06930079c225e2ca9338308cbccbb04730f5155c"
   dependencies:
     base64-js "^1.2.0"
     idtoken-verifier "^1.1.1"
@@ -2374,6 +2374,10 @@ execa@^0.7.0:
     p-finally "^1.0.0"
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
+
+exenv@^1.2.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
 
 expand-brackets@^0.1.4:
   version "0.1.5"
@@ -5199,6 +5203,14 @@ react-dom@16.2.0:
 react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
+
+react-modal@^3.1.13:
+  version "3.1.13"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.1.13.tgz#9b27e7774e6ecdc255f489487f518eb4361716ab"
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
+    warning "^3.0.0"
 
 react-router-dom@4.2.2:
   version "4.2.2"

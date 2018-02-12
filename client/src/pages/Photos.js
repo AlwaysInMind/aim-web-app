@@ -29,6 +29,7 @@ class Photos extends React.Component {
         title="View Photos"
         loadingText="Loading your photos..."
         errorText="Unable to get photos"
+        pageHelpText="Watch the photo slideshow. You can stop the photos changing with the pause button and then start again with the play button."
         {...props}
       >
         {() => (
@@ -50,8 +51,8 @@ class Photos extends React.Component {
             </div>,
             <BackButton
               style={btn}
-              className="button-goback"
-              label="More Photos"
+              className="button-router"
+              label="See More Photos"
             />,
             <PauseButton
               style={btn}
