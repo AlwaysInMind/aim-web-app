@@ -7,17 +7,17 @@ import { Button, SpeakingButton } from './Button'
 import './HelpModal.css'
 
 // the Modal className props do not seem to work and can't use this syntaxt in page.css
-const modalStyle = {
+const modalStyle = small => ({
   overlay: {
     backgroundColor: 'rgba(50, 50, 50, 0.95)',
-    zIndex: 10,
+    zIndex: 10, // so on top of slideshow which uses 1 for top of stack
   },
   content: {
     position: 'fixed',
-    top: '4vw',
-    left: '4vw',
-    right: '4vw',
-    bottom: '4vw',
+    top: small ? '16vw' : '4vw',
+    left: small ? '20vw' : '4vw',
+    right: small ? '20vw' : '4vw',
+    bottom: small ? '16vw' : '4vw',
     background: 'lightgoldenrodyellow',
     outline: 'none',
     overflow: 'none',
@@ -26,33 +26,27 @@ const modalStyle = {
     padding: '0.5rem',
     fontSize: '2rem',
   },
-}
+})
 
-const HelpModal = ({ isOpen, closeFn, content, children }) => (
+const HelpModal = ({ isOpen, closeFn, small, title, children, helpFn }) => (
   <ReactModal
     isOpen={isOpen}
     contentLabel="Help Information"
     onRequestClose={closeFn}
-    style={modalStyle}
+    style={modalStyle(small === 'true')}
   >
     <div className="modal-content">
-      <SpeakingButton className="header help-header" label="How to use this" />
-      <div className="help-content">
-        <p>
-          Press the buttons to make things happen. Some buttons like the header
-          above will just speak. Other buttons will let you do what is written
-          on them. Still other buttons will take you to different screen.
-        </p>
-        <p>
-          To find out what a button does you can press it for 1 second or double
-          press it. You will be told what the button will do when pressed.
-        </p>
-        {children}
-      </div>
+      <SpeakingButton
+        className="header help-header"
+        label={title}
+        helpFn={() => {}} //no helpFn as gets recursive!helpFn={helpFn}
+      />
+      <div className="help-content">{children}</div>
       <Button
         className="button help-close"
         actionFn={closeFn}
         label="Carry On"
+        helpFn={() => {}} //no helpFn as gets recursive!
       />
     </div>
   </ReactModal>

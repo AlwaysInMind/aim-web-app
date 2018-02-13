@@ -12,6 +12,7 @@ const AlbumButton = ({ id, title, thumbnail, ...props }) => (
     label={title}
     route={`/photos/${id}`}
     helpText={`View photos in the album '${title}'`}
+    {...props}
   />
 )
 
@@ -20,10 +21,10 @@ const Albums = ({ data, ...props }) => (
     title="Choose Photo Album"
     loadingText="Loading your albums..."
     errorText="Unable to get albums"
-    pageHelpText="You can view the photos in an album pressing the button for the one you'd like to see."
+    pageExplainText="You can view the photos in an album pressing the button for the one you'd like to see."
     {...props}
   >
-    {() =>
+    {helpFn =>
       // closure so can access data prop
       data.map(item => (
         <AlbumButton
@@ -31,6 +32,7 @@ const Albums = ({ data, ...props }) => (
           thumbnail={item.thumbnail}
           title={item.title}
           key={item.id}
+          helpFn={helpFn}
         />
       ))
     }

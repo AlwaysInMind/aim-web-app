@@ -29,10 +29,10 @@ class Photos extends React.Component {
         title="View Photos"
         loadingText="Loading your photos..."
         errorText="Unable to get photos"
-        pageHelpText="Watch the photo slideshow. You can stop the photos changing with the pause button and then start again with the play button."
+        pageExplainText="Watch the photo slideshow. You can stop the photos changing with the pause button and then start again with the play button."
         {...props}
       >
-        {() => (
+        {helpFn => (
           <React.Fragment>
             <div className="slides-container">
               <ul className="slides">
@@ -48,16 +48,20 @@ class Photos extends React.Component {
                     ))
                   : 'No photos'}
               </ul>
-            </div>,
+            </div>
             <BackButton
               style={btn}
               className="button-router"
               label="See More Photos"
-            />,
+              helpFn={helpFn}
+              helpText="Choose another photo Album"
+            />
             <PauseButton
               style={btn}
               className="button-pause"
               pausable={this.slideShow}
+              helpFn={helpFn}
+              helpText="Pause or restart the slideshow"
             />,
           </React.Fragment>
         )}

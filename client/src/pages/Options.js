@@ -8,10 +8,16 @@ const Options = props => (
     title="Options"
     loadingText=""
     errorText=""
-    pageHelpText="Change the way AlwaysInMind works."
+    pageExplainText="Change the way AlwaysInMind works."
     {...props}
   >
-    {() => [<HomeButton className="button-goback" label="Save Settings" />]}
+    {helpFn => [
+      <HomeButton
+        className="button-goback"
+        label="Save Settings"
+        helpFn={helpFn}
+      />,
+    ]}
   </Page>
 )
 
