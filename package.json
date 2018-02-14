@@ -20,13 +20,13 @@
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
     "micro-dev": "^2.2.0",
-    "now": "^9.3.1",
+    "now": "^9.3.2",
     "prettier": "^1.10.2"
   },
   "scripts": {
     "postinstall": "cd client && yarn && cd ..",
-    "start": "concurrently \"yarn run devapi\" \"yarn run client\"",
-    "devapi": "micro-dev ./api/src/index.js -p 3001",
+    "start": "concurrently \"yarn run api\" \"yarn run client\"",
+    "api": "micro-dev ./api/src/index.js -p 3001",
     "client": "node start-client.js",
     "precommit": "lint-staged",
     "predeploy:api": "now rm -y alwaysinmindapi",
