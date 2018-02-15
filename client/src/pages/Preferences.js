@@ -1,29 +1,33 @@
 import React from 'react'
 
-import { HomeButton } from '../components/Button.js'
+import { Button } from '../components/Button.js'
 import Page from '../components/Page'
 import withAuth from '../hocs/withAuth'
-import { setPreferences } from '../modules/preferences'
+import Preferences from '../drivers/preferences'
 
-const Preferences = ({ auth, ...props }) => (
+const PreferencesPage = ({ auth, ...props }) => (
   <Page
     title="Preferences"
     loadingText=""
     errorText=""
-    pageExplainText="Change the way AlwaysInMind works."
+    pageExplainText="Make Always In Mind work the way you like."
     {...props}
   >
-    {helpFn => [
-      <HomeButton
-        className="button-goback"
-        label="Save Settings"
+    {helpFn => (
+      <Button
+        //style={btn}
+        className="button-router"
+        label="Save Prefs"
         helpFn={helpFn}
+        helpText="Saves it"
         actionFn={() => {
-          setPreferences(auth.accessToken, { wibble: 'bobble' })
+          Preferences.putPreferences(auth.accessToken, {
+            slideshowRate: 2000,
+          })
         }}
-      />,
-    ]}
+      />
+    )}
   </Page>
 )
 
-export default withAuth(Preferences)
+export default withAuth(PreferencesPage)

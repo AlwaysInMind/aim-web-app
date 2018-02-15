@@ -18,16 +18,12 @@ export default function mkSlideShow(rate = 3000) {
   function start() {
     if (!timerID) {
       if (currentSlide !== -1) {
-        //        slides = getSlides()
         advanceSlide()
       } else {
-        setTimeout(() => {
-          currentSlide = 0
-          slides = getSlides()
-          showSlide(slides, 0)
-        }, 250) // let the slides load
+        currentSlide = 0
+        slides = getSlides()
+        showSlide(slides, 0)
       }
-
       timerID = setInterval(advanceSlide, rate)
     }
   }
@@ -44,14 +40,12 @@ export default function mkSlideShow(rate = 3000) {
     showSlide(slides, currentSlide)
   }
 
-  function isPlaying() {
-    return timerID !== undefined
-  }
-
   return {
-    play: start,
-    pause: stop,
-    kill: stop,
-    isPlaying,
+    get isPlaying() {
+      return timerID !== undefined
+    },
+    set isPlaying(play) {
+      play ? start() : stop()
+    },
   }
 }

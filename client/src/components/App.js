@@ -7,7 +7,7 @@ import AlbumsPage from '../pages/Albums'
 import PhotosPage from '../pages/Photos'
 import PreferencesPage from '../pages/Preferences'
 import auth from '../auth/auth'
-import { getPreferences } from '../modules/preferences'
+import Preferences from '../drivers/preferences'
 
 import './App.css'
 
@@ -33,7 +33,7 @@ class App extends React.Component {
             path={auth.loginCallbackRoute}
             render={props => {
               handleAuthentication(props).then(() => {
-                getPreferences(auth.accessToken)
+                Preferences.fetchPreferences(auth.accessToken)
                 props.history.replace('/')
               })
               return <CallbackPage {...props} />

@@ -63,7 +63,7 @@ const SpeakingButton = ({ label, ...props }) => (
   <Button actionFn={() => speak(label + '.')} label={label} {...props} />
 )
 
-const mkToggleButton = ({
+const mkToggleButtonL = ({
   actionA,
   actionB,
   labelA,
@@ -91,8 +91,41 @@ const mkToggleButton = ({
   }
 }
 
-const PauseButton = ({ pausable, ...props }) => {
-  const ToggleButton = mkToggleButton({
+const mkToggleButton = ({
+  actionA,
+  actionB,
+  labelA,
+  labelB,
+  imageA,
+  imageB,
+}) => {
+  return class _ extends React.Component {
+    render() {
+      const { stateB, ...props } = this.props
+      return (
+        <Button
+          actionFn={stateB ? actionB : actionA}
+          label={stateB ? labelB : labelA}
+          image={stateB ? imageB : imageA}
+          {...props}
+        />
+      )
+    }
+  }
+}
+
+const PauseButton = ({ isPlaying, playFn, ...props }) => {
+  const PauseButton = mkToggleButton({
+    labelA: 'Play',
+    labelB: 'Pause',
+    actionA: () => playFn(true),
+    actionB: () => playFn(false),
+  })
+  return <PauseButton stateB={isPlaying} {...props} />
+}
+
+const PauseButtonL = ({ pausable, ...props }) => {
+  const ToggleButton = mkToggleButtonL({
     labelA: 'Play',
     labelB: 'Pause',
     actionA: pausable.play,
@@ -103,7 +136,7 @@ const PauseButton = ({ pausable, ...props }) => {
 }
 
 const AuthButton = props => {
-  const ToggleButton = mkToggleButton({
+  const ToggleButton = mkToggleButtonL({
     labelA: 'Login',
     labelB: 'Logout',
     actionA: auth.login,

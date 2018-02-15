@@ -4,7 +4,7 @@ import withFetchJSON from '../hocs/withFetchJSON'
 import withAuth from '../hocs/withAuth'
 import { Button } from '../components/Button'
 
-const Home = ({ auth, error, isLoaded, data }) => {
+const HomePage = ({ auth, error, isLoaded, data }) => {
   return error ? (
     <div className="page-error">
       Unable to get albums
@@ -24,4 +24,4 @@ const Home = ({ auth, error, isLoaded, data }) => {
   )
 }
 
-export default withAuth(withFetchJSON(Home, '/api/albums'))
+export default withAuth(withFetchJSON(HomePage, '/api/albums'))

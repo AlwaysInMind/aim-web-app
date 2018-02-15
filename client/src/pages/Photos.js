@@ -5,22 +5,27 @@ import withAuth from '../hocs/withAuth'
 import { BackButton, PauseButton } from '../components/Button.js'
 import Page from '../components/Page'
 import mkSlideShow from '../components/SlideShow'
+import Preferences from '../drivers/preferences'
 
 import '../components/SlideShow.css'
 
-const preferences = { slideshowRate: 5000 }
-
 const btn = { gridColumn: 'span 2' }
 
-class Photos extends React.Component {
-  constructor(props) {
-    super(props)
-    this.slideShow = mkSlideShow(preferences.slideshowRate)
+class PhotosPage extends React.Component {
+  componentDidMount() {
+    this.slideShow = mkSlideShow(Preferences.preferences.slideshowRate)
+    setTimeout(() => {
+      this.slideShow.isPlaying = true
+      this.update()
+    }, 5000) // let all the slides load
   }
 
   componentWillUnmount() {
-    this.slideShow.kill()
+    this.slideShow.isPlaying = false
+    this.slideShow = undefined
   }
+
+  update = () => this.forceUpdate()
 
   render() {
     const { data, ...props } = this.props
@@ -59,10 +64,14 @@ class Photos extends React.Component {
             <PauseButton
               style={btn}
               className="button-pause"
-              pausable={this.slideShow}
+              isPlaying={this.slideShow.isPlaying}
+              playFn={play => {
+                this.slideShow.isPlaying = play
+                this.update()
+              }}
               helpFn={helpFn}
               helpText="Pause or restart the slideshow"
-            />,
+            />
           </React.Fragment>
         )}
       </Page>
@@ -71,5 +80,5 @@ class Photos extends React.Component {
 }
 
 export default withAuth(
-  withFetchJSON(Photos, pathTemplate`/api/albums/${'id'}`)
+  withFetchJSON(PhotosPage, pathTemplate`/api/albums/${'id'}`)
 )

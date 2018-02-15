@@ -16,7 +16,7 @@ const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   />
 )
 
-const Albums = ({ data, ...props }) => (
+const AlbumsPage = ({ data, ...props }) => (
   <Page
     title="Choose Photo Album"
     loadingText="Loading your albums..."
@@ -39,4 +39,4 @@ const Albums = ({ data, ...props }) => (
   </Page>
 )
 
-export default withAuth(withFetchJSON(Albums, '/api/albums'))
+export default withAuth(withFetchJSON(AlbumsPage, '/api/albums'))

@@ -1,5 +1,5 @@
 import React from 'react'
-import { callAPI } from '../modules/api'
+import { callAPI } from '../drivers/api'
 
 // simple tagged template string function to apply a dict to a string
 export function pathTemplate(strings, ...keys) {

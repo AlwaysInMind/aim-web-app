@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import loading from './loading.svg'
 
-class Callback extends Component {
+class CallbackPage extends Component {
   render() {
     const style = {
       position: 'absolute',
@@ -24,4 +24,4 @@ class Callback extends Component {
   }
 }
 
-export default Callback
+export default CallbackPage
