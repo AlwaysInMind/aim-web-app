@@ -8,7 +8,7 @@
   grid-gap: 0.6rem;
 }
 
-.header-options {
+.header-preferences {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;

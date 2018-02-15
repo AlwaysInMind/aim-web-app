@@ -17,7 +17,7 @@ button {
   margin-top: 0.5em;
 }
 
-.header-options img {
+.header-preferences img {
   margin: 0;
 }
 
@@ -28,7 +28,7 @@ button {
 }
 
 .header,
-.header-options,
+.header-preferences,
 .header-help,
 .header-main,
 .header-log {

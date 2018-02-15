@@ -1,6 +1,6 @@
 import React from 'react'
 
-import withFetchJSON, { template } from '../hocs/withFetchJSON'
+import withFetchJSON, { pathTemplate } from '../hocs/withFetchJSON'
 import withAuth from '../hocs/withAuth'
 import { BackButton, PauseButton } from '../components/Button.js'
 import Page from '../components/Page'
@@ -8,14 +8,14 @@ import mkSlideShow from '../components/SlideShow'
 
 import '../components/SlideShow.css'
 
-const options = { slideshowRate: 5000 }
+const preferences = { slideshowRate: 5000 }
 
 const btn = { gridColumn: 'span 2' }
 
 class Photos extends React.Component {
   constructor(props) {
     super(props)
-    this.slideShow = mkSlideShow(options.slideshowRate)
+    this.slideShow = mkSlideShow(preferences.slideshowRate)
   }
 
   componentWillUnmount() {
@@ -70,4 +70,6 @@ class Photos extends React.Component {
   }
 }
 
-export default withAuth(withFetchJSON(Photos, template`/api/albums/${'id'}`))
+export default withAuth(
+  withFetchJSON(Photos, pathTemplate`/api/albums/${'id'}`)
+)

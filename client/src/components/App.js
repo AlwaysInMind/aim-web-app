@@ -2,12 +2,12 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import { PublicRoute, PrivateRoute } from './AuthRoute'
-import Login from '../pages/Login'
-import Callback from '../pages/Callback'
-import Albums from '../pages/Albums'
-import Photos from '../pages/Photos'
-import Options from '../pages/Options'
+import CallbackPage from '../pages/Callback'
+import AlbumsPage from '../pages/Albums'
+import PhotosPage from '../pages/Photos'
+import PreferencesPage from '../pages/Preferences'
 import auth from '../auth/auth'
+import { getPreferences } from '../modules/preferences'
 
 import './App.css'
 
@@ -23,24 +23,33 @@ class App extends React.Component {
     return (
       <Router>
         <React.Fragment>
-          <PublicRoute path="/login" render={props => <Login />} />
+          <PublicRoute
+            path="/login"
+            render={() => {
+              auth.login()
+            }}
+          />
           <PublicRoute
             path={auth.loginCallbackRoute}
             render={props => {
               handleAuthentication(props).then(() => {
+                getPreferences(auth.accessToken)
                 props.history.replace('/')
               })
-              return <Callback {...props} />
+              return <CallbackPage {...props} />
             }}
           />
-          <PrivateRoute exact path="/" render={props => <Albums />} />
+          <PrivateRoute exact path="/" render={props => <AlbumsPage />} />
           <PrivateRoute
             path="/photos/:id"
             render={({ match: { params: { id } } }) => (
-              <Photos fetchURLProps={{ id }} />
+              <PhotosPage fetchURLProps={{ id }} />
             )}
           />
-          <PrivateRoute path="/options" render={props => <Options />} />
+          <PrivateRoute
+            path="/preferences"
+            render={props => <PreferencesPage />}
+          />
         </React.Fragment>
       </Router>
     )

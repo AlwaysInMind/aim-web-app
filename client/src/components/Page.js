@@ -12,16 +12,16 @@ import speak from '../drivers/speech'
 import './Page.css'
 import './Button.css'
 
-const OptionsButton = ({ optionsPage, ...props }) =>
-  !optionsPage ? (
+const PreferencesButton = ({ PreferencesPage, ...props }) =>
+  !PreferencesPage ? (
     <RouterButton
-      route="/options"
-      className="header-options"
-      image={`${process.env.PUBLIC_URL}/options.svg`}
+      route="/preferences"
+      className="header-preferences"
+      image={`${process.env.PUBLIC_URL}/preferences.svg`}
       {...props}
     />
   ) : (
-    <RouterButton route="/" className="header-options" label="Back" />
+    <RouterButton route="/" className="header-preferences" label="Back" />
   )
 
 const ExplainButton = ({ explainFn, ...props }) => {
@@ -36,9 +36,9 @@ const ExplainButton = ({ explainFn, ...props }) => {
 }
 const Header = ({ title, helpFn, handleOpenModal }) => (
   <React.Fragment>
-    <OptionsButton
-      optionsPage={title === 'Options'}
-      helpText="Change options"
+    <PreferencesButton
+      PreferencesPage={title === 'Preferences'}
+      helpText="Change Preferences"
       helpFn={helpFn}
     />
     <ExplainButton

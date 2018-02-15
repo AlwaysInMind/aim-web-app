@@ -81,6 +81,7 @@ class Auth {
       this.auth0.client.userInfo.bind(this.auth0.client)
     )
     const user = await getUserInfo(authResult.accessToken)
+    localStorage.setItem('user_id', authResult.user_id)
     localStorage.setItem('gtoken', JSON.stringify(user))
   }
 
@@ -109,7 +110,7 @@ class Auth {
   }
 
   get user() {
-    const gtoken = localStorage.getItem('gtoken')
+    const gtoken = localStorage.getItem('gtoken') //TODO review
     const name = JSON.parse(gtoken).name
     return this.isAuthenticated ? name : '<none>'
   }

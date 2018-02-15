@@ -11,7 +11,7 @@ exports.requestObject = options => {
           new Error(
             `Remote resource ${options.url} returned status code: ${
               response.statusCode
-            }: ${body}`
+            }: ${JSON.stringify(body)}`
           )
         )
       } else {

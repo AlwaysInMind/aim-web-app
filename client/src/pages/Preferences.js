@@ -2,10 +2,12 @@ import React from 'react'
 
 import { HomeButton } from '../components/Button.js'
 import Page from '../components/Page'
+import withAuth from '../hocs/withAuth'
+import { setPreferences } from '../modules/preferences'
 
-const Options = props => (
+const Preferences = ({ auth, ...props }) => (
   <Page
-    title="Options"
+    title="Preferences"
     loadingText=""
     errorText=""
     pageExplainText="Change the way AlwaysInMind works."
@@ -16,9 +18,12 @@ const Options = props => (
         className="button-goback"
         label="Save Settings"
         helpFn={helpFn}
+        actionFn={() => {
+          setPreferences(auth.accessToken, { wibble: 'bobble' })
+        }}
       />,
     ]}
   </Page>
 )
 
-export default Options
+export default withAuth(Preferences)

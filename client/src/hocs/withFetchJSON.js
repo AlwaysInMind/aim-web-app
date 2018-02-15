@@ -1,10 +1,8 @@
 import React from 'react'
-
-const APIDOMAIN =
-  process.env.NODE_ENV === 'production' ? 'https://alwaysinmindapi.now.sh' : ''
+import { callAPI } from '../modules/api'
 
 // simple tagged template string function to apply a dict to a string
-export function template(strings, ...keys) {
+export function pathTemplate(strings, ...keys) {
   return function(dict) {
     var result = [strings[0]]
     keys.forEach(function(key, i) {
@@ -12,18 +10,6 @@ export function template(strings, ...keys) {
     })
     return result.join('')
   }
-}
-
-async function fetchJSON(url, accessToken = undefined) {
-  const res = await fetch(url, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken}`, // better to exclude it if undefined
-    },
-  })
-  return await res.json()
 }
 
 // Gets JSON from an optionally authenticated API if auth prop is passed
@@ -38,12 +24,11 @@ export default function withFetchJSON(WrappedComponent, url) {
 
     async componentDidMount() {
       try {
-        const endpoint = `${APIDOMAIN}${
+        const endpoint = `${
           typeof url === 'function' ? url(this.props.fetchURLProps) : url
         }`
-        const auth = this.props.auth
-        const token = auth && auth.accessToken
-        const data = await fetchJSON(endpoint, token)
+        const { auth: { accessToken } } = this.props
+        const data = await callAPI(accessToken, 'GET', endpoint)
         this.setState({
           isLoaded: true,
           data,
