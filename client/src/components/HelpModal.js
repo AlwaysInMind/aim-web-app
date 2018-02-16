@@ -28,9 +28,9 @@ const modalStyle = small => ({
   },
 })
 
-const HelpModal = ({ isOpen, closeFn, small, title, children, helpFn }) => (
+const HelpModal = ({ open, closeFn, small, title, children, helpFn }) => (
   <ReactModal
-    isOpen={isOpen}
+    isOpen={open}
     contentLabel="Help Information"
     onRequestClose={closeFn}
     style={modalStyle(small === 'true')}

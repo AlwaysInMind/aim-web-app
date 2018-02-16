@@ -60,9 +60,9 @@ const Header = ({ title, helpFn, handleOpenModal }) => (
   </React.Fragment>
 )
 
-const ExplainModal = ({ subtitle, text, isOpen, closeFn, ...props }) => (
+const ExplainModal = ({ subtitle, text, open, closeFn, ...props }) => (
   <HelpModal
-    isOpen={isOpen}
+    open={open}
     closeFn={closeFn}
     small="false"
     title="How to use Always In Mind"
@@ -86,9 +86,9 @@ const ExplainModal = ({ subtitle, text, isOpen, closeFn, ...props }) => (
   </HelpModal>
 )
 
-const ButtonHelpModal = ({ isOpen, closeFn, text, ...props }) => (
+const ButtonHelpModal = ({ open, closeFn, text, ...props }) => (
   <HelpModal
-    isOpen={isOpen}
+    open={open}
     closeFn={closeFn}
     small="true"
     title="With this button you can..."
@@ -137,13 +137,13 @@ class Page extends React.Component {
           title="How to use Always In Mind"
           subtitle={`This Screen is: ${title}`}
           text={pageExplainText}
-          isOpen={this.state.showExplainModal}
+          open={this.state.showExplainModal}
           closeFn={this.handleCloseModals}
           helpFn={this.helpFn}
         />
         <ButtonHelpModal
           text={this.state.buttonModalText}
-          isOpen={this.state.showButtonModal}
+          open={this.state.showButtonModal}
           closeFn={this.handleCloseModals}
           helpFn={this.helpFn}
         />
@@ -152,12 +152,12 @@ class Page extends React.Component {
           helpFn={this.helpFn}
           handleOpenModal={this.handleOpenModal}
         />
-        {isLoaded !== undefined && error ? (
+        {isLoaded && error ? (
           <div className="page-error">
             {errorText}
             {console.log(error.message)}
           </div>
-        ) : isLoaded !== undefined && !isLoaded ? (
+        ) : !isLoaded ? (
           <div className="page-loading">{loadingText}</div>
         ) : (
           children(this.helpFn)

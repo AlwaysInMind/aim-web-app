@@ -1,6 +1,8 @@
 import { callAPI } from './api'
 
-let _preferences = { slideshowRate: 500 }
+let _preferences
+
+const defaults = { slideshowRate: 2000 }
 
 export default {
   get preferences() {
@@ -12,7 +14,7 @@ export default {
     let data
     try {
       data = await callAPI(accessToken, 'GET', endpoint)
-      _preferences = { ..._preferences, ...data }
+      _preferences = { ..._preferences, ...data, ...defaults }
     } catch (error) {
       alert(error)
       console.log(error) // TODO fix error handling

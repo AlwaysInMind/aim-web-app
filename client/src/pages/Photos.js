@@ -12,20 +12,30 @@ import '../components/SlideShow.css'
 const btn = { gridColumn: 'span 2' }
 
 class PhotosPage extends React.Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props)
     this.slideShow = mkSlideShow(Preferences.preferences.slideshowRate)
-    setTimeout(() => {
-      this.slideShow.isPlaying = true
-      this.update()
-    }, 5000) // let all the slides load
+    this.state = {
+      slideShowIsPlaying: false,
+    }
+  }
+
+  didLoadCalled = false
+
+  componentDidUpdate() {
+    if (this.props.data && !this.didLoadCalled) {
+      this.didLoadCalled = true
+      this.setState({ slideShowIsPlaying: true })
+    }
+    if (this.props.data) {
+      this.slideShow.isPlaying = this.state.slideShowIsPlaying
+    }
   }
 
   componentWillUnmount() {
     this.slideShow.isPlaying = false
     this.slideShow = undefined
   }
-
-  update = () => this.forceUpdate()
 
   render() {
     const { data, ...props } = this.props
@@ -64,10 +74,9 @@ class PhotosPage extends React.Component {
             <PauseButton
               style={btn}
               className="button-pause"
-              isPlaying={this.slideShow.isPlaying}
+              isPlaying={this.state.slideShowIsPlaying}
               playFn={play => {
-                this.slideShow.isPlaying = play
-                this.update()
+                this.setState({ slideShowIsPlaying: play })
               }}
               helpFn={helpFn}
               helpText="Pause or restart the slideshow"

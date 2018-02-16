@@ -17,12 +17,12 @@ const PreferencesPage = ({ auth, ...props }) => (
       <Button
         //style={btn}
         className="button-router"
-        label="Save Prefs"
+        label="Slow slides"
         helpFn={helpFn}
         helpText="Saves it"
         actionFn={() => {
           Preferences.putPreferences(auth.accessToken, {
-            slideshowRate: 2000,
+            slideshowRate: 3000,
           })
         }}
       />
