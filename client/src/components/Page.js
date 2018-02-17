@@ -12,16 +12,25 @@ import { speak } from '../drivers/speech'
 import './Page.css'
 import './Button.css'
 
+import { preferences } from '../drivers/preferences'
+
 const PreferencesButton = ({ PreferencesPage, ...props }) =>
   !PreferencesPage ? (
     <RouterButton
       route="/preferences"
       className="header-preferences"
       image={`${process.env.PUBLIC_URL}/preferences.svg`}
+      helpText="Change Preferences"
       {...props}
     />
   ) : (
-    <RouterButton route="/" className="header-preferences" label="Back" />
+    <RouterButton
+      route="/"
+      className="header-preferences"
+      label="Back"
+      helpText="Return to Always in Mind"
+      {...props}
+    />
   )
 
 const ExplainButton = ({ explainFn, ...props }) => {
@@ -38,7 +47,6 @@ const Header = ({ title, helpFn, handleOpenModal }) => (
   <React.Fragment>
     <PreferencesButton
       PreferencesPage={title === 'Preferences'}
-      helpText="Change Preferences"
       helpFn={helpFn}
     />
     <ExplainButton
@@ -116,8 +124,13 @@ export class Page extends React.Component {
   helpFn = helpText => {
     const helpText2 =
       (helpText ? helpText : 'This button is not described') + '.'
-    this.setState({ showButtonModal: true, buttonModalText: helpText2 })
-    speak(helpText2)
+    this.setState({
+      showButtonModal: preferences.showHelp,
+      buttonModalText: helpText2,
+    })
+    if (preferences.speakHelp) {
+      speak(helpText2)
+    }
   }
 
   render() {

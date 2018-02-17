@@ -7,7 +7,14 @@ import { mkLongPressFunction } from '../drivers/longpress'
 
 import './Button.css'
 
-const Button = ({ image, label, actionFn, helpFn, helpText, ...props }) => {
+export const Button = ({
+  image,
+  label,
+  actionFn,
+  helpFn,
+  helpText,
+  ...props
+}) => {
   const detectLongPress = mkLongPressFunction(actionFn, () => helpFn(helpText))
   return (
     <button
@@ -27,7 +34,7 @@ const Button = ({ image, label, actionFn, helpFn, helpText, ...props }) => {
   )
 }
 
-const RouterButton = withRouter(
+export const RouterButton = withRouter(
   ({
     route,
     history,
@@ -40,7 +47,7 @@ const RouterButton = withRouter(
   }
 )
 
-const BackButton = withRouter(
+export const BackButton = withRouter(
   ({
     history,
     match: ignore1,
@@ -50,7 +57,7 @@ const BackButton = withRouter(
   }) => <Button actionFn={() => history.goBack()} {...props} />
 )
 
-const HomeButton = withRouter(
+export const HomeButton = withRouter(
   ({
     history,
     match: ignore1,
@@ -60,11 +67,11 @@ const HomeButton = withRouter(
   }) => <Button actionFn={() => history.push('/')} {...props} />
 )
 
-const SpeakingButton = ({ label, ...props }) => (
+export const SpeakingButton = ({ label, ...props }) => (
   <Button actionFn={() => speak(label + '.')} label={label} {...props} />
 )
 
-const mkToggleButton = ({
+export const mkToggleButton = ({
   actionA,
   actionB,
   labelA,
@@ -87,7 +94,19 @@ const mkToggleButton = ({
   }
 }
 
-const PauseButton = ({ isPlaying, playFn, ...props }) => {
+export const OnOffButton = ({ label, isOn, actionFn, ...props }) => {
+  const OnOffButton = mkToggleButton({
+    labelA: label,
+    labelB: label,
+    imageA: `${process.env.PUBLIC_URL}/Blue_Light_Icon.svg`,
+    imageB: `${process.env.PUBLIC_URL}/Yellow_Light_Icon.svg`,
+    actionA: () => actionFn(true),
+    actionB: () => actionFn(false),
+  })
+  return <OnOffButton stateB={isOn} {...props} />
+}
+
+export const PauseButton = ({ isPlaying, playFn, ...props }) => {
   const PauseButton = mkToggleButton({
     labelA: 'Play',
     labelB: 'Pause',
@@ -97,7 +116,7 @@ const PauseButton = ({ isPlaying, playFn, ...props }) => {
   return <PauseButton stateB={isPlaying} {...props} />
 }
 
-const AuthButton = ({ ...props }) => {
+export const AuthButton = ({ ...props }) => {
   const ToggleButton = mkToggleButton({
     labelA: 'Login',
     labelB: 'Logout',
@@ -105,14 +124,4 @@ const AuthButton = ({ ...props }) => {
     actionB: () => auth.logout(),
   })
   return <ToggleButton stateB={auth.isAuthenticated} {...props} />
-}
-
-export {
-  Button,
-  RouterButton,
-  BackButton,
-  HomeButton,
-  SpeakingButton,
-  AuthButton,
-  PauseButton,
 }
