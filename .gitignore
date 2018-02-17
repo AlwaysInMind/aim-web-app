@@ -21,5 +21,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-client/src/auth/auth0-variables.js
-api/src/auth/auth0-variables.js
+client/src/drivers/auth0-variables.js
+api/src/drivers/auth0-variables.js

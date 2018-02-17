@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { auth } from '../auth/auth'
+import { auth } from '../drivers/auth'
 import { speak } from '../drivers/speech'
 import { mkLongPressFunction } from '../drivers/longpress'
 
