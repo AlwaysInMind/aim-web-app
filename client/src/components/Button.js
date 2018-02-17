@@ -64,34 +64,6 @@ const SpeakingButton = ({ label, ...props }) => (
   <Button actionFn={() => speak(label + '.')} label={label} {...props} />
 )
 
-const mkToggleButtonL = ({
-  actionA,
-  actionB,
-  labelA,
-  labelB,
-  imageA,
-  imageB,
-}) => {
-  return class _ extends React.Component {
-    update = () => this.forceUpdate()
-    render() {
-      const { stateFn, ...props } = this.props
-      const state = stateFn()
-      return (
-        <Button
-          actionFn={() => {
-            ;(stateFn() ? actionB : actionA)()
-            this.update()
-          }}
-          label={state ? labelB : labelA}
-          image={state ? imageB : imageA}
-          {...props}
-        />
-      )
-    }
-  }
-}
-
 const mkToggleButton = ({
   actionA,
   actionB,
@@ -125,25 +97,14 @@ const PauseButton = ({ isPlaying, playFn, ...props }) => {
   return <PauseButton stateB={isPlaying} {...props} />
 }
 
-const PauseButtonL = ({ pausable, ...props }) => {
-  const ToggleButton = mkToggleButtonL({
-    labelA: 'Play',
-    labelB: 'Pause',
-    actionA: pausable.play,
-    actionB: pausable.pause,
-  })
-  pausable.play()
-  return <ToggleButton stateFn={pausable.isPlaying} {...props} />
-}
-
-const AuthButton = props => {
-  const ToggleButton = mkToggleButtonL({
+const AuthButton = ({ ...props }) => {
+  const ToggleButton = mkToggleButton({
     labelA: 'Login',
     labelB: 'Logout',
-    actionA: auth.login,
-    actionB: auth.logout,
+    actionA: () => auth.login(),
+    actionB: () => auth.logout(),
   })
-  return <ToggleButton stateFn={() => auth.isAuthenticated} {...props} />
+  return <ToggleButton stateB={auth.isAuthenticated} {...props} />
 }
 
 export {
