@@ -81,7 +81,6 @@ class Auth {
       this.auth0.client.userInfo.bind(this.auth0.client)
     )
     const user = await getUserInfo(authResult.accessToken)
-    localStorage.setItem('user_id', authResult.user_id)
     localStorage.setItem('gtoken', JSON.stringify(user))
   }
 
