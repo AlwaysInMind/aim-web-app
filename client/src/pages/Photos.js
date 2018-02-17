@@ -1,10 +1,10 @@
 import React from 'react'
 
-import withFetchJSON, { pathTemplate } from '../hocs/withFetchJSON'
-import withAuth from '../hocs/withAuth'
+import { withFetchJSON, pathTemplate } from '../hocs/withFetchJSON'
+import { withAuth } from '../hocs/withAuth'
 import { BackButton, PauseButton } from '../components/Button.js'
-import Page from '../components/Page'
-import mkSlideShow from '../components/SlideShow'
+import { Page } from '../components/Page'
+import { mkSlideShow } from '../components/SlideShow'
 import { preferences } from '../drivers/preferences'
 
 import '../components/SlideShow.css'
@@ -88,6 +88,7 @@ class PhotosPage extends React.Component {
   }
 }
 
-export default withAuth(
+const wrappedPage = withAuth(
   withFetchJSON(PhotosPage, pathTemplate`/api/albums/${'id'}`)
 )
+export { wrappedPage as PhotosPage }

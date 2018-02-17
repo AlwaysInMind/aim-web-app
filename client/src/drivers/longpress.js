@@ -1,4 +1,4 @@
-const mkLongPressFunction = (actionFn, helpFn) => {
+export const mkLongPressFunction = (actionFn, helpFn) => {
   let t
   let l
   return e => {
@@ -28,5 +28,3 @@ const mkLongPressFunction = (actionFn, helpFn) => {
     }
   }
 }
-
-export default mkLongPressFunction

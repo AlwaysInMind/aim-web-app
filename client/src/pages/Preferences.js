@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { Button } from '../components/Button.js'
-import Page from '../components/Page'
-import withAuth from '../hocs/withAuth'
+import { Page } from '../components/Page'
+import { withAuth } from '../hocs/withAuth'
 import { preferences, setPreferences } from '../drivers/preferences'
 
 const PreferencesPage = ({ auth, ...props }) => (
@@ -15,7 +15,6 @@ const PreferencesPage = ({ auth, ...props }) => (
   >
     {helpFn => (
       <Button
-        className="button-router"
         label="Slow slides"
         helpFn={helpFn}
         helpText="Saves it"
@@ -29,4 +28,5 @@ const PreferencesPage = ({ auth, ...props }) => (
   </Page>
 )
 
-export default withAuth(PreferencesPage)
+export const wrappedPage = withAuth(PreferencesPage)
+export { wrappedPage as PreferencesPage }

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import withFetchJSON from '../hocs/withFetchJSON'
-import withAuth from '../hocs/withAuth'
+import { withFetchJSON } from '../hocs/withFetchJSON'
+import { withAuth } from '../hocs/withAuth'
 import { RouterButton } from '../components/Button'
-import Page from '../components/Page'
+import { Page } from '../components/Page'
 
 const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   <RouterButton
@@ -39,4 +39,5 @@ const AlbumsPage = ({ data, ...props }) => (
   </Page>
 )
 
-export default withAuth(withFetchJSON(AlbumsPage, '/api/albums'))
+const wrappedPage = withAuth(withFetchJSON(AlbumsPage, '/api/albums'))
+export { wrappedPage as AlbumsPage }

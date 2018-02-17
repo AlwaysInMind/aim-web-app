@@ -1,7 +1,7 @@
 import React from 'react'
 
-import withFetchJSON from '../hocs/withFetchJSON'
-import withAuth from '../hocs/withAuth'
+import { withFetchJSON } from '../hocs/withFetchJSON'
+import { withAuth } from '../hocs/withAuth'
 import { Button } from '../components/Button'
 
 const HomePage = ({ auth, error, isLoaded, data }) => {
@@ -24,4 +24,5 @@ const HomePage = ({ auth, error, isLoaded, data }) => {
   )
 }
 
-export default withAuth(withFetchJSON(HomePage, '/api/albums'))
+const wrappedPage = withAuth(withFetchJSON(HomePage, '/api/albums'))
+export { wrappedPage as HomePage }

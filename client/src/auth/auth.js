@@ -119,4 +119,4 @@ class Auth {
   }
 }
 
-export default new Auth()
+export const auth = new Auth()

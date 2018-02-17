@@ -1,5 +1,4 @@
 import React from 'react'
-
 import ReactModal from 'react-modal'
 
 import { Button, SpeakingButton } from './Button'
@@ -28,7 +27,14 @@ const modalStyle = small => ({
   },
 })
 
-const HelpModal = ({ open, closeFn, small, title, children, helpFn }) => (
+export const HelpModal = ({
+  open,
+  closeFn,
+  small,
+  title,
+  children,
+  helpFn,
+}) => (
   <ReactModal
     isOpen={open}
     contentLabel="Help Information"
@@ -53,5 +59,3 @@ const HelpModal = ({ open, closeFn, small, title, children, helpFn }) => (
 )
 
 ReactModal.setAppElement('#root')
-
-export default HelpModal

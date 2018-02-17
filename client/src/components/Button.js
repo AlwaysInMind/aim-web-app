@@ -1,9 +1,10 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
-import auth from '../auth/auth'
-import speak from '../drivers/speech'
-import mkLongPressFunction from '../drivers/longpress'
+import { auth } from '../auth/auth'
+import { speak } from '../drivers/speech'
+import { mkLongPressFunction } from '../drivers/longpress'
+
 import './Button.css'
 
 const Button = ({ image, label, actionFn, helpFn, helpText, ...props }) => {

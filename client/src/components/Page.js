@@ -6,8 +6,8 @@ import {
   SpeakingButton,
   AuthButton,
 } from '../components/Button.js'
-import HelpModal from './HelpModal'
-import speak from '../drivers/speech'
+import { HelpModal } from './HelpModal'
+import { speak } from '../drivers/speech'
 
 import './Page.css'
 import './Button.css'
@@ -98,7 +98,7 @@ const ButtonHelpModal = ({ open, closeFn, text, ...props }) => (
   </HelpModal>
 )
 
-class Page extends React.Component {
+export class Page extends React.Component {
   state = {
     showExplainModal: false,
     showButtonModal: false,
@@ -167,5 +167,3 @@ class Page extends React.Component {
     )
   }
 }
-
-export default Page

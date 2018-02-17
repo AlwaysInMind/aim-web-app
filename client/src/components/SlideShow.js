@@ -1,7 +1,7 @@
 // for now is a pure DOM component with no rendering - just updates classes
 import './SlideShow.css'
 
-export default function mkSlideShow(rate = 3000) {
+export function mkSlideShow(rate = 3000) {
   var slides
   var currentSlide = -1
   var timerID

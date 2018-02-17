@@ -2,11 +2,11 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import { PublicRoute, PrivateRoute } from './AuthRoute'
-import CallbackPage from '../pages/Callback'
-import AlbumsPage from '../pages/Albums'
-import PhotosPage from '../pages/Photos'
-import PreferencesPage from '../pages/Preferences'
-import auth from '../auth/auth'
+import { CallbackPage } from '../pages/Callback'
+import { AlbumsPage } from '../pages/Albums'
+import { PhotosPage } from '../pages/Photos'
+import { PreferencesPage } from '../pages/Preferences'
+import { auth } from '../auth/auth'
 import { fetchPreferences } from '../drivers/preferences'
 
 import './App.css'
@@ -18,7 +18,7 @@ const handleAuthentication = ({ location }) => {
   return Promise.reject()
 }
 
-class App extends React.Component {
+export class App extends React.Component {
   render() {
     return (
       <Router>
@@ -56,5 +56,3 @@ class App extends React.Component {
     )
   }
 }
-
-export default App

@@ -14,7 +14,7 @@ export function pathTemplate(strings, ...keys) {
 
 // Gets JSON from an optionally authenticated API if auth prop is passed
 // The wrapped component is passed properties for error, loading, fetch data and auth
-export default function withFetchJSON(WrappedComponent, url) {
+export function withFetchJSON(WrappedComponent, url) {
   return class extends React.Component {
     state = {
       error: null,
