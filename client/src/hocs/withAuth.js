@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { auth } from '../auth/auth'
+import { auth } from '../drivers/auth'
 
 // Injects auth prop
 export function withAuth(WrappedComponent) {

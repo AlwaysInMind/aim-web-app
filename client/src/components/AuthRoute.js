@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
 
-import { auth } from '../auth/auth'
+import { auth } from '../drivers/auth'
 
 // Always available even in not authed
 const PublicRoute = Route

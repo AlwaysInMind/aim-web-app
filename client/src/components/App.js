@@ -6,7 +6,7 @@ import { CallbackPage } from '../pages/Callback'
 import { AlbumsPage } from '../pages/Albums'
 import { PhotosPage } from '../pages/Photos'
 import { PreferencesPage } from '../pages/Preferences'
-import { auth } from '../auth/auth'
+import { auth } from '../drivers/auth'
 import { fetchPreferences } from '../drivers/preferences'
 
 import './App.css'
