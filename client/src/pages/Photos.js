@@ -5,7 +5,7 @@ import withAuth from '../hocs/withAuth'
 import { BackButton, PauseButton } from '../components/Button.js'
 import Page from '../components/Page'
 import mkSlideShow from '../components/SlideShow'
-import Preferences from '../drivers/preferences'
+import { preferences } from '../drivers/preferences'
 
 import '../components/SlideShow.css'
 
@@ -14,7 +14,7 @@ const btn = { gridColumn: 'span 2' }
 class PhotosPage extends React.Component {
   constructor(props) {
     super(props)
-    this.slideShow = mkSlideShow(Preferences.preferences.slideshowRate)
+    this.slideShow = mkSlideShow(preferences.slideshowRate)
     this.state = {
       slideShowIsPlaying: false,
     }

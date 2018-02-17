@@ -3,7 +3,7 @@ import React from 'react'
 import { Button } from '../components/Button.js'
 import Page from '../components/Page'
 import withAuth from '../hocs/withAuth'
-import Preferences from '../drivers/preferences'
+import { preferences, setPreferences } from '../drivers/preferences'
 
 const PreferencesPage = ({ auth, ...props }) => (
   <Page
@@ -15,14 +15,13 @@ const PreferencesPage = ({ auth, ...props }) => (
   >
     {helpFn => (
       <Button
-        //style={btn}
         className="button-router"
         label="Slow slides"
         helpFn={helpFn}
         helpText="Saves it"
         actionFn={() => {
-          Preferences.putPreferences(auth.accessToken, {
-            slideshowRate: 3000,
+          setPreferences({
+            slideshowRate: 5000,
           })
         }}
       />

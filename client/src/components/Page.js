@@ -152,12 +152,13 @@ class Page extends React.Component {
           helpFn={this.helpFn}
           handleOpenModal={this.handleOpenModal}
         />
-        {isLoaded && error ? (
+        {// isLoaded wil be undefined if page not wraped by withFetchJSON
+        isLoaded !== undefined && isLoaded && error ? (
           <div className="page-error">
             {errorText}
             {console.log(error.message)}
           </div>
-        ) : !isLoaded ? (
+        ) : isLoaded !== undefined && !isLoaded ? (
           <div className="page-loading">{loadingText}</div>
         ) : (
           children(this.helpFn)
