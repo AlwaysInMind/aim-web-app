@@ -28,6 +28,7 @@ const AlbumsPage = ({ data, ...props }) => (
       // closure so can access data prop
       data.map(item => (
         <AlbumButton
+          className="button-router"
           id={item.id}
           thumbnail={item.thumbnail}
           title={item.title}
