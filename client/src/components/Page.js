@@ -25,7 +25,7 @@ const PreferencesButton = ({ PreferencesPage, ...props }) =>
     />
   ) : (
     <RouterButton
-      route="/"
+      route="!goBack"
       className="header-preferences"
       label="Back"
       helpText="Return to Always in Mind"

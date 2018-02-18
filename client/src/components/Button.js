@@ -43,7 +43,9 @@ export const RouterButton = withRouter(
     staticContext: ignore3,
     ...props
   }) => {
-    return <Button actionFn={() => history.push(route)} {...props} />
+    const fn =
+      route === '!goBack' ? () => history.goBack() : () => history.push(route)
+    return <Button actionFn={fn} {...props} />
   }
 )
 
