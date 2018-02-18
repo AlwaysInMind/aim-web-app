@@ -5,6 +5,7 @@ const defaults = {
   slideShowRate: 4000,
   speakHelp: true,
   showHelp: false,
+  complexity: 0,
 }
 
 export const preferences = new Proxy(

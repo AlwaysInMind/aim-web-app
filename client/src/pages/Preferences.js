@@ -13,7 +13,7 @@ class PreferencesPage extends React.Component {
     const prefName = pref.includes(':') ? pref.split(':')[0] : pref
     const prefValue = pref.includes(':')
       ? on => {
-          // use statment to avoid eslint error
+          // use statment to avoid mysterious eslint error
           return on ? parseValueString(pref.split(':')[1]) : undefined
         }
       : on => on
@@ -67,7 +67,6 @@ class PreferencesPage extends React.Component {
               helpFn={helpFn}
               helpText="Slowly change photos in slidehow"
               pref="slideShowRate:10000"
-              kezy="slideShowRate:10000"
             />
             <this.PrefsButton
               group="slideshowSpeed"
@@ -75,7 +74,29 @@ class PreferencesPage extends React.Component {
               helpFn={helpFn}
               helpText="Quickly change photos in slidehow"
               pref="slideShowRate:4000"
-              kezy="slideShowRate:4000"
+            />
+          </RadioButtonGroup>,
+          <RadioButtonGroup key="uiComplexity">
+            <this.PrefsButton
+              group="uiComplexity"
+              label="Easiest Use"
+              helpFn={helpFn}
+              helpText="Easiest to use version"
+              pref="complexity:0"
+            />
+            <this.PrefsButton
+              group="uiComplexity"
+              label="Medium Use"
+              helpFn={helpFn}
+              helpText="Medium to use version"
+              pref="complexity:1"
+            />
+            <this.PrefsButton
+              group="uiComplexity"
+              label="Full Use"
+              helpFn={helpFn}
+              helpText="Fullest to use version"
+              pref="complexity:2"
             />
           </RadioButtonGroup>,
         ]}
