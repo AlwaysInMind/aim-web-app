@@ -20,18 +20,8 @@ class PreferencesPage extends React.Component {
     return (
       <OnOffButton
         label={label}
-        isOn={
-          (console.log(
-            'io',
-            prefName,
-            preferences[prefName],
-            prefValue(true),
-            preferences[prefName] === prefValue(true)
-          ),
-          preferences[prefName] === prefValue(true))
-        }
+        isOn={preferences[prefName] === prefValue(true)}
         actionFn={on => {
-          console.log('a', on, prefName, prefValue(on))
           if (prefValue(on) !== undefined) {
             // undefined if radio button that is off
             setPreferences({
