@@ -37,7 +37,7 @@ export async function fetchPreferences() {
   } catch (error) {
     console.log(error) // TODO fix error handling
   }
-  localStorage.setItem('preferences', JSON.stringify(prefs))
+  localStorage.setItem('preferences', JSON.stringify(prefs || {}))
 }
 
 export async function postPreferences() {
