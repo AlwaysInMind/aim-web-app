@@ -1,38 +1,51 @@
 import { callAPI } from './api'
 import { auth } from '../drivers/auth'
 
-const _preferences = { slideshowRate: 2000 }
+const defaults = {
+  slideShowRate: 4000,
+  speakHelp: true,
+  showHelp: false,
+}
+
+export const preferences = new Proxy(
+  {},
+  {
+    get: function(obj, prop) {
+      const prefs = JSON.parse(localStorage.getItem('preferences') || '{}')
+      return prop in prefs ? prefs[prop] : defaults[prop]
+    },
+    set: function(obj, prop, value) {
+      console.error('Preferences are immutable, use setState()')
+      return false
+    },
+  }
+)
+
+export function setPreferences(partial) {
+  const prefs = JSON.parse(localStorage.getItem('preferences') || '{}')
+  const newPrefs = typeof partial === 'function' ? partial(prefs) : partial
+  Object.assign(prefs, newPrefs)
+  localStorage.setItem('preferences', JSON.stringify(prefs))
+  postPreferences()
+}
 
 export async function fetchPreferences() {
   const endpoint = '/api/preferences'
-  let data
+  let prefs
   try {
-    data = await callAPI(auth.accessToken, 'GET', endpoint)
-    Object.assign(_preferences, data)
+    prefs = await callAPI(auth.accessToken, 'GET', endpoint)
   } catch (error) {
     console.log(error) // TODO fix error handling
   }
-  localStorage.setItem('preferences', JSON.stringify(_preferences))
+  localStorage.setItem('preferences', JSON.stringify(prefs))
 }
 
 export async function postPreferences() {
-  const prefs = JSON.parse(localStorage.getItem('preferences'))
-  if (!prefs) {
-    return
-  }
   const endpoint = '/api/preferences'
+  const prefs = JSON.parse(localStorage.getItem('preferences')) || {}
   try {
-    await callAPI(auth.accessToken, 'PUT', endpoint, _preferences)
+    await callAPI(auth.accessToken, 'PUT', endpoint, prefs)
   } catch (error) {
     console.log(error) // TODO fix error handling
   }
-}
-
-export const preferences = _preferences
-
-export async function setPreferences(partial) {
-  const newPrefs =
-    typeof partial === 'function' ? partial(_preferences) : partial
-  Object.assign(_preferences, newPrefs)
-  postPreferences()
 }

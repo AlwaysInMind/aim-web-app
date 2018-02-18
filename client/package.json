@@ -24,7 +24,7 @@
     "deploy":
       "yarn run build && now --public deploy build/ && yarn pause && now alias alwaysinmind",
     "pause":
-      "node -e \"((time) => new Promise((resolve) => setTimeout(resolve, time)))(process.argv[1]).then(() => process.exit(0))\" 3000"
+      "node -e \"((time) => new Promise((resolve) => setTimeout(resolve, time)))(process.argv[1]).then(() => process.exit(0))\" 30000"
   },
   "now": {
     "name": "alwaysinmind"
