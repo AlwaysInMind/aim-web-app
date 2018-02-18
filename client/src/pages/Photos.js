@@ -14,7 +14,7 @@ const btn = { gridColumn: 'span 2' }
 class PhotosPage extends React.Component {
   constructor(props) {
     super(props)
-    this.slideShow = mkSlideShow(preferences.slideshowRate)
+    this.slideShow = mkSlideShow(preferences.slideShowRate)
     this.state = {
       slideShowIsPlaying: false,
     }
