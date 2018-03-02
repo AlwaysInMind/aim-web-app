@@ -49,7 +49,7 @@ function requestAlbums(accessToken) {
 function requestPhotos(accessToken, userId, albumId) {
   const options = {
     method: 'GET',
-    url: `https://picasaweb.google.com/data/feed/api/user/${userId}/albumid/${albumId}?&max-results=10&alt=json`,
+    url: `https://picasaweb.google.com/data/feed/api/user/${userId}/albumid/${albumId}?&alt=json`,
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
