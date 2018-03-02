@@ -1,4 +1,4 @@
-const { requestObject } = require('../../request-object')
+const { requestObject } = require('../request-object')
 
 exports.getAlbums = async googleAccessToken => {
   const { object: { feed: { entry } } } = await requestAlbums(googleAccessToken)
@@ -16,7 +16,7 @@ exports.getPhotos = async (googleAccessToken, googleUserId, albumId) => {
   // Get the album list from google
   const { object: { feed: { entry } } } = await requestPhotos(
     googleAccessToken,
-    googleUserId.split('|')[1],
+    googleUserId,
     albumId
   )
   let titles = []
