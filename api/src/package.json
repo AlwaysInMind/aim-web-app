@@ -8,8 +8,7 @@
     "request": "2.83.0"
   },
   "scripts": {
-    "start": "micro",
-    "z": "bash -c \"which now\""
+    "start": "micro"
   },
   "now": {
     "name": "alwaysinmindapi",
