@@ -63,7 +63,7 @@ class Auth0 {
         password: DEMO_USER.PWD,
       },
       errorObject => {
-        alert(JSON.stringify(errorObject, null, 2))
+        console.log(JSON.stringify(errorObject, null, 2))
       }
     )
   }
@@ -98,6 +98,13 @@ class Auth0 {
     localStorage.setItem('gtoken', JSON.stringify(user))
   }
 
+  clearSession() {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('id_token')
+    localStorage.removeItem('expires_at')
+    localStorage.removeItem('gtoken')
+  }
+
   logout(logoutIdP = false) {
     const logoutGoogle = function() {
       document.location.href = `https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=${pathToURL(
@@ -111,10 +118,7 @@ class Auth0 {
     if (logoutIdP) {
       logoutGoogle()
     }
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('id_token')
-    localStorage.removeItem('expires_at')
-    localStorage.removeItem('gtoken')
+    this.clearSession()
   }
 
   get isAuthenticated() {
@@ -126,6 +130,10 @@ class Auth0 {
     const gtoken = localStorage.getItem('gtoken') //TODO review
     const name = JSON.parse(gtoken).name
     return this.isAuthenticated ? name : '<none>'
+  }
+
+  get isDemo() {
+    return this.user === DEMO_USER.EMAIL
   }
 
   get accessToken() {

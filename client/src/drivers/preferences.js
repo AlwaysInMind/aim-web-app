@@ -27,7 +27,9 @@ export function setPreferences(partial) {
   const newPrefs = typeof partial === 'function' ? partial(prefs) : partial
   Object.assign(prefs, newPrefs)
   localStorage.setItem('preferences', JSON.stringify(prefs))
-  postPreferences()
+  if (!auth.isDemo) {
+    postPreferences()
+  }
 }
 
 export async function fetchPreferences() {
