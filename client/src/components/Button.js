@@ -120,8 +120,8 @@ export const PauseButton = ({ isPlaying, playFn, ...props }) => {
 
 export const AuthButton = ({ ...props }) => {
   const ToggleButton = mkToggleButton({
-    labelA: 'Login',
-    labelB: 'Logout',
+    labelA: 'Start',
+    labelB: 'Finish',
     actionA: () => auth.login(),
     actionB: () => auth.logout(),
   })
