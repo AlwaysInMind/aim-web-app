@@ -1,9 +1,10 @@
 const { requestObject } = require('../request-object')
 
 exports.getAlbums = async googleAccessToken => {
+  const ignore = ['Profile Photos', 'Auto Backup']
   const { object: { feed: { entry } } } = await requestAlbums(googleAccessToken)
   const titles = entry
-    .filter(ent => ent.title.$t !== 'Profile Photos')
+    .filter(ent => ignore.indexOf(ent.title.$t) === -1)
     .map(ent => ({
       id: ent.gphoto$id.$t,
       title: ent.title.$t,
@@ -23,7 +24,7 @@ exports.getPhotos = async (googleAccessToken, googleUserId, albumId) => {
   if (entry) {
     titles = entry.map(ent => ({
       id: ent.gphoto$id.$t,
-      //        title: ent.title.$t,
+      title: ent.title.$t,
       src: ent.content.src,
       //        timestamp: ent.gphoto$timestamp.$t,
     }))
