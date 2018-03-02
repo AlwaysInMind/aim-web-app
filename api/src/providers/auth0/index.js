@@ -2,8 +2,8 @@ const { createError } = require('micro')
 const jwt = require('express-jwt')
 // var jwks = require('jwks-rsa')
 
-const AUTH_CONFIG = require('../auth/auth0-variables')
-const { requestObject } = require('../request-object')
+const AUTH_CONFIG = require('./auth0-variables')
+const { requestObject } = require('../../request-object')
 
 const middleware = jwt({
   secret: AUTH_CONFIG.AUTH0_SIGNING_CERTIFICATE,
@@ -30,6 +30,9 @@ exports.withAuth0 = wrapped => {
             createError(err.status || 500, `Auth error: ${err.message}`, err)
           )
         } else {
+          const { iss, sub } = AUTH_CONFIG.DEMO_ACCESS_TOKEN
+          req.params.isDemo = iss === req.user.iss && sub === req.user.sub
+
           const r = await wrapped(req, res, ...args)
           resolve(r)
         }

@@ -23,5 +23,10 @@ module.exports.AUTH0_ADMIN_CLIENT_ID = 'Isdh6kfUJkwJv1jnVxatqr22XD1OoDvq'
 module.exports.AUTH0_ADMIN_CLIENT_SECRET =
   'ePL6JDIi8jW4Xls3_jF1qbwiVuHNcqvXbcU4VjWSGPDV35-Attraj01nU0rTXava'
 
+module.exports.DEMO_ACCESS_TOKEN = {
+  iss: 'https://alwaysinmind.eu.auth0.com/',
+  sub: 'auth0|5a981ace5bf6386aecfea361',
+}
+
 // google client id  104226378704-ak3t2p73luofmpd6q995f2n2cr94cf4a.apps.googleusercontent.com
 // google client ecret r4TynrpYNGlJdvqo_x2kAIbj
