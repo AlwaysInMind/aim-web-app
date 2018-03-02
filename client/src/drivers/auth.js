@@ -1,6 +1,6 @@
 //import history from '../history'
 import auth0 from 'auth0-js'
-import { AUTH0_CONFIG, LOGIN_CALLBACK_PATH } from './auth0-variables'
+import { AUTH0_CONFIG, LOGIN_CALLBACK_PATH, DEMO_USER } from './auth0-variables'
 
 // A basic promisify for functions with node style callbacks ie (err, value)
 function promisify(original) {
@@ -31,13 +31,14 @@ function pathToURL(path) {
   }${path}`
 }
 
-class Auth {
+class Auth0 {
   auth0 = new auth0.WebAuth({
     domain: AUTH0_CONFIG.DOMAIN,
     clientID: AUTH0_CONFIG.CLIENTID,
     audience: AUTH0_CONFIG.APIID,
     responseType: 'token id_token',
     scope: 'openid profile photos',
+    redirectUri: pathToURL(LOGIN_CALLBACK_PATH),
   })
 
   constructor() {
@@ -52,6 +53,19 @@ class Auth {
     this.auth0.authorize({
       redirectUri: pathToURL(LOGIN_CALLBACK_PATH),
     })
+  }
+
+  loginDemo() {
+    this.auth0.login(
+      {
+        realm: DEMO_USER.REALM,
+        email: DEMO_USER.EMAIL,
+        password: DEMO_USER.PWD,
+      },
+      errorObject => {
+        alert(JSON.stringify(errorObject, null, 2))
+      }
+    )
   }
 
   async handleAuthentication() {
@@ -119,4 +133,4 @@ class Auth {
   }
 }
 
-export const auth = new Auth()
+export const auth = new Auth0()

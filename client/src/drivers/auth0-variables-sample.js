@@ -5,3 +5,9 @@ export const AUTH0_CONFIG = {
 }
 
 export const LOGIN_CALLBACK_PATH = '/auth/signed-in'
+
+export const DEMO_USER = {
+  REALM: '<REALM>',
+  EMAIL: '<EMAIL>',
+  PWD: '<PWD>',
+}

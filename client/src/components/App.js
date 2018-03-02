@@ -25,9 +25,16 @@ export class App extends React.Component {
         <React.Fragment>
           <PublicRoute
             path="/login"
-            render={() => {
+            render={({ location }) => {
               auth.login()
               return null
+            }}
+          />
+          <PublicRoute
+            path="/demo"
+            render={({ location }) => {
+              auth.loginDemo()
+              return <AlbumsPage />
             }}
           />
           <PublicRoute
@@ -40,7 +47,7 @@ export class App extends React.Component {
               return <CallbackPage {...props} />
             }}
           />
-          <PrivateRoute exact path="/" render={props => <AlbumsPage />} />
+          <PrivateRoute exact path="/" render={() => <AlbumsPage />} />
           <PrivateRoute
             path="/photos/:id"
             render={({ match: { params: { id } } }) => (
@@ -49,7 +56,7 @@ export class App extends React.Component {
           />
           <PrivateRoute
             path="/preferences"
-            render={props => <PreferencesPage />}
+            render={() => <PreferencesPage />}
           />
         </React.Fragment>
       </Router>
