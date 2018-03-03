@@ -15,7 +15,12 @@ export const Button = ({
   helpText,
   ...props
 }) => {
-  const detectLongPress = mkLongPressFunction(actionFn, () => helpFn(helpText))
+  const detectLongPress = mkLongPressFunction(actionFn, () => {
+    return helpFn(label, helpText, props)
+  })
+
+  const { isOn, ...propsPassThrough } = props
+
   return (
     <button
       type="button"
@@ -25,7 +30,7 @@ export const Button = ({
       onKeyUp={detectLongPress}
       onTouchStart={detectLongPress}
       onTouchEnd={detectLongPress}
-      {...props}
+      {...propsPassThrough}
     >
       {image ? <img className="button-image" src={image} alt="" /> : null}
       {image && label ? <br /> : null}
@@ -105,7 +110,7 @@ export const OnOffButton = ({ label, isOn, actionFn, ...props }) => {
     actionA: () => actionFn(true),
     actionB: () => actionFn(false),
   })
-  return <OnOffButton stateB={isOn} {...props} />
+  return <OnOffButton stateB={isOn} isOn={isOn} {...props} />
 }
 
 export const PauseButton = ({ isPlaying, playFn, ...props }) => {

@@ -12,13 +12,15 @@ import {
   stopSpeech,
 } from '../drivers/preferences'
 
-const generalHelpTitle = 'Using Always In Mind'
-const generalHelpText = `Press the buttons to make things happen.
+const generalHelpContent = {
+  title: 'Using Always In Mind',
+  text: `Press the buttons to make things happen.
 The text, pictures and button colour show what will happen.
 Some buttons show a new screen so you can do something new.
 Press a button for more than 1 second to learn what it does.
 But don't worry, just try a button and nothing bad will happen.
-`
+`,
+}
 
 const GeneralHelpModal = ({ title, text, open, closeFn, ...props }) => (
   <HelpModal
@@ -45,7 +47,7 @@ const ScreenHelpModal = ({ title, text, open, closeFn, moreFn, ...props }) => (
 
 const ButtonHelpModal = ({ title, text, open, closeFn, ...props }) => (
   <HelpModal
-    title={'With this button you can...'}
+    title={title}
     text={text}
     open={open}
     closeFn={closeFn}
@@ -58,7 +60,7 @@ export class Page extends React.Component {
     showGeneralHelpModal: false,
     showScreenHelpModal: false,
     showButtonModal: false,
-    buttonModalText: '',
+    buttonModalContent: { title: '', text: '' },
   }
 
   componentWillUnmount() {
@@ -91,8 +93,8 @@ export class Page extends React.Component {
   handleMoreHelp = () => {
     if (preferences.speakHelp) {
       stopSpeech()
-      optionallySpeak(generalHelpTitle)
-      optionallySpeak(generalHelpText)
+      optionallySpeak(generalHelpContent.title)
+      optionallySpeak(generalHelpContent.text)
     }
     if (preferences.showHelp) {
       this.setState({
@@ -102,14 +104,20 @@ export class Page extends React.Component {
     }
   }
 
-  helpFn = helpText => {
-    const helpText2 =
-      (helpText ? helpText : 'This button is not described') + '.'
-    this.setState({
-      showButtonModal: preferences.showHelp,
-      buttonModalText: helpText2,
-    })
-    optionallySpeak(helpText2)
+  handleButtonHelp = (label, helpText, { isOn }) => {
+    const title = label ? `This button is: ${label}` : 'This button'
+    const state = isOn === undefined ? '' : isOn ? 'on' : 'off'
+    const text = helpText
+      ? `${helpText}. It is switched ${state}.`
+      : 'is not described'
+    if (preferences.showHelp) {
+      this.setState({
+        showButtonModal: true,
+        buttonModalContent: { title, text },
+      })
+    }
+    optionallySpeak(title)
+    optionallySpeak(text)
   }
 
   render() {
@@ -126,29 +134,30 @@ export class Page extends React.Component {
     return (
       <div className="container">
         <GeneralHelpModal
-          title={generalHelpTitle}
-          text={generalHelpText}
+          title={generalHelpContent.title}
+          text={generalHelpContent.text}
           open={this.state.showGeneralHelpModal}
           closeFn={this.handleCloseModals}
-          helpFn={this.helpFn}
+          helpFn={this.handleButtonHelp}
         />
         <ScreenHelpModal
           title={this.screenHelpTitle()}
           text={screenHelpText}
           open={this.state.showScreenHelpModal}
           closeFn={this.handleCloseModals}
-          helpFn={this.helpFn}
+          helpFn={this.handleButtonHelp}
           moreFn={this.handleMoreHelp}
         />
         <ButtonHelpModal
-          text={this.state.buttonModalText}
+          title={this.state.buttonModalContent.title}
+          text={this.state.buttonModalContent.text}
           open={this.state.showButtonModal}
           closeFn={this.handleCloseModals}
-          helpFn={this.helpFn}
+          helpFn={this.handleButtonHelp}
         />
         <Header
           title={title}
-          helpFn={this.helpFn}
+          helpFn={this.handleButtonHelp}
           handleScreenHelp={this.handleScreenHelp}
         />
         {// isLoaded wil be undefined if page not wraped by withFetchJSON
@@ -160,7 +169,7 @@ export class Page extends React.Component {
         ) : isLoaded !== undefined && !isLoaded ? (
           <div className="page-loading">{loadingText}</div>
         ) : (
-          children(this.helpFn)
+          children(this.handleButtonHelp)
         )}
       </div>
     )

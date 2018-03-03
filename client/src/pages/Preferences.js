@@ -49,14 +49,14 @@ class PreferencesPage extends React.Component {
           <this.PrefsButton
             label="Speak Help"
             helpFn={helpFn}
-            helpText="Turn button help speech on orr off"
+            helpText="Turns help speech on orr off"
             pref="speakHelp"
             key="speakHelp"
           />,
           <this.PrefsButton
             label="Show Help"
             helpFn={helpFn}
-            helpText="Turn button help display on or off"
+            helpText="Turns help display on or off"
             pref="showHelp"
             key="showHelp"
           />,
@@ -65,14 +65,14 @@ class PreferencesPage extends React.Component {
               group="slideshowSpeed"
               label="Slow Slideshow"
               helpFn={helpFn}
-              helpText="Slowly change photos in slidehow"
+              helpText="Slowly change slideshow photos"
               pref="slideShowRate:10000"
             />
             <this.PrefsButton
               group="slideshowSpeed"
               label="Fast Slideshow"
               helpFn={helpFn}
-              helpText="Quickly change photos in slidehow"
+              helpText="Quickly change slideshow photos"
               pref="slideShowRate:4000"
             />
           </RadioButtonGroup>,
@@ -81,21 +81,21 @@ class PreferencesPage extends React.Component {
               group="uiComplexity"
               label="Easiest Use"
               helpFn={helpFn}
-              helpText="Easiest to use version"
+              helpText="Easiest to use"
               pref="complexity:0"
             />
             <this.PrefsButton
               group="uiComplexity"
               label="Medium Use"
               helpFn={helpFn}
-              helpText="Medium to use version"
+              helpText="Average difficulty use"
               pref="complexity:1"
             />
             <this.PrefsButton
               group="uiComplexity"
               label="Full Use"
               helpFn={helpFn}
-              helpText="Fullest to use version"
+              helpText="Most complicated to use"
               pref="complexity:2"
             />
           </RadioButtonGroup>,

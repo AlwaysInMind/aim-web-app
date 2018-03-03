@@ -45,7 +45,7 @@ export const Header = ({ title, helpFn, handleScreenHelp }) => (
     />
     <ExplainButton
       explainFn={handleScreenHelp}
-      helpText="Learn how to use this screen"
+      helpText="Explains how to use this screen"
       helpFn={helpFn}
     />
     <SpeakingButton
