@@ -42,7 +42,7 @@ class PreferencesPage extends React.Component {
         title="Preferences"
         loadingText=""
         errorText=""
-        pageExplainText="Use the buttons to change the way Always In Mind does things."
+        screenHelpText="Use the buttons to change the way Always In Mind works."
         {...props}
       >
         {helpFn => [
