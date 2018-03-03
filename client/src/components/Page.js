@@ -106,10 +106,9 @@ export class Page extends React.Component {
 
   handleButtonHelp = (label, helpText, { isOn }) => {
     const title = label ? `This button is: ${label}` : 'This button'
-    const state = isOn === undefined ? '' : isOn ? 'on' : 'off'
-    const text = helpText
-      ? `${helpText}. It is switched ${state}.`
-      : 'is not described'
+    const state =
+      isOn === undefined ? '' : `. It is switched ${isOn ? 'on' : 'off'}`
+    const text = helpText ? `${helpText}${state}.` : 'is not described'
     if (preferences.showHelp) {
       this.setState({
         showButtonModal: true,
