@@ -51,7 +51,7 @@ class Auth0 {
 
   login() {
     this.auth0.authorize({
-      redirectUri: pathToURL(LOGIN_CALLBACK_PATH),
+      //      redirectUri: pathToURL(LOGIN_CALLBACK_PATH),
     })
   }
 
