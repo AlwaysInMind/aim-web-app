@@ -17,10 +17,16 @@
   flex: 1 0;
   margin: 2rem;
 }
-.help-close {
-  width: 30%;
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   flex: 0 0 15%;
-  align-self: center;
+}
+
+.help-close,
+.help-more {
+  flex: 0 0 26%;
 }
 
 .helpPageName {

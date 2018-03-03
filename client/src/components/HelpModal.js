@@ -47,20 +47,22 @@ export const HelpModal = ({
         <h1 className="helpPageName">{title}</h1>
         <p>{text}</p>
       </div>
-      {moreFn && (
+      <div className="button-container">
+        {moreFn && (
+          <Button
+            className="button help-more"
+            actionFn={moreFn}
+            label="Explain More"
+            helpFn={() => {}} //no helpFn as gets recursive!
+          />
+        )}
         <Button
-          className="button help-more"
-          actionFn={moreFn}
-          label="Explain More"
+          className="button help-close"
+          actionFn={closeFn}
+          label="Carry On"
           helpFn={() => {}} //no helpFn as gets recursive!
         />
-      )}
-      <Button
-        className="button help-close"
-        actionFn={closeFn}
-        label="Carry On"
-        helpFn={() => {}} //no helpFn as gets recursive!
-      />
+      </div>
     </div>
   </ReactModal>
 )

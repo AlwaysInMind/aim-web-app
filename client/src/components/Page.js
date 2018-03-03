@@ -1,11 +1,6 @@
 import React from 'react'
 
-import {
-  Button,
-  RouterButton,
-  SpeakingButton,
-  AuthButton,
-} from '../components/Button.js'
+import { Header } from './ScreenHeader'
 import { HelpModal } from './HelpModal'
 
 import './Page.css'
@@ -17,83 +12,33 @@ import {
   stopSpeech,
 } from '../drivers/preferences'
 
-const PreferencesButton = ({ PreferencesPage, ...props }) =>
-  !PreferencesPage ? (
-    <RouterButton
-      route="/preferences"
-      className="header-preferences"
-      image={`${process.env.PUBLIC_URL}/preferences.svg`}
-      helpText="Change Preferences"
-      {...props}
-    />
-  ) : (
-    <RouterButton
-      route="!goBack"
-      className="header-preferences"
-      label="Back"
-      helpText="Return to Always in Mind"
-      {...props}
-    />
-  )
+const generalHelpTitle = 'Using Always In Mind'
+const generalHelpText = `Press the buttons to make things happen.
+The text, pictures and button colour show what will happen.
+Some buttons show a new screen so you can do something new.
+Press a button for more than 1 second to learn what it does.
+But don't worry, just try a button and nothing bad will happen.
+`
 
-const ExplainButton = ({ explainFn, ...props }) => {
-  return (
-    <Button
-      className="header-help"
-      label="Explain"
-      actionFn={explainFn}
-      {...props}
-    />
-  )
-}
-const Header = ({ title, helpFn, handleScreenHelp }) => (
-  <React.Fragment>
-    <PreferencesButton
-      PreferencesPage={title === 'Preferences'}
-      helpFn={helpFn}
-    />
-    <ExplainButton
-      explainFn={handleScreenHelp}
-      helpText="Learn how to use this screen"
-      helpFn={helpFn}
-    />
-    <SpeakingButton
-      className="header-main"
-      label={title}
-      helpText={title}
-      helpFn={helpFn}
-    />
-    <AuthButton
-      className="header-log"
-      helpText="Stop using Always In Mind"
-      helpFn={helpFn}
-    />
-  </React.Fragment>
-)
-
-/*<p>
-<strong>Press the buttons to make things happen</strong>. They have text
-or pictures that say what will happen. Some buttons like the big one
-above, will just speak. Other buttons take you to different screen so you
-can do something else. More Buttons do something useful. The button color
-also gives a clue to what they do.
-</p>
-<p>
-<strong>Long press a button for 1 second to find out what it does</strong>.
-If you are unsure what a button will do, don't worry. Just try it and
-nothing serious will happen.
-</p>
-
-
-*/
-
-const ExplainModal = ({ title, text, open, closeFn, ...props }) => (
+const GeneralHelpModal = ({ title, text, open, closeFn, ...props }) => (
   <HelpModal
     title={title}
     text={text}
     open={open}
     closeFn={closeFn}
     small="false"
+    {...props}
+  />
+)
+
+const ScreenHelpModal = ({ title, text, open, closeFn, moreFn, ...props }) => (
+  <HelpModal
+    title={title}
+    text={text}
+    open={open}
+    closeFn={closeFn}
+    small="false"
+    moreFn={moreFn}
     {...props}
   />
 )
@@ -110,7 +55,8 @@ const ButtonHelpModal = ({ title, text, open, closeFn, ...props }) => (
 
 export class Page extends React.Component {
   state = {
-    showExplainModal: false,
+    showGeneralHelpModal: false,
+    showScreenHelpModal: false,
     showButtonModal: false,
     buttonModalText: '',
   }
@@ -119,23 +65,41 @@ export class Page extends React.Component {
     stopSpeech()
   }
 
-  titleExplainText() {
+  screenHelpTitle() {
     return `This Screen is: ${this.props.title}`
   }
 
   handleScreenHelp = () => {
     if (preferences.speakHelp) {
-      optionallySpeak(this.titleExplainText())
-      optionallySpeak(this.props.pageExplainText)
+      optionallySpeak(this.screenHelpTitle())
+      optionallySpeak(this.props.screenHelpText)
     }
     if (preferences.showHelp) {
-      this.setState({ showExplainModal: true })
+      this.setState({ showScreenHelpModal: true })
     }
   }
 
   handleCloseModals = () => {
-    this.setState({ showExplainModal: false, showButtonModal: false })
+    this.setState({
+      showGeneralHelpModal: false,
+      showScreenHelpModal: false,
+      showButtonModal: false,
+    })
     stopSpeech()
+  }
+
+  handleMoreHelp = () => {
+    if (preferences.speakHelp) {
+      stopSpeech()
+      optionallySpeak(generalHelpTitle)
+      optionallySpeak(generalHelpText)
+    }
+    if (preferences.showHelp) {
+      this.setState({
+        showGeneralHelpModal: true,
+        showScreenHelpModal: false,
+      })
+    }
   }
 
   helpFn = helpText => {
@@ -155,18 +119,26 @@ export class Page extends React.Component {
       title,
       loadingText,
       errorText,
-      pageExplainText,
+      screenHelpText,
       children,
     } = this.props
 
     return (
       <div className="container">
-        <ExplainModal
-          title={this.titleExplainText()}
-          text={pageExplainText}
-          open={this.state.showExplainModal}
+        <GeneralHelpModal
+          title={generalHelpTitle}
+          text={generalHelpText}
+          open={this.state.showGeneralHelpModal}
           closeFn={this.handleCloseModals}
           helpFn={this.helpFn}
+        />
+        <ScreenHelpModal
+          title={this.screenHelpTitle()}
+          text={screenHelpText}
+          open={this.state.showScreenHelpModal}
+          closeFn={this.handleCloseModals}
+          helpFn={this.helpFn}
+          moreFn={this.handleMoreHelp}
         />
         <ButtonHelpModal
           text={this.state.buttonModalText}
