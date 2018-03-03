@@ -27,14 +27,14 @@ export class App extends React.Component {
             path="/login"
             render={({ location }) => {
               auth.login()
-              return null
+              return null // auth response will route to auth.loginCallbackRoute
             }}
           />
           <PublicRoute
             path="/demo"
             render={({ location }) => {
               auth.loginDemo()
-              return <AlbumsPage />
+              return null // auth response will route to auth.loginCallbackRoute
             }}
           />
           <PublicRoute
@@ -44,7 +44,7 @@ export class App extends React.Component {
                 fetchPreferences(auth.accessToken)
                 props.history.replace('/')
               })
-              return <CallbackPage {...props} />
+              return <CallbackPage {...props} /> // display untill callback reroutes
             }}
           />
           <PrivateRoute exact path="/" render={() => <AlbumsPage />} />
