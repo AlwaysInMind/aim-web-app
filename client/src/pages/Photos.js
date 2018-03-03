@@ -44,7 +44,7 @@ class PhotosPage extends React.Component {
         title="View Photos"
         loadingText="Loading your photos..."
         errorText="Unable to get photos"
-        pageExplainText="Watch the photo slideshow. You can stop the photos changing with the pause button and then start again with the play button."
+        pageExplainText="Watch the photo slideshow. Use the Pause button to stop the slideshow. Use the Play button to start again."
         {...props}
       >
         {helpFn => (

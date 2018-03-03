@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactModal from 'react-modal'
 
-import { Button, SpeakingButton } from './Button'
+import { Button } from './Button'
 
 import './HelpModal.css'
 
@@ -32,8 +32,9 @@ export const HelpModal = ({
   closeFn,
   small,
   title,
-  children,
+  text,
   helpFn,
+  moreFn,
 }) => (
   <ReactModal
     isOpen={open}
@@ -42,12 +43,18 @@ export const HelpModal = ({
     style={modalStyle(small === 'true')}
   >
     <div className="modal-content">
-      <SpeakingButton
-        className="header help-header"
-        label={title}
-        helpFn={() => {}} //no helpFn as gets recursive!helpFn={helpFn}
-      />
-      <div className="help-content">{children}</div>
+      <div className="help-content">
+        <h1 className="helpPageName">{title}</h1>
+        <p>{text}</p>
+      </div>
+      {moreFn && (
+        <Button
+          className="button help-more"
+          actionFn={moreFn}
+          label="Explain More"
+          helpFn={() => {}} //no helpFn as gets recursive!
+        />
+      )}
       <Button
         className="button help-close"
         actionFn={closeFn}

@@ -7,12 +7,15 @@ import {
   AuthButton,
 } from '../components/Button.js'
 import { HelpModal } from './HelpModal'
-import { speak } from '../drivers/speech'
 
 import './Page.css'
 import './Button.css'
 
-import { preferences } from '../drivers/preferences'
+import {
+  preferences,
+  optionallySpeak,
+  stopSpeech,
+} from '../drivers/preferences'
 
 const PreferencesButton = ({ PreferencesPage, ...props }) =>
   !PreferencesPage ? (
@@ -43,15 +46,15 @@ const ExplainButton = ({ explainFn, ...props }) => {
     />
   )
 }
-const Header = ({ title, helpFn, handleOpenModal }) => (
+const Header = ({ title, helpFn, handleScreenHelp }) => (
   <React.Fragment>
     <PreferencesButton
       PreferencesPage={title === 'Preferences'}
       helpFn={helpFn}
     />
     <ExplainButton
-      explainFn={handleOpenModal}
-      helpText="Learn how to use Always In Mind"
+      explainFn={handleScreenHelp}
+      helpText="Learn how to use this screen"
       helpFn={helpFn}
     />
     <SpeakingButton
@@ -68,42 +71,41 @@ const Header = ({ title, helpFn, handleOpenModal }) => (
   </React.Fragment>
 )
 
-const ExplainModal = ({ subtitle, text, open, closeFn, ...props }) => (
+/*<p>
+<strong>Press the buttons to make things happen</strong>. They have text
+or pictures that say what will happen. Some buttons like the big one
+above, will just speak. Other buttons take you to different screen so you
+can do something else. More Buttons do something useful. The button color
+also gives a clue to what they do.
+</p>
+<p>
+<strong>Long press a button for 1 second to find out what it does</strong>.
+If you are unsure what a button will do, don't worry. Just try it and
+nothing serious will happen.
+</p>
+
+
+*/
+
+const ExplainModal = ({ title, text, open, closeFn, ...props }) => (
   <HelpModal
+    title={title}
+    text={text}
     open={open}
     closeFn={closeFn}
     small="false"
-    title="How to use Always In Mind"
     {...props}
-  >
-    <p>
-      <strong>Press the buttons to make things happen</strong>. They have text
-      or pictures that say what will happen. Some buttons like the big one
-      above, will just speak. Other buttons take you to different screen so you
-      can do something else. More Buttons do something useful. The button color
-      also gives a clue to what they do.
-    </p>
-    <p>
-      <strong>Long press a button for 1 second to find out what it does</strong>.
-      If you are unsure what a button will do, don't worry. Just try it and
-      nothing serious will happen.
-    </p>
-
-    <h1 className="helpPageName">{subtitle}</h1>
-    <p>{text}</p>
-  </HelpModal>
+  />
 )
 
-const ButtonHelpModal = ({ open, closeFn, text, ...props }) => (
+const ButtonHelpModal = ({ title, text, open, closeFn, ...props }) => (
   <HelpModal
+    title={'With this button you can...'}
+    text={text}
     open={open}
     closeFn={closeFn}
     small="true"
-    title="With this button you can..."
-    {...props}
-  >
-    <p>{text}</p>
-  </HelpModal>
+  />
 )
 
 export class Page extends React.Component {
@@ -113,12 +115,27 @@ export class Page extends React.Component {
     buttonModalText: '',
   }
 
-  handleOpenModal = () => {
-    this.setState({ showExplainModal: true })
+  componentWillUnmount() {
+    stopSpeech()
+  }
+
+  titleExplainText() {
+    return `This Screen is: ${this.props.title}`
+  }
+
+  handleScreenHelp = () => {
+    if (preferences.speakHelp) {
+      optionallySpeak(this.titleExplainText())
+      optionallySpeak(this.props.pageExplainText)
+    }
+    if (preferences.showHelp) {
+      this.setState({ showExplainModal: true })
+    }
   }
 
   handleCloseModals = () => {
     this.setState({ showExplainModal: false, showButtonModal: false })
+    stopSpeech()
   }
 
   helpFn = helpText => {
@@ -128,9 +145,7 @@ export class Page extends React.Component {
       showButtonModal: preferences.showHelp,
       buttonModalText: helpText2,
     })
-    if (preferences.speakHelp) {
-      speak(helpText2)
-    }
+    optionallySpeak(helpText2)
   }
 
   render() {
@@ -147,8 +162,7 @@ export class Page extends React.Component {
     return (
       <div className="container">
         <ExplainModal
-          title="How to use Always In Mind"
-          subtitle={`This Screen is: ${title}`}
+          title={this.titleExplainText()}
           text={pageExplainText}
           open={this.state.showExplainModal}
           closeFn={this.handleCloseModals}
@@ -163,7 +177,7 @@ export class Page extends React.Component {
         <Header
           title={title}
           helpFn={this.helpFn}
-          handleOpenModal={this.handleOpenModal}
+          handleScreenHelp={this.handleScreenHelp}
         />
         {// isLoaded wil be undefined if page not wraped by withFetchJSON
         isLoaded !== undefined && isLoaded && error ? (

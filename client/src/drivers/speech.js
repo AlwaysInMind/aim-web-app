@@ -4,3 +4,9 @@ export function speak(what) {
     window.speechSynthesis.speak(utterance)
   }
 }
+
+export function cancelSpeech() {
+  if (window.speechSynthesis !== undefined) {
+    window.speechSynthesis.cancel()
+  }
+}

@@ -21,7 +21,7 @@ const AlbumsPage = ({ data, ...props }) => (
     title="Choose Photo Album"
     loadingText="Loading your albums..."
     errorText="Unable to get albums"
-    pageExplainText="You can view the photos in an album pressing the button for the one you'd like to see."
+    pageExplainText="Press an album button to view the photos."
     {...props}
   >
     {helpFn =>

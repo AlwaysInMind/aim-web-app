@@ -1,5 +1,6 @@
 import { callAPI } from './api'
 import { auth } from '../drivers/auth'
+import { speak, cancelSpeech } from '../drivers/speech'
 
 const defaults = {
   slideShowRate: 4000,
@@ -50,5 +51,17 @@ export async function postPreferences() {
     await callAPI(auth.accessToken, 'PUT', endpoint, prefs)
   } catch (error) {
     console.log(error) // TODO fix error handling
+  }
+}
+
+export function optionallySpeak(what) {
+  if (preferences.speakHelp) {
+    speak(what + '.')
+  }
+}
+
+export function stopSpeech() {
+  if (preferences.speakHelp) {
+    cancelSpeech()
   }
 }
