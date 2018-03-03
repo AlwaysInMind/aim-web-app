@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { auth } from '../drivers/auth'
-import { speak } from '../drivers/speech'
+import { optionallySpeak } from '../drivers/preferences'
 import { mkLongPressFunction } from '../drivers/longpress'
 
 import './Button.css'
@@ -70,7 +70,7 @@ export const HomeButton = withRouter(
 )
 
 export const SpeakingButton = ({ label, ...props }) => (
-  <Button actionFn={() => speak(label + '.')} label={label} {...props} />
+  <Button actionFn={() => optionallySpeak(label)} label={label} {...props} />
 )
 
 export const mkToggleButton = ({
