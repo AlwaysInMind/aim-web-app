@@ -18,16 +18,21 @@ const ButtonGroup = ({ label, span, children }) => (
   </div>
 )
 
-const parseValueString = valueString => JSON.parse(`{"v":${valueString}}`).v
+function parsePref(pref) {
+  const parseValueString = valueString => JSON.parse(`{"v":${valueString}}`).v
+  const prefName = pref.includes(':') ? pref.split(':')[0] : pref
+  const prefValue = pref.includes(':')
+    ? on => {
+        // use statment to avoid mysterious eslint error
+        return on ? parseValueString(pref.split(':')[1]) : undefined
+      }
+    : on => on
+  return { prefName, prefValue }
+}
+
 class PreferencesPage extends React.Component {
   PrefsButton = ({ label, pref, ...props }) => {
-    const prefName = pref.includes(':') ? pref.split(':')[0] : pref
-    const prefValue = pref.includes(':')
-      ? on => {
-          // use statment to avoid mysterious eslint error
-          return on ? parseValueString(pref.split(':')[1]) : undefined
-        }
-      : on => on
+    const { prefName, prefValue } = parsePref(pref)
     return (
       <OnOffButton
         className="prefs-button"
