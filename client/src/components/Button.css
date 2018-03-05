@@ -28,7 +28,6 @@ button {
 }
 
 .header,
-.header-help,
 .header-main {
   color: Darkblue;
   background-color: lightblue;
@@ -37,6 +36,7 @@ button {
   font-weight: 550;
 }
 
+.header-help,
 .header-log,
 .header-preferences,
 .button-router {
