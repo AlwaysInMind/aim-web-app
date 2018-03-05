@@ -5,7 +5,18 @@ import { Page } from '../components/Page'
 import { withAuth } from '../hocs/withAuth'
 import { preferences, setPreferences } from '../drivers/preferences'
 
-const RadioButtonGroup = ({ children }) => children.map(child => child)
+import './Preferences.css'
+
+const rgStyle = span => ({
+  gridColumn: `span ${span}`,
+})
+
+const ButtonGroup = ({ label, span, children }) => (
+  <div className="prefs-group" style={rgStyle(span)}>
+    <label className="prefs-group-label">{label}</label>
+    <div className="prefs-group-buttons">{children.map(child => child)}</div>
+  </div>
+)
 
 const parseValueString = valueString => JSON.parse(`{"v":${valueString}}`).v
 class PreferencesPage extends React.Component {
@@ -19,6 +30,7 @@ class PreferencesPage extends React.Component {
       : on => on
     return (
       <OnOffButton
+        className="prefs-button"
         label={label}
         isOn={preferences[prefName] === prefValue(true)}
         actionFn={on => {
@@ -46,59 +58,61 @@ class PreferencesPage extends React.Component {
         {...props}
       >
         {helpFn => [
-          <this.PrefsButton
-            label="Speak Help"
-            helpFn={helpFn}
-            helpText="Turns help speech on orr off"
-            pref="speakHelp"
-            key="speakHelp"
-          />,
-          <this.PrefsButton
-            label="Show Help"
-            helpFn={helpFn}
-            helpText="Turns help display on or off"
-            pref="showHelp"
-            key="showHelp"
-          />,
-          <RadioButtonGroup key="slideshowSpeed">
+          <ButtonGroup label="Help" span="4">
+            <this.PrefsButton
+              label="Speak"
+              helpFn={helpFn}
+              helpText="Turns help speech on orr off"
+              pref="speakHelp"
+              key="speakHelp"
+            />
+            <this.PrefsButton
+              label="Show"
+              helpFn={helpFn}
+              helpText="Turns help display on or off"
+              pref="showHelp"
+              key="showHelp"
+            />
+          </ButtonGroup>,
+          <ButtonGroup label="Slideshow Speed" span="4" key="slideshowSpeed">
             <this.PrefsButton
               group="slideshowSpeed"
-              label="Slow Slideshow"
+              label="Slow"
               helpFn={helpFn}
-              helpText="Slowly change slideshow photos"
+              helpText="Slowly change slide show photos"
               pref="slideShowRate:10000"
             />
             <this.PrefsButton
               group="slideshowSpeed"
-              label="Fast Slideshow"
+              label="Fast"
               helpFn={helpFn}
-              helpText="Quickly change slideshow photos"
+              helpText="Quickly change slide show photos"
               pref="slideShowRate:4000"
             />
-          </RadioButtonGroup>,
-          <RadioButtonGroup key="uiComplexity">
+          </ButtonGroup>,
+          <ButtonGroup label="Ease of Use" span="6" key="uiComplexity">
             <this.PrefsButton
               group="uiComplexity"
-              label="Easiest Use"
+              label="Easiest"
               helpFn={helpFn}
-              helpText="Easiest to use"
+              helpText="Easiest ease of use"
               pref="complexity:0"
             />
             <this.PrefsButton
               group="uiComplexity"
-              label="Medium Use"
+              label="Medium"
               helpFn={helpFn}
-              helpText="Average difficulty use"
+              helpText="Average ease of use"
               pref="complexity:1"
             />
             <this.PrefsButton
               group="uiComplexity"
               label="Full Use"
               helpFn={helpFn}
-              helpText="Most complicated to use"
+              helpText="Most complicated ease of use"
               pref="complexity:2"
             />
-          </RadioButtonGroup>,
+          </ButtonGroup>,
         ]}
       </Page>
     )
