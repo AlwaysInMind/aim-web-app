@@ -20,7 +20,7 @@ const ButtonGroup = ({ label, span, children }) => (
 
 const parseValueString = valueString => JSON.parse(`{"v":${valueString}}`).v
 class PreferencesPage extends React.Component {
-  PrefsButton = ({ label, pref, group, ...props }) => {
+  PrefsButton = ({ label, pref, ...props }) => {
     const prefName = pref.includes(':') ? pref.split(':')[0] : pref
     const prefValue = pref.includes(':')
       ? on => {
@@ -58,55 +58,48 @@ class PreferencesPage extends React.Component {
         {...props}
       >
         {helpFn => [
-          <ButtonGroup label="Help" span="4">
+          <ButtonGroup label="Help" span="4" key="help">
             <this.PrefsButton
               label="Speak"
               helpFn={helpFn}
-              helpText="Turns help speech on orr off"
+              helpText="Turns help speech on or off"
               pref="speakHelp"
-              key="speakHelp"
             />
             <this.PrefsButton
               label="Show"
               helpFn={helpFn}
               helpText="Turns help display on or off"
               pref="showHelp"
-              key="showHelp"
             />
           </ButtonGroup>,
           <ButtonGroup label="Slideshow Speed" span="4" key="slideshowSpeed">
             <this.PrefsButton
-              group="slideshowSpeed"
-              label="Slow"
-              helpFn={helpFn}
-              helpText="Slowly change slide show photos"
-              pref="slideShowRate:10000"
-            />
-            <this.PrefsButton
-              group="slideshowSpeed"
               label="Fast"
               helpFn={helpFn}
               helpText="Quickly change slide show photos"
               pref="slideShowRate:4000"
             />
+            <this.PrefsButton
+              label="Slow"
+              helpFn={helpFn}
+              helpText="Slowly change slide show photos"
+              pref="slideShowRate:10000"
+            />
           </ButtonGroup>,
           <ButtonGroup label="Ease of Use" span="6" key="uiComplexity">
             <this.PrefsButton
-              group="uiComplexity"
               label="Easiest"
               helpFn={helpFn}
               helpText="Easiest ease of use"
               pref="complexity:0"
             />
             <this.PrefsButton
-              group="uiComplexity"
               label="Medium"
               helpFn={helpFn}
               helpText="Average ease of use"
               pref="complexity:1"
             />
             <this.PrefsButton
-              group="uiComplexity"
               label="Full Use"
               helpFn={helpFn}
               helpText="Most complicated ease of use"
