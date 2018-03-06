@@ -1,29 +1,35 @@
 export const mkLongPressFunction = (actionFn, helpFn) => {
-  let t
-  let l
+  let timeout
+  let last
   return e => {
     const type = e.type
-    const isStartEvent = new Set(['mousedown', 'keydown', 'touchstart']).has(
-      type
-    )
-    const isEndEvent = new Set(['mouseup', 'keyup', 'touchend']).has(type)
+    const isActivateKey = e.keyCode === 13 || e.keyCode === 32
+    const isStartEvent =
+      type === 'mousedown' ||
+      type === 'touchstart' ||
+      (type === 'keydown' && isActivateKey)
+    const isEndEvent =
+      type === 'mouseup' ||
+      type === 'touchend' ||
+      (type === 'keyup' && isActivateKey)
     const isMatchingEvent =
       isEndEvent &&
       { mouseup: 'mousedown', keyup: 'keydown', touchstart: 'touchend' }[
         type
-      ] === l
+      ] === last
+    console.log(isStartEvent, isEndEvent, isMatchingEvent, last)
     // TODO we assume end event will match start event
-    if (isStartEvent) {
-      l = type
-      t = setTimeout(() => {
-        t = undefined
+    if (isStartEvent && last === undefined) {
+      last = type
+      timeout = setTimeout(() => {
+        timeout = undefined
       }, 1000)
-    } else if (isMatchingEvent && t) {
-      clearTimeout(t)
-      t = l = undefined
+    } else if (isMatchingEvent && timeout) {
+      clearTimeout(timeout)
+      timeout = last = undefined
       actionFn(e)
-    } else if (isMatchingEvent && !t) {
-      l = undefined
+    } else if (isMatchingEvent && !timeout) {
+      last = undefined
       helpFn(e)
     }
   }
