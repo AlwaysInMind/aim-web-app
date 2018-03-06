@@ -17,8 +17,7 @@ export const mkLongPressFunction = (actionFn, helpFn) => {
       { mouseup: 'mousedown', keyup: 'keydown', touchstart: 'touchend' }[
         type
       ] === last
-    console.log(isStartEvent, isEndEvent, isMatchingEvent, last)
-    // TODO we assume end event will match start event
+    // TODO what if mousedown and then drag off before mouseup
     if (isStartEvent && last === undefined) {
       last = type
       timeout = setTimeout(() => {
