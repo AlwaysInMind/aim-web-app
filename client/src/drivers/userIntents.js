@@ -1,4 +1,4 @@
-export const mkLongPressFunction = (actionFn, helpFn) => {
+export function mkContextHelpHandler(actionFn, helpFn) {
   let timeout
   let last
   return e => {

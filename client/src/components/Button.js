@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 
 import { auth } from '../drivers/auth'
 import { optionallySpeak } from '../drivers/preferences'
-import { mkLongPressFunction } from '../drivers/longpress'
+import { mkContextHelpHandler } from '../drivers/userIntents'
 
 import './Button.css'
 
@@ -15,8 +15,8 @@ export const Button = ({
   helpText,
   ...props
 }) => {
-  const detectLongPress = mkLongPressFunction(actionFn, () => {
-    return helpFn(label, helpText, props)
+  const buttonInputHandler = mkContextHelpHandler(actionFn, () => {
+    helpFn(label, helpText, props)
   })
 
   const { isOn, ...propsPassThrough } = props
@@ -24,12 +24,12 @@ export const Button = ({
   return (
     <button
       type="button"
-      onMouseDown={detectLongPress}
-      onMouseUp={detectLongPress}
-      onKeyDown={detectLongPress}
-      onKeyUp={detectLongPress}
-      onTouchStart={detectLongPress}
-      onTouchEnd={detectLongPress}
+      onMouseDown={buttonInputHandler}
+      onMouseUp={buttonInputHandler}
+      onKeyDown={buttonInputHandler}
+      onKeyUp={buttonInputHandler}
+      onTouchStart={buttonInputHandler}
+      onTouchEnd={buttonInputHandler}
       {...propsPassThrough}
     >
       {image ? <img className="button-image" src={image} alt="" /> : null}
