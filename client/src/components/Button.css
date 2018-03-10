@@ -45,6 +45,6 @@ button {
   border-color: darkgreen;
 }
 
-button:focus {
+button.show-focus:focus {
   border-color: red;
 }
