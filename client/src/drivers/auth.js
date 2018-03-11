@@ -50,22 +50,7 @@ class Auth0 {
   loginCallbackRoute = LOGIN_CALLBACK_PATH
 
   login() {
-    this.auth0.authorize({
-      //      redirectUri: pathToURL(LOGIN_CALLBACK_PATH),
-    })
-  }
-
-  loginDemo() {
-    this.auth0.login(
-      {
-        realm: DEMO_USER.REALM,
-        email: DEMO_USER.EMAIL,
-        password: DEMO_USER.PWD,
-      },
-      errorObject => {
-        console.log(JSON.stringify(errorObject, null, 2))
-      }
-    )
+    this.auth0.authorize()
   }
 
   async handleAuthentication() {
