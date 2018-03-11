@@ -30,24 +30,29 @@ export class App extends React.Component {
               return null // auth response will route to auth.loginCallbackRoute
             }}
           />
-          <PublicRoute
-            path="/demo"
-            render={({ location }) => {
-              auth.loginDemo()
-              return null // auth response will route to auth.loginCallbackRoute
-            }}
-          />
+
           <PublicRoute
             path={auth.loginCallbackRoute}
             render={props => {
-              handleAuthentication(props).then(() => {
-                fetchPreferences(auth.accessToken)
-                props.history.replace('/')
-              })
+              handleAuthentication(props)
+                .then(() => {
+                  fetchPreferences(auth.accessToken).then(
+                    props.history.replace('/')
+                  )
+                })
+                .catch(error => {
+                  console.error(`Problem processing Auth0 redirect ${error}`)
+                })
               return <CallbackPage {...props} /> // display untill callback reroutes
             }}
           />
-          <PrivateRoute exact path="/" render={() => <AlbumsPage />} />
+          <PrivateRoute
+            exact
+            path="/"
+            render={() => {
+              return <AlbumsPage />
+            }}
+          />
           <PrivateRoute
             path="/photos/:id"
             render={({ match: { params: { id } } }) => (

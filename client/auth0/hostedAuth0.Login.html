@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Sign In with Auth0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+  <!--[if IE 8]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ie8/0.2.5/ie8.js"></script>
+  <![endif]-->
+
+  <!--[if lte IE 9]>
+  <script src="https://cdn.auth0.com/js/base64.js"></script>
+  <script src="https://cdn.auth0.com/js/es5-shim.min.js"></script>
+  <![endif]-->
+  <script src="https://cdn.auth0.com/js/auth0/9.3.1/auth0.min.js"></script>
+  <script src="https://cdn.auth0.com/js/lock/11.3/lock.min.js"></script>
+  <script>
+    // Decode utf8 characters properly
+    var config = JSON.parse(decodeURIComponent(escape(window.atob('@@config@@'))));
+    config.extraParams = config.extraParams || {};
+    var connection = config.connection;
+    var prompt = config.prompt;
+    var languageDictionary;
+    var language;
+
+    if (config.dict && config.dict.signin && config.dict.signin.title) {
+      languageDictionary = { title: config.dict.signin.title };
+    } else if (typeof config.dict === 'string') {
+      language = config.dict;
+    }
+    var loginHint = config.extraParams.login_hint;
+
+    var lock = new Auth0Lock(config.clientID, config.auth0Domain, {
+      auth: {
+        redirectUrl: config.callbackURL,
+        responseType: (config.internalOptions || {}).response_type ||
+          config.callbackOnLocationHash ? 'token' : 'code',
+        params: config.internalOptions,
+        connection_scopes: {
+          'google-oauth2': ['https://picasaweb.google.com/data/']
+        },
+      },
+      assetsUrl: config.assetsUrl,
+      allowedConnections: ['google-oauth2'],
+      rememberLastLogin: !prompt,
+      language: language,
+      languageDictionary: languageDictionary,
+      theme: {
+        //logo:            'YOUR LOGO HERE',
+        //primaryColor:    'green'
+      },
+      //      prefill: loginHint ? { email: loginHint, username: loginHint } : null,
+      closable: false,
+      // uncomment if you want small buttons for social providers
+      // socialButtonStyle: 'small'
+      allowForgotPassword: false,
+      allowSignUp: false,
+      languageDictionary: {
+        title: "Always in Mind"
+      }
+
+    });
+
+    lock.show();
+
+    lock.on('signin ready', function () {
+      // Add a new demo button
+      var btn = document.createElement('button')
+      btn.className = 'auth0-lock-social-button auth0-lock-social-big-button'
+      btn.setAttribute('type', 'button')
+      btn.setAttribute('data-provider', 'demo')
+      var icon = document.createElement('div')
+      icon.className = 'auth0-lock-social-button-icon'
+      var text = document.createElement('div')
+      text.className = 'auth0-lock-social-button-text'
+      text.appendChild(document.createTextNode("Try the demo"))
+      btn.append(icon, text)
+      var container = document.getElementsByClassName('auth0-lock-social-buttons-container')[0]
+      container.append(btn)
+
+      // Login as demo user
+      btn.addEventListener('click', function () {
+        var ep = config.extraParams
+        // Can no longer access the webauth instance already used by lock
+        var webAuth = new auth0.WebAuth({
+          domain: config.auth0Domain,
+          clientID: config.clientID,
+          audience: ep.audience,
+          responseType: ep.response_type,
+          scope: ep.scope,
+          redirectUrl: config.callbackURL,
+          state: ep.state
+        });
+        webAuth.login({
+          realm: 'Username-Password-Authentication',
+          email: 'demo@alwaysinmind.info',
+          password: 'aC2$6%2%t4QlswEUs'
+        },
+          errorObject => {
+            console.log(JSON.stringify(errorObject, null, 2))
+          }
+        );
+      })
+    })
+  </script>
+  <style>
+    .auth0-lock-social-button[data-provider="demo"] {
+      background-color: #2dbe60;
+    }
+
+    .auth0-lock-social-button[data-provider^=demo] .auth0-lock-social-button-icon {
+      background-image: url("data:image/svg+xml;base64, PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiCiAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgeG1sbnM6Y2M9Imh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL25zIyIKICAgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIGlkPSJzdmczNzU1IgogICB2ZXJzaW9uPSIxLjEiCiAgIHZpZXdCb3g9IjAgMCA3MiA2NSIKICAgaGVpZ2h0PSI2NXB4IgogICB3aWR0aD0iNzJweCI+CiAgPG1ldGFkYXRhCiAgICAgaWQ9Im1ldGFkYXRhMzc1OSI+CiAgICA8cmRmOlJERj4KICAgICAgPGNjOldvcmsKICAgICAgICAgcmRmOmFib3V0PSIiPgogICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PgogICAgICAgIDxkYzp0eXBlCiAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4KICAgICAgICA8ZGM6dGl0bGU+YW1hem9uPC9kYzp0aXRsZT4KICAgICAgPC9jYzpXb3JrPgogICAgPC9yZGY6UkRGPgogIDwvbWV0YWRhdGE+CiAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCAzLjQgKDE1NTg4KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICA8dGl0bGUKICAgICBpZD0idGl0bGUzNzQ2Ij5hbWF6b248L3RpdGxlPgogIDxkZXNjCiAgICAgaWQ9ImRlc2MzNzQ4Ij5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICA8ZGVmcwogICAgIGlkPSJkZWZzMzc1MCIgLz4KICA8ZwogICAgIGlkPSJsYXllcjEiIC8+CiAgPGcKICAgICBzdHlsZT0iZmlsbDpub25lO2ZpbGwtcnVsZTpldmVub2RkO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxIgogICAgIHRyYW5zZm9ybT0ibWF0cml4KDEuMjU4ODUyNiwwLDAsMS4zNDk0Njc1LC0xMC42OTE1MDEsMi41OTA5NTE4KSIKICAgICBza2V0Y2g6dHlwZT0iTVNQYWdlIgogICAgIGlkPSJQYWdlLTEiPgogICAgPHBhdGgKICAgICAgIGlkPSJTaGFwZSIKICAgICAgIGQ9Im0gMTguOTYxNjk1LDMxLjAxMjA5MiBjIC0wLjExNzc1MywzLjYzMDQ2MyAyLjA5NTM2Niw4LjExMTAxIDUuMzYzNTIzLDEwLjEwNjg4OSAxLjIwMzQwNiwwLjAxMzA2IDQuNzMxOTM0LDIuNzIxMzUzIDQuNzMxOTM0LDIuNzIxMzUzIDYuNzI4ODI2LDMuOTUyNTAzIDE1LjIwOTg5LDAuMzY3MzkzIDE4LjU3MjU3NywtMC4wODMyOSAyLjE1MjUzLC0wLjI4ODQ5MiAtMS4xMjYzNCwwLjQ2ODk0IDQuMjY2OTY3LC0zLjI0NTQyNyAwLjY1ODQzMywtNS4zNDUyOCAwLjEyNzc0NSwtMTEuMzMyMTc3IDAuMDA1LC0xNi43NTAwNDIgLTAuMDUzOTMsLTQuMzM1MjA1IDAuMTI4ODc5LC04LjY3ODI1NSAtMC4xMzY4MjgsLTEzLjAwNjY2IDAuMTM3OTQ5LC01LjU3Mjc0NDMgMC4xMjc2NCwtNi4yNzQwNzg3IC0wLjk4NzUwNywtOC42NDc5MTY2IC0yLjIwMzExNywtNC42ODk4MjE2IC02Ljk5NDk5NiwtMy42Njk5NjgzIC05LjIwNDg1OCwtMC42MzQyNzkyIC0xLjM0ODk5OSwxLjg1MzEyMTIgLTAuNjY4NzE5LDMuMDA2MTk2OSAtMC43MDk5NDMsNC44NTY0ODY4IC0wLjQwMTg1OSwxLjIyNzIwNDQgMC41OTUzMDIsOS43MjU1NjEgLTAuNjUyODM3LDEwLjE4NjA0MyAtNC42NjE3MTEsMC40NzI3MzYgLTEyLjkxMDM4OCwxLjczMjU2MSAtMTYuNjczNzY2LDQuNjMzNzggLTMuMDQzMzU1LDIuMzc4NjMxIC00LjY1MDc1NSw2LjEwOTk2MiAtNC41NzQyNjEsOS44NjMwNjQgeiBtIDExLC0xLjI3MTQwNCBjIC0wLjE1NDI1NSwtMi43NTY5NjcgMS42MDgyMDYsLTUuNDUwMjg1IDQuMzA2NjQxLC02LjM5MzgwOSAyLjIwMzU5MSwtMC45MTM4ODkgNC42NDcyOTYsLTAuOTY3MTQ5IDcuMDA2MzU5LC0wLjk5MDU5NCAtMC4wMDk4LDMuMjUwNzA5IDEuNTE5ODMxLDkuNzUwODkzIC0wLjQxMDMwMiwxMi42MDAzODYgLTEuMzM5MjM5LDIuNDgwMDk3IC02LjE2MTA5MSwxLjA5NDM1OSAtOC43NjExNDMsLTAuNTc0ODEzIC0xLjU3MTM0MywtMC45OTIyNTcgLTIuMTY2NTAxLC0yLjkwOTA3NSAtMi4xNDE1NTUsLTQuNjQxMTcgeiIKICAgICAgIHN0eWxlPSJmaWxsOiNmZmZmZmY7c3Ryb2tlLXdpZHRoOjAuOTg0MDMyMjEiIC8+CiAgPC9nPgo8L3N2Zz4K");
+    }
+  </style>
+</body>
+
+</html>
