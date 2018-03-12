@@ -7,7 +7,7 @@
     "express-jwt": "5.3.1",
     "micro": "9.1.4",
     "microrouter": "3.1.1",
-    "request": "2.84.0"
+    "request": "2.85.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.1",
