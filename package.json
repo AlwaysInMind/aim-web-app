@@ -2,12 +2,12 @@
   "name": "always-in-mind",
   "version": "0.1.0",
   "private": true,
-  "engines":{ "node" : "8.10.0" } ,
+  "engines": { "node": "8.10.0" },
   "dependencies": {
-    "express-jwt": "5.3.0",
-    "micro": "9.1.0",
+    "express-jwt": "5.3.1",
+    "micro": "9.1.4",
     "microrouter": "3.1.1",
-    "request": "2.83.0"
+    "request": "2.84.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.1",
@@ -16,12 +16,12 @@
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
     "micro-dev": "^2.2.0",
-    "now": "^10.1.4",
+    "now": "^10.1.5",
     "prettier": "^1.11.1"
   },
   "scripts": {
