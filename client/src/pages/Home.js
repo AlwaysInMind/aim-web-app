@@ -1,28 +1,16 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 
-import { withFetchJSON } from '../hocs/withFetchJSON'
-import { withAuth } from '../hocs/withAuth'
-import { Button } from '../components/Button'
+import { preferences, DEFAULT_ITEM_ID } from '../drivers/preferences'
 
-const HomePage = ({ auth, error, isLoaded, data }) => {
-  return error ? (
-    <div className="page-error">
-      Unable to get albums
-      {console.log(error.message)}
-    </div>
-  ) : !isLoaded ? (
-    <div className="page-loading">Loading your albums...</div>
-  ) : (
-    data.map(item => (
-      <Button
-        image={item.thumbnail}
-        label={item.title}
-        action={`/photos/${item.id}`}
-        key={item.id}
-      />
-    ))
-  )
+export const HomePage = () => {
+  const { complexity } = preferences
+
+  return complexity === 0 ? (
+    <Redirect to={`/photos/${DEFAULT_ITEM_ID}`} />
+  ) : complexity === 1 ? (
+    <Redirect to="/albums" />
+  ) : complexity === 2 ? (
+    <Redirect to="/albums" />
+  ) : null
 }
-
-const wrappedPage = withAuth(withFetchJSON(HomePage, '/api/albums'))
-export { wrappedPage as HomePage }

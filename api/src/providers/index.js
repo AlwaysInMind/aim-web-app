@@ -40,10 +40,13 @@ const callProvider = async (fnName, req, res, wrapped) => {
 
 exports.callProvider = callProvider
 
+exports.DEFAULT_ALBUM_NAME = 'Always In Mind'
+
 exports.handleProvider = (fnName, wrapped) => {
   return withAuth0(async (req, res) => {
     if (!req.user) {
-      throw createError(400, 'Problem with Authorization token') // TODO - fix unhandled rejection
+      send(res, 400, 'Problem with Authorization token')
+      return
     }
     let obj
     try {
@@ -60,7 +63,8 @@ exports.handleProvider = (fnName, wrapped) => {
 exports.handlePreferences = (action, wrapped) => {
   return withAuth0(async (req, res) => {
     if (!req.user) {
-      throw createError(400, 'Problem with Authorization token') // TODO - fix unhandled rejection
+      send(res, 400, 'Problem with Authorization token')
+      return
     } // Get a token to access the admin API
     let preferences
     try {
