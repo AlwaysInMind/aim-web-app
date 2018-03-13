@@ -1,3 +1,3 @@
-const { getAlbums, getPhotos } = require('./photos.js')
+const { getAlbums, getPhotos, getDefaultAlbum } = require('./photos.js')
 
-exports.googleProvider = { getAlbums, getPhotos }
+exports.googleProvider = { getAlbums, getPhotos, getDefaultAlbum }
