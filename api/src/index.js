@@ -26,11 +26,9 @@ const handleGetPhotos = handleProvider('getPhotos', async (fn, req, res) => {
         return fn()
       }
     )
-    console.log(defaultAlbum)
     albumId = defaultAlbum.id
   }
   const photos = await fn(albumId)
-  console.log(photos)
   return photos
 })
 
