@@ -39,6 +39,8 @@ class PhotosPage extends React.Component {
 
   render() {
     const { data, ...props } = this.props
+    const { complexity } = preferences
+
     return (
       <Page
         title="View Photos"
@@ -64,23 +66,28 @@ class PhotosPage extends React.Component {
                   : 'No photos'}
               </ul>
             </div>
-            <BackButton
-              style={btn}
-              className="button-router"
-              label="See More Photos"
-              helpFn={helpFn}
-              helpText="Choose another photo Album"
-            />
-            <PauseButton
-              style={btn}
-              className="button-pause"
-              isPlaying={this.state.slideShowIsPlaying}
-              playFn={play => {
-                this.setState({ slideShowIsPlaying: play })
-              }}
-              helpFn={helpFn}
-              helpText="Pause or restart the slideshow"
-            />
+
+            {complexity > 0 && (
+              <React.Fragment>
+                <BackButton
+                  style={btn}
+                  className="button-router"
+                  label="See More Photos"
+                  helpFn={helpFn}
+                  helpText="Choose another photo Album"
+                />
+                <PauseButton
+                  style={btn}
+                  className="button-pause"
+                  isPlaying={this.state.slideShowIsPlaying}
+                  playFn={play => {
+                    this.setState({ slideShowIsPlaying: play })
+                  }}
+                  helpFn={helpFn}
+                  helpText="Pause or restart the slideshow"
+                />
+              </React.Fragment>
+            )}
           </React.Fragment>
         )}
       </Page>
