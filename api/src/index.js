@@ -2,35 +2,46 @@ const { json, send } = require('micro')
 const { router, get, put, options } = require('microrouter')
 
 const cors = require('./cors')()
-const { handleProvider, handlePreferences } = require('./providers')
+const {
+  handleProvider,
+  callProvider,
+  handlePreferences,
+} = require('./providers')
 
-const handleGetAlbums = handleProvider('getAlbums', async (fn, params) => {
+const DEFAULT_ITEM_ID = '~default~'
+
+const handleGetAlbums = handleProvider('getAlbums', async (fn, req) => {
   const albums = await fn()
   return albums
 })
 
-const handleGetPhotos = handleProvider('getPhotos', async (fn, params) => {
-  const albumId = params.id
+const handleGetPhotos = handleProvider('getPhotos', async (fn, req, res) => {
+  let albumId = req.params.id
+  if (albumId === DEFAULT_ITEM_ID) {
+    const defaultAlbum = await callProvider(
+      'getDefaultAlbum',
+      req,
+      res,
+      async (fn, req) => {
+        return fn()
+      }
+    )
+    albumId = defaultAlbum.id
+  }
   const photos = await fn(albumId)
   return photos
 })
 
-const handleGetPreferences = handlePreferences(
-  'get',
-  async (fnPrefs, req, res) => {
-    const preferences = await fnPrefs()
-    return preferences
-  }
-)
+const handleGetPreferences = handlePreferences('get', async fnPrefs => {
+  const preferences = await fnPrefs()
+  return preferences
+})
 
-const handleSetPreferences = handlePreferences(
-  'set',
-  async (fnPrefs, req, res) => {
-    const preferences = await json(req)
-    const preferences2 = await fnPrefs(preferences)
-    return preferences2
-  }
-)
+const handleSetPreferences = handlePreferences('set', async (fnPrefs, req) => {
+  const preferences = await json(req)
+  const preferences2 = await fnPrefs(preferences)
+  return preferences2
+})
 
 const notFound = (req, res) => send(res, 404, 'Unknown route')
 
