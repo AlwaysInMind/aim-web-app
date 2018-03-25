@@ -11,16 +11,13 @@ exports.getAlbums = async accessToken => {
       title: 'Cats',
       thumbnail: 'https://static.pexels.com/photos/22346/pexels-photo.jpg',
     },
+    {
+      id: '2',
+      title: 'Always in Mind',
+      thumbnail:
+        'https://upload.wikimedia.org/wikipedia/commons/8/8a/Too-cute-doggone-it-video-playlist.jpg',
+    },
   ]
-}
-
-exports.getDefaultAlbum = async accessToken => {
-  return {
-    id: '2',
-    title: 'Cats n Dogs',
-    thumbnail:
-      'https://upload.wikimedia.org/wikipedia/commons/8/8a/Too-cute-doggone-it-video-playlist.jpg',
-  }
 }
 
 const dogAlbum = [

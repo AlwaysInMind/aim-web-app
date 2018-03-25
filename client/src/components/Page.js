@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Header } from './ScreenHeader'
+import { Header } from './Header'
 import { HelpModal } from './HelpModal'
 
 import './Page.css'

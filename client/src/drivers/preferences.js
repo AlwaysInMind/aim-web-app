@@ -2,14 +2,12 @@ import { callAPI } from './api'
 import { auth } from '../drivers/auth'
 import { speak, cancelSpeech } from '../drivers/speech'
 
-// default for use in URLs - doesn't belong here but nowhere better to plonk it for now.
-export const DEFAULT_ITEM_ID = '~default~'
-
 const defaults = {
   slideShowRate: 4000,
   speakHelp: true,
   showHelp: false,
   complexity: 0,
+  defaultAlbumName: 'Always in Mind',
 }
 
 export const preferences = new Proxy(
@@ -37,6 +35,10 @@ export function setPreferences(partial) {
 }
 
 export async function fetchPreferences() {
+  if (!auth.isDemo && localStorage.setItem('preferences')) {
+    return
+  }
+
   const endpoint = '/api/preferences'
   let prefs
   try {

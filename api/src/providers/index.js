@@ -40,8 +40,6 @@ const callProvider = async (fnName, req, res, wrapped) => {
 
 exports.callProvider = callProvider
 
-exports.DEFAULT_ALBUM_NAME = 'Always In Mind'
-
 exports.handleProvider = (fnName, wrapped) => {
   return withAuth0(async (req, res) => {
     if (!req.user) {

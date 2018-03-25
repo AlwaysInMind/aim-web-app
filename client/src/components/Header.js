@@ -7,8 +7,8 @@ import {
   AuthButton,
 } from '../components/Button.js'
 
-const PreferencesButton = ({ PreferencesPage, ...props }) =>
-  !PreferencesPage ? (
+const PreferencesButton = ({ isPreferencesPage, ...props }) =>
+  !isPreferencesPage ? (
     <RouterButton
       route="/preferences"
       className="header-preferences"
@@ -18,7 +18,7 @@ const PreferencesButton = ({ PreferencesPage, ...props }) =>
     />
   ) : (
     <RouterButton
-      route="!goBack"
+      route="!goHome"
       className="header-preferences"
       label="Back"
       helpText="Return to Always in Mind"
@@ -40,7 +40,7 @@ const ExplainButton = ({ explainFn, ...props }) => {
 export const Header = ({ title, helpFn, handleScreenHelp }) => (
   <React.Fragment>
     <PreferencesButton
-      PreferencesPage={title === 'Preferences'}
+      isPreferencesPage={title === 'Preferences'}
       helpFn={helpFn}
     />
     <ExplainButton

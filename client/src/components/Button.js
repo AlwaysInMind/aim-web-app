@@ -49,7 +49,11 @@ export const RouterButton = withRouter(
     ...props
   }) => {
     const fn =
-      route === '!goBack' ? () => history.goBack() : () => history.push(route)
+      route === '!goBack'
+        ? () => history.goBack()
+        : route === '!goHome'
+          ? () => history.push('/')
+          : () => history.push(route)
     return <Button actionFn={fn} {...props} />
   }
 )
