@@ -2,13 +2,7 @@ const { json, send } = require('micro')
 const { router, get, put, options } = require('microrouter')
 
 const cors = require('./cors')()
-const {
-  handleProvider,
-  callProvider,
-  handlePreferences,
-} = require('./providers')
-
-const DEFAULT_ITEM_ID = '~default~'
+const { handleProvider, handlePreferences } = require('./providers')
 
 const handleGetAlbums = handleProvider('getAlbums', async (fn, req) => {
   const albums = await fn()
@@ -17,17 +11,6 @@ const handleGetAlbums = handleProvider('getAlbums', async (fn, req) => {
 
 const handleGetPhotos = handleProvider('getPhotos', async (fn, req, res) => {
   let albumId = req.params.id
-  if (albumId === DEFAULT_ITEM_ID) {
-    const defaultAlbum = await callProvider(
-      'getDefaultAlbum',
-      req,
-      res,
-      async (fn, req) => {
-        return fn()
-      }
-    )
-    albumId = defaultAlbum.id
-  }
   const photos = await fn(albumId)
   return photos
 })
