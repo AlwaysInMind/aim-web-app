@@ -1,0 +1,8 @@
+.slides-container {
+  grid-column-start: 1;
+  grid-column-end: span 8;
+  grid-row-start: 2;
+  grid-row-end: -1;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}

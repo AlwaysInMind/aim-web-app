@@ -8,6 +8,7 @@ import { mkSlideShow } from '../components/SlideShow'
 import { preferences } from '../drivers/preferences'
 
 import '../components/SlideShow.css'
+import './Photos.css'
 
 const btn = { gridColumn: 'span 2' }
 
