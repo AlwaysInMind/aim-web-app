@@ -1,6 +1,7 @@
 {
   "name": "always-in-mind",
   "version": "0.1.0",
+  "engines": { "node": "8.11.1" },
   "dependencies": {
     "serve": "latest"
   },
