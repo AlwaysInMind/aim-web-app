@@ -7,6 +7,8 @@ import {
   AuthButton,
 } from '../components/Button.js'
 
+import './Header.css'
+
 const PreferencesButton = ({ isPreferencesPage, ...props }) =>
   !isPreferencesPage ? (
     <RouterButton
@@ -49,13 +51,13 @@ export const Header = ({ title, helpFn, handleScreenHelp }) => (
       helpFn={helpFn}
     />
     <SpeakingButton
-      className="header-main"
+      className="header-title"
       label={title}
       helpText={title}
       helpFn={helpFn}
     />
     <AuthButton
-      className="header-log"
+      className="header-exit"
       helpText="Stop using Always In Mind"
       helpFn={helpFn}
     />
