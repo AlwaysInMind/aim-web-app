@@ -55,6 +55,12 @@ const ButtonHelpModal = ({ title, text, open, closeFn, ...props }) => (
   />
 )
 
+const ScreenGrid = ({ complexity, children }) => (
+  <div className="screen-grid" data-complexity={complexity}>
+    {children}
+  </div>
+)
+
 export class Page extends React.Component {
   state = {
     showGeneralHelpModal: false,
@@ -131,7 +137,7 @@ export class Page extends React.Component {
     } = this.props
 
     return (
-      <div className="container">
+      <ScreenGrid complexity={preferences.complexity}>
         <GeneralHelpModal
           title={generalHelpContent.title}
           text={generalHelpContent.text}
@@ -170,7 +176,7 @@ export class Page extends React.Component {
         ) : (
           children(this.handleButtonHelp)
         )}
-      </div>
+      </ScreenGrid>
     )
   }
 }
