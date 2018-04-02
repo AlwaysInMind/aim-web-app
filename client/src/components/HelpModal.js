@@ -44,7 +44,7 @@ export const HelpModal = ({
   >
     <div className="modal-content">
       <div className="help-content">
-        <h1 className="helpPageName">{title}</h1>
+        <h1 className="helpScreenName">{title}</h1>
         <p>{text}</p>
       </div>
       <div className="button-container">

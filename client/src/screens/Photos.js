@@ -3,7 +3,7 @@ import React from 'react'
 import { withFetchJSON, pathTemplate } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
 import { BackButton, PauseButton } from '../components/Button.js'
-import { Page } from '../components/Page'
+import { Screen } from '../components/Screen'
 import { mkSlideShow } from '../components/SlideShow'
 import { preferences } from '../drivers/preferences'
 
@@ -12,7 +12,7 @@ import './Photos.css'
 
 const btn = { gridColumn: 'span 2' }
 
-class PhotosPage extends React.Component {
+class PhotosScreen extends React.Component {
   constructor(props) {
     super(props)
     this.slideShow = mkSlideShow(preferences.slideShowRate)
@@ -43,7 +43,7 @@ class PhotosPage extends React.Component {
     const { complexity } = preferences
 
     return (
-      <Page
+      <Screen
         title="View Photos"
         loadingText="Loading your photos..."
         errorText="Unable to get photos"
@@ -91,12 +91,12 @@ class PhotosPage extends React.Component {
             )}
           </React.Fragment>
         )}
-      </Page>
+      </Screen>
     )
   }
 }
 
-const wrappedPage = withAuth(
-  withFetchJSON(PhotosPage, pathTemplate`/api/albums/${'id'}`)
+const wrappedScreen = withAuth(
+  withFetchJSON(PhotosScreen, pathTemplate`/api/albums/${'id'}`)
 )
-export { wrappedPage as PhotosPage }
+export { wrappedScreen as PhotosScreen }
