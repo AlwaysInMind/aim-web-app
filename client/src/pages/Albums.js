@@ -4,6 +4,7 @@ import { withFetchJSON } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
 import { RouterButton } from '../components/Button'
 import { Page } from '../components/Page'
+import { preferences } from '../drivers/preferences'
 
 const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   <RouterButton
@@ -16,6 +17,9 @@ const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   />
 )
 
+const isDefaultAlbumName = name =>
+  name.toLowerCase() === preferences.defaultAlbumName.toLowerCase()
+
 const AlbumsPage = ({ data, ...props }) => (
   <Page
     title="Choose Photo Album"
@@ -26,16 +30,18 @@ const AlbumsPage = ({ data, ...props }) => (
   >
     {helpFn =>
       // closure so can access data prop
-      data.map(item => (
-        <AlbumButton
-          className="button-router"
-          id={item.id}
-          thumbnail={item.thumbnail}
-          title={item.title}
-          key={item.id}
-          helpFn={helpFn}
-        />
-      ))
+      data
+        .filter(item => !isDefaultAlbumName(item.title))
+        .map(item => (
+          <AlbumButton
+            className="button-router"
+            id={item.id}
+            thumbnail={item.thumbnail}
+            title={item.title}
+            key={item.id}
+            helpFn={helpFn}
+          />
+        ))
     }
   </Page>
 )

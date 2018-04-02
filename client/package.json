@@ -2,11 +2,12 @@
   "name": "always-in-mind",
   "version": "0.1.0",
   "private": true,
+  "engines": { "node": "8.11.1" },
   "proxy": "http://localhost:3001/",
   "dependencies": {
-    "auth0-js": "9.3.3",
-    "react": "16.2.0",
-    "react-dom": "16.2.0",
+    "auth0-js": "9.4.2",
+    "react": "16.3.0",
+    "react-dom": "16.3.0",
     "react-modal": "^3.3.2",
     "react-router-dom": "4.2.2"
   },

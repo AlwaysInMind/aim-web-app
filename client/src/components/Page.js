@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Header } from './ScreenHeader'
+import { Header } from './Header'
 import { HelpModal } from './HelpModal'
 
 import './Page.css'
@@ -53,6 +53,12 @@ const ButtonHelpModal = ({ title, text, open, closeFn, ...props }) => (
     closeFn={closeFn}
     small="true"
   />
+)
+
+const ScreenGrid = ({ complexity, children }) => (
+  <div className="screen-grid" data-complexity={complexity}>
+    {children}
+  </div>
 )
 
 export class Page extends React.Component {
@@ -131,7 +137,7 @@ export class Page extends React.Component {
     } = this.props
 
     return (
-      <div className="container">
+      <ScreenGrid complexity={preferences.complexity}>
         <GeneralHelpModal
           title={generalHelpContent.title}
           text={generalHelpContent.text}
@@ -170,7 +176,7 @@ export class Page extends React.Component {
         ) : (
           children(this.handleButtonHelp)
         )}
-      </div>
+      </ScreenGrid>
     )
   }
 }

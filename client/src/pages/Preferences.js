@@ -44,7 +44,7 @@ class PreferencesPage extends React.Component {
             setPreferences({
               [prefName]: prefValue(on),
             })
-            this.forceUpdate()
+            this.forceUpdate() // redraw entire screen
           }
         }}
         {...props}
