@@ -3,13 +3,13 @@ import { Redirect } from 'react-router-dom'
 
 import { withFetchJSON } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
-import { Page } from '../components/Page'
+import { Screen } from '../components/Screen'
 import { preferences } from '../drivers/preferences'
 
 const errorText = `Unable to get the Album ${preferences.defaultAlbumName}`
 
-const DefaultAlbumPage = ({ data, ...props }) => (
-  <Page
+const DefaultAlbumScreen = ({ data, ...props }) => (
+  <Screen
     title="Getting your photo albums"
     loadingText="Loading your albums..."
     errorText={errorText}
@@ -26,18 +26,18 @@ const DefaultAlbumPage = ({ data, ...props }) => (
       }
       return defaultAlbum[0]
     }}
-  </Page>
+  </Screen>
 )
 
-const WrappedDefaultAlbumPage = withAuth(
-  withFetchJSON(DefaultAlbumPage, '/api/albums')
+const WrappedDefaultAlbumScreen = withAuth(
+  withFetchJSON(DefaultAlbumScreen, '/api/albums')
 )
 
-export const HomePage = () => {
+export const HomeScreen = () => {
   const { complexity } = preferences
 
   if (complexity === 0) {
-    return <WrappedDefaultAlbumPage />
+    return <WrappedDefaultAlbumScreen />
   }
 
   return <Redirect to="/albums" />

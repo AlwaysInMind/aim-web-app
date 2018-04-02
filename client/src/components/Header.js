@@ -9,8 +9,8 @@ import {
 
 import './Header.css'
 
-const PreferencesButton = ({ isPreferencesPage, ...props }) =>
-  !isPreferencesPage ? (
+const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
+  !isPreferencesScreen ? (
     <RouterButton
       route="/preferences"
       className="header-preferences"
@@ -42,7 +42,7 @@ const ExplainButton = ({ explainFn, ...props }) => {
 export const Header = ({ title, helpFn, handleScreenHelp }) => (
   <React.Fragment>
     <PreferencesButton
-      isPreferencesPage={title === 'Preferences'}
+      isPreferencesScreen={title === 'Preferences'}
       helpFn={helpFn}
     />
     <ExplainButton

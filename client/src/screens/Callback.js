@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import loading from './loading.svg'
 
-export class CallbackPage extends Component {
+export class CallbackScreen extends Component {
   render() {
     const style = {
       position: 'absolute',

@@ -3,7 +3,7 @@ import React from 'react'
 import { Header } from './Header'
 import { HelpModal } from './HelpModal'
 
-import './Page.css'
+import './Screen.css'
 import './Button.css'
 
 import {
@@ -61,7 +61,7 @@ const ScreenGrid = ({ complexity, children }) => (
   </div>
 )
 
-export class Page extends React.Component {
+export class Screen extends React.Component {
   state = {
     showGeneralHelpModal: false,
     showScreenHelpModal: false,
