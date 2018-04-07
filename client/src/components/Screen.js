@@ -68,10 +68,24 @@ export class Screen extends React.Component {
     showScreenHelpModal: false,
     showButtonModal: false,
     buttonModalContent: { title: '', text: '' },
-    showSBar: this.props.auth.isDemo,
+    showingSBar: this.props.auth.isDemo,
+  }
+
+  onKeyDown = event => {
+    console.log(event)
+    if (event.keyCode === 83 /* S */) {
+      this.setState(prevState => ({
+        showingSBar: !prevState.showingSBar,
+      }))
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.onKeyDown, false)
   }
 
   componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeyDown, false)
     stopSpeech()
   }
 
@@ -127,8 +141,6 @@ export class Screen extends React.Component {
     optionallySpeak(text)
   }
 
-  handleKeyPress = () => alert()
-
   render() {
     const {
       error,
@@ -140,13 +152,12 @@ export class Screen extends React.Component {
       children,
     } = this.props
 
-    const { showSBar } = this.state
+    const { showingSBar } = this.state
 
     return (
       <ScreenGrid
         complexity={preferences.complexity}
-        sbar={showSBar ? 1 : 0}
-        onKeyPress={this.handleKeyPress}
+        sbar={showingSBar ? 1 : 0}
       >
         <GeneralHelpModal
           title={generalHelpContent.title}
@@ -170,7 +181,7 @@ export class Screen extends React.Component {
           closeFn={this.handleCloseModals}
           helpFn={this.handleButtonHelp}
         />
-        {showSBar ? (
+        {showingSBar ? (
           <SupporterBar {...this.props} helpFn={this.handleButtonHelp} />
         ) : null}
         <Header
