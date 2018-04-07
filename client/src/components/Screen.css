@@ -2,10 +2,18 @@
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: 0.5fr repeat(4, 1fr);
   padding: 0.3rem;
   grid-gap: 0.6rem;
+}
+.screen-grid[data-sbar='1'] {
+  grid-template-columns: [sbar-start] 1fr [sbar-end] repeat(10, 1fr);
+  grid-template-rows:
+    [sbar-start]0.5fr [sbar-start] repeat(4, 1fr [sbar-start])
+    [sbar-end];
+}
+.screen-grid[data-sbar='0'] {
+  grid-template-columns: 0 repeat(10, 1fr);
+  grid-template-rows: 0.5fr repeat(4, 1fr);
 }
 
 .page-error,

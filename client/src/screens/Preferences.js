@@ -53,7 +53,7 @@ class PreferencesScreen extends React.Component {
   }
 
   render() {
-    const { auth, ...props } = this.props
+    const { ...props } = this.props
     return (
       <Screen
         title="Preferences"
