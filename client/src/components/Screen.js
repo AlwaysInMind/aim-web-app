@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Header } from './Header'
+import { SupporterBar } from './SupporterBar'
 import { HelpModal } from './HelpModal'
 
 import './Screen.css'
@@ -55,8 +56,8 @@ const ButtonHelpModal = ({ title, text, open, closeFn, ...props }) => (
   />
 )
 
-const ScreenGrid = ({ complexity, children }) => (
-  <div className="screen-grid" data-complexity={complexity}>
+const ScreenGrid = ({ complexity, sbar, children }) => (
+  <div className="screen-grid" data-sbar={sbar} data-complexity={complexity}>
     {children}
   </div>
 )
@@ -67,6 +68,7 @@ export class Screen extends React.Component {
     showScreenHelpModal: false,
     showButtonModal: false,
     buttonModalContent: { title: '', text: '' },
+    showSBar: this.props.auth.isDemo,
   }
 
   componentWillUnmount() {
@@ -125,6 +127,8 @@ export class Screen extends React.Component {
     optionallySpeak(text)
   }
 
+  handleKeyPress = () => alert()
+
   render() {
     const {
       error,
@@ -136,8 +140,14 @@ export class Screen extends React.Component {
       children,
     } = this.props
 
+    const { showSBar } = this.state
+
     return (
-      <ScreenGrid complexity={preferences.complexity}>
+      <ScreenGrid
+        complexity={preferences.complexity}
+        sbar={showSBar ? 1 : 0}
+        onKeyPress={this.handleKeyPress}
+      >
         <GeneralHelpModal
           title={generalHelpContent.title}
           text={generalHelpContent.text}
@@ -160,6 +170,9 @@ export class Screen extends React.Component {
           closeFn={this.handleCloseModals}
           helpFn={this.handleButtonHelp}
         />
+        {showSBar ? (
+          <SupporterBar {...this.props} helpFn={this.handleButtonHelp} />
+        ) : null}
         <Header
           title={title}
           helpFn={this.handleButtonHelp}
@@ -180,3 +193,21 @@ export class Screen extends React.Component {
     )
   }
 }
+/*
+const DemoBar = props => <div />
+
+export const Screen = props => {
+  const { auth } = props
+  if (!auth) {
+    console.error('Auth0 is required as a prop')
+  }
+  return auth.isDemo ? (
+    <div className="demo-container">
+      <SupporterBar {...props} />
+      <UserScreen {...props} />
+    </div>
+  ) : (
+    <UserScreen {...props} />
+  )
+}
+*/

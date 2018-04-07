@@ -1,15 +1,8 @@
-.header-preferences {
-  grid-area: prefs;
-}
-
 .header-help {
   grid-area: help;
 }
 
 .header-title {
   grid-area: title;
-}
-
-.header-exit {
-  grid-area: exit;
+  grid-column-end: exit;
 }
