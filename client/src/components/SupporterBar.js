@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {
+  Button,
   RouterButton,
   SpeakingButton,
   AuthButton,
@@ -27,7 +28,18 @@ const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
     />
   )
 
-export const SupporterBar = ({ title, helpFn }) => (
+const ExplainButton = ({ explainFn, ...props }) => {
+  return (
+    <Button
+      className="sbar-help"
+      label="Explain"
+      actionFn={explainFn}
+      {...props}
+    />
+  )
+}
+
+export const SupporterBar = ({ title, helpFn, handleBarHelp }) => (
   <React.Fragment>
     <div className="sbar-background" />
     <SpeakingButton
@@ -35,7 +47,8 @@ export const SupporterBar = ({ title, helpFn }) => (
       label="Support"
       helpText="Use these buttons to manage user features."
       helpFn={helpFn}
-    />{' '}
+    />
+    <ExplainButton explainFn={handleBarHelp} helpText="Use s" helpFn={helpFn} />
     <PreferencesButton
       className="sbar-prefs"
       isPreferencesScreen={title === 'Preferences'}
