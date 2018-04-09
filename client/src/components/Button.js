@@ -131,8 +131,12 @@ export const AuthButton = ({ ...props }) => {
   const ToggleButton = mkToggleButton({
     labelA: 'Start',
     labelB: 'Finish',
-    actionA: () => auth.login(),
-    actionB: () => auth.logout(),
+    actionA: () => {
+      auth.login()
+    },
+    actionB: () => {
+      auth.logout()
+    },
   })
   return <ToggleButton stateB={auth.isAuthenticated} {...props} />
 }
