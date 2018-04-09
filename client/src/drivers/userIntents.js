@@ -3,7 +3,6 @@ export function mkContextHelpHandler(actionFn, helpFn) {
   let last
   return e => {
     const type = e.type
-    console.log(type)
     const isActivateKey = e.keyCode === 13 || e.keyCode === 32
     const isStartEvent =
       type === 'mousedown' || (type === 'keydown' && isActivateKey)
