@@ -3,20 +3,13 @@ export function mkContextHelpHandler(actionFn, helpFn) {
   let last
   return e => {
     const type = e.type
+    console.log(type)
     const isActivateKey = e.keyCode === 13 || e.keyCode === 32
     const isStartEvent =
-      type === 'mousedown' ||
-      type === 'touchstart' ||
-      (type === 'keydown' && isActivateKey)
-    const isEndEvent =
-      type === 'mouseup' ||
-      type === 'touchend' ||
-      (type === 'keyup' && isActivateKey)
+      type === 'mousedown' || (type === 'keydown' && isActivateKey)
+    const isEndEvent = type === 'mouseup' || (type === 'keyup' && isActivateKey)
     const isMatchingEvent =
-      isEndEvent &&
-      { mouseup: 'mousedown', keyup: 'keydown', touchstart: 'touchend' }[
-        type
-      ] === last
+      isEndEvent && { mouseup: 'mousedown', keyup: 'keydown' }[type] === last
     // TODO what if mousedown and then drag off before mouseup
     if (isStartEvent && last === undefined) {
       last = type
