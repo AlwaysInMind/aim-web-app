@@ -1,0 +1,30 @@
+.sbar-background {
+  grid-area: sbar-start 1 / sbar-start / sbar-end / sbar-end;
+  background: blueviolet;
+  z-index: -1;
+}
+
+.sbar-title {
+  grid-area: sbar-start 1 / sbar-start / sbar-start 2 / sbar-end;
+  font-size: 2rem;
+}
+
+.sbar-help {
+  grid-area: sbar-start 2 / sbar-start / sbar-start 3 / sbar-end;
+}
+
+.sbar-prefs {
+  grid-area: sbar-start 3 / sbar-start / sbar-start 4 / sbar-end;
+}
+
+.sbar-exit {
+  grid-area: sbar-start 4 / sbar-start / sbar-start 5 / sbar-end;
+}
+
+.sbar-blank {
+  grid-area: sbar-start 4 / sbar-start / sbar-end / sbar-end;
+}
+
+.sbar-preferences img {
+  margin: 0;
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import ReactModal from 'react-modal'
 
 import { Button } from './Button'
+import { optionallySpeak } from '../drivers/preferences'
 
 import './HelpModal.css'
 
@@ -29,6 +30,7 @@ const modalStyle = small => ({
 
 export const HelpModal = ({
   open,
+  speak,
   closeFn,
   small,
   title,
@@ -42,9 +44,15 @@ export const HelpModal = ({
     onRequestClose={closeFn}
     style={modalStyle(small === 'true')}
   >
+    {(speak => {
+      if (speak) {
+        optionallySpeak(title)
+        optionallySpeak(text)
+      }
+    })(open && speak)}
     <div className="modal-content">
       <div className="help-content">
-        <h1 className="helpPageName">{title}</h1>
+        <h1 className="helpScreenName">{title}</h1>
         <p>{text}</p>
       </div>
       <div className="button-container">

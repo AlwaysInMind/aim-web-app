@@ -17,10 +17,6 @@ button {
   margin-top: 0.5em;
 }
 
-.header-preferences img {
-  margin: 0;
-}
-
 button {
   color: white;
   background-color: #2c7dcf;
@@ -28,7 +24,8 @@ button {
 }
 
 .header,
-.header-main {
+.header-title,
+.sbar-title {
   color: Darkblue;
   background-color: lightblue;
   border-color: darkblue;
@@ -37,7 +34,7 @@ button {
 }
 
 .header-help,
-.header-log,
+.sbar-help,
 .header-preferences,
 .button-router {
   color: white;

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { OnOffButton } from '../components/Button.js'
-import { Page } from '../components/Page'
+import { Screen } from '../components/Screen'
 import { withAuth } from '../hocs/withAuth'
 import { preferences, setPreferences } from '../drivers/preferences'
 
@@ -30,7 +30,7 @@ function parsePref(pref) {
   return { prefName, prefValue }
 }
 
-class PreferencesPage extends React.Component {
+class PreferencesScreen extends React.Component {
   PrefsButton = ({ label, pref, ...props }) => {
     const { prefName, prefValue } = parsePref(pref)
     return (
@@ -53,9 +53,9 @@ class PreferencesPage extends React.Component {
   }
 
   render() {
-    const { auth, ...props } = this.props
+    const { ...props } = this.props
     return (
-      <Page
+      <Screen
         title="Preferences"
         loadingText=""
         errorText=""
@@ -112,10 +112,10 @@ class PreferencesPage extends React.Component {
             />
           </ButtonGroup>,
         ]}
-      </Page>
+      </Screen>
     )
   }
 }
 
-export const wrappedPage = withAuth(PreferencesPage)
-export { wrappedPage as PreferencesPage }
+export const wrappedScreen = withAuth(PreferencesScreen)
+export { wrappedScreen as PreferencesScreen }
