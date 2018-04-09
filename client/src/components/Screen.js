@@ -8,7 +8,7 @@ import { Swipe } from './Swipe'
 import './Screen.css'
 import './Button.css'
 
-import { preferences, stopSpeech } from '../drivers/preferences'
+import { setPreferences, preferences, stopSpeech } from '../drivers/preferences'
 
 const generalHelpContent = {
   title: 'Using Always In Mind',
@@ -81,15 +81,36 @@ export class Screen extends React.Component {
     screenModalContent: { title: '', text: '' },
     showButtonModal: false,
     buttonModalContent: { title: '', text: '' },
-    showingSBar: this.props.auth.isDemo,
+    showingSBar: preferences.showSBar,
   }
 
   onKeyDown = event => {
     if (event.keyCode === 83 /* S */) {
-      this.setState(prevState => ({
-        showingSBar: !prevState.showingSBar,
-      }))
+      this.setState(prevState => {
+        const showSBar = !prevState.showingSBar
+        console.log('set', showSBar)
+        setPreferences({
+          showSBar,
+        })
+        return {
+          showingSBar: showSBar,
+        }
+      })
     }
+  }
+
+  onSwipeLeft = () => {
+    this.setState({ showingSBar: false })
+    setPreferences({
+      showSBar: false,
+    })
+  }
+
+  onSwipeRight = () => {
+    this.setState({ showingSBar: true })
+    setPreferences({
+      showSBar: true,
+    })
   }
 
   componentDidMount() {
@@ -99,13 +120,6 @@ export class Screen extends React.Component {
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onKeyDown, false)
     stopSpeech()
-  }
-
-  onSwipeLeft = () => {
-    this.setState({ showingSBar: false })
-  }
-  onSwipeRight = () => {
-    this.setState({ showingSBar: true })
   }
 
   screenHelpModalTitle() {
