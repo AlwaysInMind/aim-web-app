@@ -15,18 +15,35 @@ export class Swipe extends React.Component {
     this.move = this._move.bind(this)
     this.moveEnd = this._moveEnd.bind(this)
   }
+
   render() {
-    let newProps = {
+    const {
+      onSwipe,
+      onSwipeEnd,
+      onSwipingUp,
+      onSwipingRight,
+      onSwipingDown,
+      onSwipingLeft,
+      onSwipedUp,
+      onSwipedRight,
+      onSwipedDown,
+      onSwipedLeft,
+      mouseSwipe,
+      preventDefaultEvent,
+      ...passThroughProps
+    } = this.props
+
+    const newProps = {
       onTouchStart: this.moveStart,
       onTouchMove: this.move,
       onTouchEnd: this.moveEnd,
-      className: this.props.className || null,
+      //      className: this.props.className || null,
       style: this.props.style || {},
-      onTransitionEnd: this.props.onTransitionEnd,
-      onMouseMove: this.props.mouseSwipe ? this.move : null,
-      onMouseDown: this.props.mouseSwipe ? this.moveStart : null,
-      onMouseUp: this.props.mouseSwipe ? this.moveEnd : null,
-      ...this.props,
+      //    onTransitionEnd: this.props.onTransitionEnd,
+      onMouseMove: mouseSwipe ? this.move : null,
+      onMouseDown: mouseSwipe ? this.moveStart : null,
+      onMouseUp: mouseSwipe ? this.moveEnd : null,
+      ...passThroughProps,
     }
     newProps.style.touchAction = 'none'
     return React.createElement(
@@ -35,8 +52,10 @@ export class Swipe extends React.Component {
       this.props.children
     )
   }
+
   _moveStart(e) {
-    if (this.props.preventDefaultEvent) {
+    const { preventDefaultEvent } = this.props
+    if (preventDefaultEvent) {
       e.preventDefault()
     }
     this.setState({
@@ -46,9 +65,22 @@ export class Swipe extends React.Component {
       detected: false,
     })
   }
+
   _move(e) {
+    const {
+      onSwipe,
+      onSwipingUp,
+      onSwipingRight,
+      onSwipingDown,
+      onSwipingLeft,
+      onSwipedUp,
+      onSwipedRight,
+      onSwipedDown,
+      onSwipedLeft,
+      preventDefaultEvent,
+    } = this.props
     if (this.state.status) {
-      if (this.props.preventDefaultEvent) {
+      if (preventDefaultEvent) {
         e.preventDefault()
       }
       let x = parseFloat(e.clientX || e.touches[0].clientX).toFixed(2),
@@ -56,48 +88,49 @@ export class Swipe extends React.Component {
         tX = parseFloat((x - this.state.x).toFixed(2)),
         tY = parseFloat((y - this.state.y).toFixed(2))
 
-      if (Math.abs(tX) > Math.abs(tY) && this.props.onSwipe)
-        this.props.onSwipe([tX, 0])
+      if (Math.abs(tX) > Math.abs(tY) && this.props.onSwipe) onSwipe([tX, 0])
       else if (Math.abs(tX) < Math.abs(tY) && this.props.onSwipe)
-        this.props.onSwipe([0, tY])
+        onSwipe([0, tY])
 
       if (Math.abs(tX) >= this.props.delta) {
         if (tX > this.props.delta) {
-          this.props.onSwipingRight(tX)
+          onSwipingRight(tX)
         } else if (tX < -this.props.delta) {
-          this.props.onSwipingLeft(tX)
+          onSwipingLeft(tX)
         }
       } else if (Math.abs(tY) >= this.props.delta) {
         if (tY > this.props.delta) {
-          this.props.onSwipingDown(tY)
+          onSwipingDown(tY)
         } else if (tY < -this.props.delta) {
-          this.props.onSwipingUp(tY)
+          onSwipingUp(tY)
         }
       }
 
       if (!this.state.detected) {
         if (Math.abs(parseFloat(tX)) >= this.props.delta) {
           if (parseFloat(tX) > this.props.delta) {
-            this.props.onSwipedRight(true)
+            onSwipedRight(true)
             this.setState({ detected: true })
           } else if (parseFloat(tX) < -this.props.delta) {
-            this.props.onSwipedLeft(true)
+            onSwipedLeft(true)
             this.setState({ detected: true })
           }
         } else if (Math.abs(parseFloat(tY)) >= this.props.delta) {
           if (parseFloat(tY) > this.props.delta) {
-            this.props.onSwipedDown(true)
+            onSwipedDown(true)
             this.setState({ detected: true })
           } else if (parseFloat(tY) < -this.props.delta) {
-            this.props.onSwipedUp(true)
+            onSwipedUp(true)
             this.setState({ detected: true })
           }
         }
       }
     }
   }
+
   _moveEnd(e) {
-    if (this.props.preventDefaultEvent) {
+    const { onSwipeEnd, preventDefaultEvent } = this.props
+    if (preventDefaultEvent) {
       e.preventDefault()
     }
     this.setState({
@@ -106,7 +139,7 @@ export class Swipe extends React.Component {
       status: false,
       detected: false,
     })
-    this.props.onSwipeEnd(true)
+    onSwipeEnd(true)
   }
 }
 
