@@ -3,7 +3,7 @@ import React from 'react'
 import { withFetchJSON } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
 import { RouterButton } from '../components/Button'
-import { Page } from '../components/Page'
+import { Screen } from '../components/Screen'
 import { preferences } from '../drivers/preferences'
 
 const AlbumButton = ({ id, title, thumbnail, ...props }) => (
@@ -20,8 +20,8 @@ const AlbumButton = ({ id, title, thumbnail, ...props }) => (
 const isDefaultAlbumName = name =>
   name.toLowerCase() === preferences.defaultAlbumName.toLowerCase()
 
-const AlbumsPage = ({ data, ...props }) => (
-  <Page
+const AlbumsScreen = ({ data, ...props }) => (
+  <Screen
     title="Choose Photo Album"
     loadingText="Loading your albums..."
     errorText="Unable to get albums"
@@ -43,8 +43,8 @@ const AlbumsPage = ({ data, ...props }) => (
           />
         ))
     }
-  </Page>
+  </Screen>
 )
 
-const wrappedPage = withAuth(withFetchJSON(AlbumsPage, '/api/albums'))
-export { wrappedPage as AlbumsPage }
+const wrappedScreen = withAuth(withFetchJSON(AlbumsScreen, '/api/albums'))
+export { wrappedScreen as AlbumsScreen }

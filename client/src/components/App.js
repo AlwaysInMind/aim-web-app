@@ -2,11 +2,11 @@ import React from 'react'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import { PublicRoute, PrivateRoute } from './AuthRoute'
-import { CallbackPage } from '../pages/Callback'
-import { HomePage } from '../pages/Home'
-import { AlbumsPage } from '../pages/Albums'
-import { PhotosPage } from '../pages/Photos'
-import { PreferencesPage } from '../pages/Preferences'
+import { CallbackScreen } from '../screens/Callback'
+import { HomeScreen } from '../screens/Home'
+import { AlbumsScreen } from '../screens/Albums'
+import { PhotosScreen } from '../screens/Photos'
+import { PreferencesScreen } from '../screens/Preferences'
 import { auth } from '../drivers/auth'
 import { fetchPreferences } from '../drivers/preferences'
 
@@ -57,32 +57,32 @@ export class App extends React.Component {
                 .catch(error => {
                   console.error(`Problem processing Auth0 redirect ${error}`)
                 })
-              return <CallbackPage {...props} /> // display untill callback reroutes
+              return <CallbackScreen {...props} /> // display untill callback reroutes
             }}
           />
           <PrivateRoute
             exact
             path="/"
             render={() => {
-              return <HomePage />
+              return <HomeScreen />
             }}
           />
           <PrivateRoute
             exact
             path="/albums"
             render={() => {
-              return <AlbumsPage />
+              return <AlbumsScreen />
             }}
           />
           <PrivateRoute
             path="/photos/:id"
             render={({ match: { params: { id } } }) => (
-              <PhotosPage fetchURLProps={{ id }} />
+              <PhotosScreen fetchURLProps={{ id }} />
             )}
           />
           <PrivateRoute
             path="/preferences"
-            render={() => <PreferencesPage />}
+            render={() => <PreferencesScreen />}
           />
           <PublicRoute
             render={({ location }) => <Oops location={location} />}
