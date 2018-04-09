@@ -1,0 +1,13 @@
+.screen-grid[data-complexity='0'] {
+  display: none; /* never shown */
+}
+
+.screen-grid[data-complexity='1'],
+.screen-grid[data-complexity='2'] {
+  grid-template-areas:
+    'sbar  help  help  title  title title title title title title exit '
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... back  back '
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... pause pause'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....';
+}
