@@ -3,6 +3,7 @@ import React from 'react'
 import { Header } from './Header'
 import { SupporterBar } from './SupporterBar'
 import { HelpModal } from './HelpModal'
+import { Swipe } from './Swipe'
 
 import './Screen.css'
 import './Button.css'
@@ -89,6 +90,13 @@ export class Screen extends React.Component {
     stopSpeech()
   }
 
+  onSwipeLeft = () => {
+    this.setState({ showingSBar: false })
+  }
+  onSwipeRight = () => {
+    this.setState({ showingSBar: true })
+  }
+
   screenHelpTitle() {
     return `This Screen is: ${this.props.title}`
   }
@@ -155,52 +163,59 @@ export class Screen extends React.Component {
     const { showingSBar } = this.state
 
     return (
-      <ScreenGrid
-        complexity={preferences.complexity}
-        sbar={showingSBar ? 1 : 0}
+      <Swipe
+        mouseSwipe={true}
+        delta={100}
+        onSwipedLeft={this.onSwipeLeft}
+        onSwipedRight={this.onSwipeRight}
       >
-        <GeneralHelpModal
-          title={generalHelpContent.title}
-          text={generalHelpContent.text}
-          open={this.state.showGeneralHelpModal}
-          closeFn={this.handleCloseModals}
-          helpFn={this.handleButtonHelp}
-        />
-        <ScreenHelpModal
-          title={this.screenHelpTitle()}
-          text={screenHelpText}
-          open={this.state.showScreenHelpModal}
-          closeFn={this.handleCloseModals}
-          helpFn={this.handleButtonHelp}
-          moreFn={this.handleMoreHelp}
-        />
-        <ButtonHelpModal
-          title={this.state.buttonModalContent.title}
-          text={this.state.buttonModalContent.text}
-          open={this.state.showButtonModal}
-          closeFn={this.handleCloseModals}
-          helpFn={this.handleButtonHelp}
-        />
-        {showingSBar ? (
-          <SupporterBar {...this.props} helpFn={this.handleButtonHelp} />
-        ) : null}
-        <Header
-          title={title}
-          helpFn={this.handleButtonHelp}
-          handleScreenHelp={this.handleScreenHelp}
-        />
-        {// isLoaded wil be undefined if page not wraped by withFetchJSON
-        isLoaded !== undefined && isLoaded && error ? (
-          <div className="page-error">
-            {errorText}
-            {console.log(error.message)}
-          </div>
-        ) : isLoaded !== undefined && !isLoaded ? (
-          <div className="page-loading">{loadingText}</div>
-        ) : (
-          children(this.handleButtonHelp)
-        )}
-      </ScreenGrid>
+        <ScreenGrid
+          complexity={preferences.complexity}
+          sbar={showingSBar ? 1 : 0}
+        >
+          <GeneralHelpModal
+            title={generalHelpContent.title}
+            text={generalHelpContent.text}
+            open={this.state.showGeneralHelpModal}
+            closeFn={this.handleCloseModals}
+            helpFn={this.handleButtonHelp}
+          />
+          <ScreenHelpModal
+            title={this.screenHelpTitle()}
+            text={screenHelpText}
+            open={this.state.showScreenHelpModal}
+            closeFn={this.handleCloseModals}
+            helpFn={this.handleButtonHelp}
+            moreFn={this.handleMoreHelp}
+          />
+          <ButtonHelpModal
+            title={this.state.buttonModalContent.title}
+            text={this.state.buttonModalContent.text}
+            open={this.state.showButtonModal}
+            closeFn={this.handleCloseModals}
+            helpFn={this.handleButtonHelp}
+          />
+          {showingSBar ? (
+            <SupporterBar {...this.props} helpFn={this.handleButtonHelp} />
+          ) : null}
+          <Header
+            title={title}
+            helpFn={this.handleButtonHelp}
+            handleScreenHelp={this.handleScreenHelp}
+          />
+          {// isLoaded wil be undefined if page not wraped by withFetchJSON
+          isLoaded !== undefined && isLoaded && error ? (
+            <div className="page-error">
+              {errorText}
+              {console.log(error.message)}
+            </div>
+          ) : isLoaded !== undefined && !isLoaded ? (
+            <div className="page-loading">{loadingText}</div>
+          ) : (
+            children(this.handleButtonHelp)
+          )}
+        </ScreenGrid>
+      </Swipe>
     )
   }
 }
