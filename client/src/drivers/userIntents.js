@@ -26,10 +26,14 @@ export function mkContextHelpHandler(actionFn, helpFn) {
     } else if (isMatchingEvent && timeout) {
       clearTimeout(timeout)
       timeout = last = undefined
-      actionFn(e)
+      if (actionFn) {
+        actionFn(e)
+      }
     } else if (isMatchingEvent && !timeout) {
       last = undefined
-      helpFn(e)
+      if (helpFn) {
+        helpFn(e)
+      }
     }
   }
 }
