@@ -15,10 +15,12 @@ export const preferences = new Proxy(
   {
     get: function(obj, prop) {
       const prefs = JSON.parse(localStorage.getItem('preferences') || '{}')
-      return prop in prefs ? prefs[prop] : defaults[prop]
+      return prop in prefs
+        ? prefs[prop]
+        : prop === 'showSBar' ? auth.isDemo : defaults[prop]
     },
     set: function(obj, prop, value) {
-      console.error('Preferences are immutable, use setState()')
+      console.error('Preferences are immutable, use setPreferences()')
       return false
     },
   }
@@ -35,10 +37,6 @@ export function setPreferences(partial) {
 }
 
 export async function fetchPreferences() {
-  if (!auth.isDemo && localStorage.setItem('preferences')) {
-    return
-  }
-
   const endpoint = '/api/preferences'
   let prefs
   try {
