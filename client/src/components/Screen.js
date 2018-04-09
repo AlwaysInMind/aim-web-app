@@ -88,7 +88,6 @@ export class Screen extends React.Component {
     if (event.keyCode === 83 /* S */) {
       this.setState(prevState => {
         const showSBar = !prevState.showingSBar
-        console.log('set', showSBar)
         setPreferences({
           showSBar,
         })
