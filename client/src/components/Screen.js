@@ -22,7 +22,7 @@ But don't worry, just try a button and nothing bad will happen.
 
 const barHelpTitle = `The column on the left is the supporters bar`
 const barHelpText = `Use the buttons to change the features of the user screen.
- You can hide or show the bar any time. Swipe Left to hide the bar, swipe right to show it. Or use the 's' key on the keyboard to show and hide the bar.`
+ You can hide or show the bar at any time. Swipe left to hide the bar, swipe right to show it. Or use the 's' key on the keyboard to show and hide the bar.`
 
 const GeneralHelpModal = ({ title, text, open, speak, closeFn, ...props }) => (
   <HelpModal
