@@ -22,7 +22,7 @@
 }
 
 .sbar-blank {
-  grid-area: sbar-start 4 / sbar-start / sbar-end / sbar-end;
+  grid-area: sbar-start 5 / sbar-start / sbar-end / sbar-end;
 }
 
 .sbar-preferences img {
