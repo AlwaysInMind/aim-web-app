@@ -6,7 +6,7 @@ import { RouterButton } from '../components/Button'
 import { Screen } from '../components/Screen'
 import { preferences } from '../drivers/preferences'
 
-//import './Albums.css'
+import './Albums.css'
 
 const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   <RouterButton
@@ -27,6 +27,7 @@ const AlbumsScreen = ({ data, ...props }) => {
 
   return (
     <Screen
+      screen="albums"
       title="Choose Photo Album"
       loadingText="Loading your albums..."
       errorText="Unable to get albums"

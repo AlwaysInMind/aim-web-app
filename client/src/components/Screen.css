@@ -16,6 +16,10 @@
   grid-template-rows: 0.5fr repeat(4, 1fr);
 }
 
+.screen-sbar-blank {
+  grid-area: sbar-start / sbar-start / sbar-end / sbar-end;
+}
+
 .page-error,
 .page-loading {
   grid-column-start: 1;

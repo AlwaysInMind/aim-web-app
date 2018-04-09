@@ -68,8 +68,13 @@ const ButtonHelpModal = ({ title, text, open, speak, closeFn, ...props }) => (
   />
 )
 
-const ScreenGrid = ({ complexity, sbar, children }) => (
-  <div className="screen-grid" data-sbar={sbar} data-complexity={complexity}>
+const ScreenGrid = ({ screen, complexity, sbar, children }) => (
+  <div
+    className="screen-grid"
+    data-screen={screen}
+    data-sbar={sbar}
+    data-complexity={complexity}
+  >
     {children}
   </div>
 )
@@ -183,6 +188,7 @@ export class Screen extends React.Component {
 
   render() {
     const {
+      screen,
       error,
       isLoaded,
       title,
@@ -201,6 +207,7 @@ export class Screen extends React.Component {
         onSwipedRight={this.onSwipeRight}
       >
         <ScreenGrid
+          screen={screen}
           complexity={preferences.complexity}
           sbar={showingSBar ? 1 : 0}
         >
@@ -235,7 +242,9 @@ export class Screen extends React.Component {
               helpFn={this.handleButtonHelp}
               handleBarHelp={this.handleBarHelp}
             />
-          ) : null}
+          ) : (
+            <div className="screen-sbar-blank " />
+          )}
           <Header
             title={title}
             helpFn={this.handleButtonHelp}
