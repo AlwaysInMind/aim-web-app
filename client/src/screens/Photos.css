@@ -4,7 +4,7 @@
   border-radius: 0.4rem;
 }
 
-.screen-grid[data-complexity='0'] {
+.screen-grid[data-screen='photos'][data-complexity='0'] {
   grid-template-areas:
     'sbar  help  help  title title title title title title title title'
     'sbar  slide slide slide slide slide slide slide slide slide slide'
@@ -13,8 +13,8 @@
     'sbar  slide slide slide slide slide slide slide slide slide slide';
 }
 
-.screen-grid[data-complexity='1'],
-.screen-grid[data-complexity='2'] {
+.screen-grid[data-screen='photos'][data-complexity='1'],
+.screen-grid[data-screen='photos'][data-complexity='2'] {
   grid-template-areas:
     'sbar  help  help  title  title title title title title title exit '
     'sbar  slide slide slide slide slide slide slide slide back  back '

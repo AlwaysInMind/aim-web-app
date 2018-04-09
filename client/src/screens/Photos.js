@@ -44,6 +44,7 @@ class PhotosScreen extends React.Component {
 
     return (
       <Screen
+        screen="photos"
         title="View Photos"
         loadingText="Loading your photos..."
         errorText="Unable to get photos"

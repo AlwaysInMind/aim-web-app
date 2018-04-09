@@ -28,3 +28,7 @@
 .sbar-preferences img {
   margin: 0;
 }
+
+.sbar-blank {
+  grid-area: sbar-start 5 / sbar-start / sbar-end / sbar-end;
+}
