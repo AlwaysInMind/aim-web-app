@@ -8,11 +8,7 @@ import { Swipe } from './Swipe'
 import './Screen.css'
 import './Button.css'
 
-import {
-  preferences,
-  optionallySpeak,
-  stopSpeech,
-} from '../drivers/preferences'
+import { preferences, stopSpeech } from '../drivers/preferences'
 
 const generalHelpContent = {
   title: 'Using Always In Mind',
@@ -24,22 +20,35 @@ But don't worry, just try a button and nothing bad will happen.
 `,
 }
 
-const GeneralHelpModal = ({ title, text, open, closeFn, ...props }) => (
+const barHelpTitle = `On the left is the supporters bar`
+const barHelpText = `Use the buttons to change the user experience. Swipe Left to hide the the bar, swipe right to show the bar or use the s key to show and hide the bar.`
+
+const GeneralHelpModal = ({ title, text, open, speak, closeFn, ...props }) => (
   <HelpModal
     title={title}
     text={text}
     open={open}
+    speak={speak}
     closeFn={closeFn}
     small="false"
     {...props}
   />
 )
 
-const ScreenHelpModal = ({ title, text, open, closeFn, moreFn, ...props }) => (
+const ScreenHelpModal = ({
+  title,
+  text,
+  open,
+  speak,
+  closeFn,
+  moreFn,
+  ...props
+}) => (
   <HelpModal
     title={title}
     text={text}
     open={open}
+    speak={speak}
     closeFn={closeFn}
     small="false"
     moreFn={moreFn}
@@ -47,11 +56,12 @@ const ScreenHelpModal = ({ title, text, open, closeFn, moreFn, ...props }) => (
   />
 )
 
-const ButtonHelpModal = ({ title, text, open, closeFn, ...props }) => (
+const ButtonHelpModal = ({ title, text, open, speak, closeFn, ...props }) => (
   <HelpModal
     title={title}
     text={text}
     open={open}
+    speak={speak}
     closeFn={closeFn}
     small="true"
   />
@@ -67,13 +77,13 @@ export class Screen extends React.Component {
   state = {
     showGeneralHelpModal: false,
     showScreenHelpModal: false,
+    screenModalContent: { title: '', text: '' },
     showButtonModal: false,
     buttonModalContent: { title: '', text: '' },
     showingSBar: this.props.auth.isDemo,
   }
 
   onKeyDown = event => {
-    console.log(event)
     if (event.keyCode === 83 /* S */) {
       this.setState(prevState => ({
         showingSBar: !prevState.showingSBar,
@@ -97,17 +107,31 @@ export class Screen extends React.Component {
     this.setState({ showingSBar: true })
   }
 
-  screenHelpTitle() {
+  screenHelpModalTitle() {
+    return
+  }
+  screenHelpModalText() {
     return `This Screen is: ${this.props.title}`
   }
 
   handleScreenHelp = () => {
-    if (preferences.speakHelp) {
-      optionallySpeak(this.screenHelpTitle())
-      optionallySpeak(this.props.screenHelpText)
+    if (preferences.showHelp || preferences.speakHelp) {
+      this.setState({
+        showScreenHelpModal: true,
+        screenModalContent: {
+          title: `This Screen is: ${this.props.title}`,
+          text: this.props.screenHelpText,
+        },
+      })
     }
-    if (preferences.showHelp) {
-      this.setState({ showScreenHelpModal: true })
+  }
+
+  handleBarHelp = () => {
+    if (preferences.showHelp || preferences.speakHelp) {
+      this.setState({
+        showScreenHelpModal: true,
+        screenModalContent: { title: barHelpTitle, text: barHelpText },
+      })
     }
   }
 
@@ -121,12 +145,8 @@ export class Screen extends React.Component {
   }
 
   handleMoreHelp = () => {
-    if (preferences.speakHelp) {
+    if (preferences.showHelp || preferences.speakHelp) {
       stopSpeech()
-      optionallySpeak(generalHelpContent.title)
-      optionallySpeak(generalHelpContent.text)
-    }
-    if (preferences.showHelp) {
       this.setState({
         showGeneralHelpModal: true,
         showScreenHelpModal: false,
@@ -139,14 +159,12 @@ export class Screen extends React.Component {
     const state =
       isOn === undefined ? '' : `. It is switched ${isOn ? 'on' : 'off'}`
     const text = helpText ? `${helpText}${state}.` : 'is not described'
-    if (preferences.showHelp) {
+    if (preferences.showHelp || preferences.showHelp) {
       this.setState({
         showButtonModal: true,
         buttonModalContent: { title, text },
       })
     }
-    optionallySpeak(title)
-    optionallySpeak(text)
   }
 
   render() {
@@ -156,7 +174,6 @@ export class Screen extends React.Component {
       title,
       loadingText,
       errorText,
-      screenHelpText,
       children,
     } = this.props
 
@@ -177,13 +194,15 @@ export class Screen extends React.Component {
             title={generalHelpContent.title}
             text={generalHelpContent.text}
             open={this.state.showGeneralHelpModal}
+            speak={preferences.speakHelp}
             closeFn={this.handleCloseModals}
             helpFn={this.handleButtonHelp}
           />
           <ScreenHelpModal
-            title={this.screenHelpTitle()}
-            text={screenHelpText}
+            title={this.state.screenModalContent.title}
+            text={this.state.screenModalContent.text}
             open={this.state.showScreenHelpModal}
+            speak={preferences.speakHelp}
             closeFn={this.handleCloseModals}
             helpFn={this.handleButtonHelp}
             moreFn={this.handleMoreHelp}
@@ -192,11 +211,16 @@ export class Screen extends React.Component {
             title={this.state.buttonModalContent.title}
             text={this.state.buttonModalContent.text}
             open={this.state.showButtonModal}
+            speak={preferences.speakHelp}
             closeFn={this.handleCloseModals}
             helpFn={this.handleButtonHelp}
           />
           {showingSBar ? (
-            <SupporterBar {...this.props} helpFn={this.handleButtonHelp} />
+            <SupporterBar
+              {...this.props}
+              helpFn={this.handleButtonHelp}
+              handleBarHelp={this.handleBarHelp}
+            />
           ) : null}
           <Header
             title={title}
@@ -219,21 +243,3 @@ export class Screen extends React.Component {
     )
   }
 }
-/*
-const DemoBar = props => <div />
-
-export const Screen = props => {
-  const { auth } = props
-  if (!auth) {
-    console.error('Auth0 is required as a prop')
-  }
-  return auth.isDemo ? (
-    <div className="demo-container">
-      <SupporterBar {...props} />
-      <UserScreen {...props} />
-    </div>
-  ) : (
-    <UserScreen {...props} />
-  )
-}
-*/
