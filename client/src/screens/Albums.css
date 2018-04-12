@@ -1,7 +1,4 @@
-.screen-grid[data-complexity='0'] {
-  display: none; /* never shown */
-}
-
+.screen-grid[data-screen='albums'][data-complexity='0'],
 .screen-grid[data-screen='albums'][data-complexity='1'],
 .screen-grid[data-screen='albums'][data-complexity='2'] {
   grid-template-areas:
