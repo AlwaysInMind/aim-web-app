@@ -74,7 +74,7 @@ class PhotosScreen extends React.Component {
                 <BackButton
                   style={btn}
                   className="button-router"
-                  label="See More Photos"
+                  label="More Photos"
                   helpFn={helpFn}
                   helpText="Choose another photo Album"
                 />

@@ -13,6 +13,7 @@ const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
   !isPreferencesScreen ? (
     <RouterButton
       route="/preferences"
+      label="Preferences"
       className="supporter-preferences"
       image={`${process.env.PUBLIC_URL}/preferences.svg`}
       helpText="Change user preferences"
@@ -22,7 +23,7 @@ const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
     <RouterButton
       route="!goHome"
       className="supporter-preferences"
-      label="Back"
+      label="Save Preferences"
       helpText="Return to Always in Mind"
       {...props}
     />
@@ -31,7 +32,7 @@ const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
 const ExplainButton = ({ explainFn, ...props }) => {
   return (
     <Button
-      className="sbar-help"
+      className="sbar-help sbar-button"
       label="Explain"
       actionFn={explainFn}
       {...props}
@@ -43,19 +44,23 @@ export const SupporterBar = ({ title, helpFn, handleBarHelp }) => (
   <React.Fragment>
     <div className="sbar-background" />
     <SpeakingButton
-      className="sbar-title"
-      label="Support"
+      className="sbar-title sbar-button"
+      label="Supporter"
       helpText="Use these buttons to manage user features."
       helpFn={helpFn}
     />
-    <ExplainButton explainFn={handleBarHelp} helpText="Use s" helpFn={helpFn} />
+    <ExplainButton
+      explainFn={handleBarHelp}
+      helpText="Use these buttons to manage user features."
+      helpFn={helpFn}
+    />
     <PreferencesButton
-      className="sbar-prefs"
+      className="sbar-prefs sbar-button"
       isPreferencesScreen={title === 'Preferences'}
       helpFn={helpFn}
     />
     <AuthButton
-      className="sbar-exit"
+      className="sbar-exit sbar-button"
       helpText="Stop using Always In Mind"
       helpFn={helpFn}
     />

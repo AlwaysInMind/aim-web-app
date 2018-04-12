@@ -33,8 +33,7 @@ export const Button = ({
       {...propsPassThrough}
     >
       {image ? <img className="button-image" src={image} alt="" /> : null}
-      {image && label ? <br /> : null}
-      {label ? <span className="button-label">{label}</span> : null}
+      {label ? <p className="button-label">{label}</p> : null}
     </button>
   )
 }

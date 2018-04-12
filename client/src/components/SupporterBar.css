@@ -2,11 +2,13 @@
   grid-area: sbar-start 1 / sbar-start / sbar-end / sbar-end;
   background: blueviolet;
   z-index: -1;
+  border-radius: 0.5rem;
 }
 
 .sbar-title {
   grid-area: sbar-start 1 / sbar-start / sbar-start 2 / sbar-end;
   font-size: 2rem;
+  margin-top: 1%;
 }
 
 .sbar-help {
@@ -25,10 +27,11 @@
   grid-area: sbar-start 5 / sbar-start / sbar-end / sbar-end;
 }
 
-.sbar-preferences img {
-  margin: 0;
-}
-
-.sbar-blank {
-  grid-area: sbar-start 5 / sbar-start / sbar-end / sbar-end;
+.sbar-title,
+.sbar-help,
+.sbar-prefs,
+.sbar-exit {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
 }

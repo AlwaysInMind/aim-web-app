@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .screen-grid {
   width: 100vw;
   height: 100vh;
@@ -6,14 +10,14 @@
   grid-gap: 0.6rem;
 }
 .screen-grid[data-sbar='1'] {
-  grid-template-columns: [sbar-start] 1fr [sbar-end] repeat(10, 1fr);
+  grid-template-columns: [sbar-start] 1fr [sbar-end screen-start] repeat(10, 8%);
   grid-template-rows:
-    [sbar-start]0.5fr [sbar-start] repeat(4, 1fr [sbar-start])
+    [sbar-start]1fr [sbar-start] repeat(5, 16% [sbar-start])
     [sbar-end];
 }
 .screen-grid[data-sbar='0'] {
-  grid-template-columns: 0 repeat(10, 1fr);
-  grid-template-rows: 0.5fr repeat(4, 1fr);
+  grid-template-columns: 0 [screen-start] repeat(10, 9.3%);
+  grid-template-rows: 1fr repeat(5, 16%);
 }
 
 .screen-sbar-blank {
@@ -22,7 +26,7 @@
 
 .page-error,
 .page-loading {
-  grid-column-start: 1;
+  grid-column-start: screen-start;
   grid-column-end: -1;
   grid-row-start: 2;
   grid-row-end: -1;

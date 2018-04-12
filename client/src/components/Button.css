@@ -8,13 +8,22 @@ button {
 }
 
 .button-label {
+  margin: 0;
   text-overflow: wrap;
+  line-height: 2rem;
 }
+
 .button-image {
-  width: 80%;
+  width: 70%;
+  height: 70%;
   object-fit: contain;
   border-radius: 0.4rem;
-  margin-top: 0.5em;
+  margin: 0;
+}
+
+.button-image:only-child {
+  width: 90%;
+  height: 90%;
 }
 
 button {

@@ -56,6 +56,7 @@ class PreferencesScreen extends React.Component {
     const { ...props } = this.props
     return (
       <Screen
+        screen="preferences"
         title="Preferences"
         loadingText=""
         errorText=""

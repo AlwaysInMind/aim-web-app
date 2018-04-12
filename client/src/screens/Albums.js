@@ -10,7 +10,7 @@ import './Albums.css'
 
 const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   <RouterButton
-    style={{ gridColumn: 'span 2' }}
+    style={{ gridColumn: 'span 2', gridRow: 'span 2' }}
     image={thumbnail}
     label={title}
     route={`/photos/${id}`}
