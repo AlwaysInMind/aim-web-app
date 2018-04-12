@@ -4,13 +4,16 @@
   justify-content: space-evenly;
   padding: 1vh 1vw;
   background-color: lightblue;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-family: inherit;
   border-radius: 0.5rem;
+  grid-row: span 2;
 }
 
 .prefs-group-label {
   margin: 0.1rem;
+  margin-top: 0.7rem;
+  display: inline;
 }
 
 .prefs-group-buttons {
@@ -20,9 +23,21 @@
 }
 
 .prefs-button {
+  height: 88%;
   margin: 0.3rem;
 }
 .prefs-button .button-image {
-  width: 40%;
-  margin-top: 0.1em;
+  width: 45%;
+  height: 45%;
+  margin-bottom: 0.3em;
+}
+
+.screen-grid[data-screen='preferences'] {
+  grid-template-areas:
+    'sbar  help  help  title  title title title title title title exit '
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... .....  ..... '
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....';
 }
