@@ -4,7 +4,7 @@ import { withFetchJSON } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
 import { RouterButton } from '../components/Button'
 import { Screen } from '../components/Screen'
-import { preferences } from '../drivers/preferences'
+import { isDefaultAlbumName } from '../drivers/preferences'
 
 import './Albums.css'
 
@@ -18,9 +18,6 @@ const AlbumButton = ({ id, title, thumbnail, ...props }) => (
     {...props}
   />
 )
-
-const isDefaultAlbumName = name =>
-  name.toLowerCase() === preferences.defaultAlbumName.toLowerCase()
 
 const AlbumsScreen = ({ data, ...props }) => {
   //  const { complexity } = preferences

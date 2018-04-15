@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { withFetchJSON } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
 import { Screen } from '../components/Screen'
-import { preferences } from '../drivers/preferences'
+import { preferences, isDefaultAlbumName } from '../drivers/preferences'
 
 const errorText = `Unable to get the Album ${preferences.defaultAlbumName}`
 
@@ -19,7 +19,7 @@ const DefaultAlbumScreen = ({ data, ...props }) => (
     {helpFn => {
       // closure so can access data prop
       const defaultAlbum = data
-        .filter(item => (item.title = 'Always In Mind'))
+        .filter(item => isDefaultAlbumName(item.title))
         .map(item => <Redirect to={`/photos/${item.id}`} />)
       if (!defaultAlbum.length) {
         return <div className="page-error">{errorText}</div>

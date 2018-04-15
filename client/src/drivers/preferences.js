@@ -17,7 +17,9 @@ export const preferences = new Proxy(
       const prefs = JSON.parse(localStorage.getItem('preferences') || '{}')
       return prop in prefs
         ? prefs[prop]
-        : prop === 'showSBar' ? auth.isDemo : defaults[prop]
+        : prop === 'showSBar'
+          ? auth.isDemo
+          : defaults[prop]
     },
     set: function(obj, prop, value) {
       console.error('Preferences are immutable, use setPreferences()')
@@ -67,4 +69,8 @@ export function stopSpeech() {
   if (preferences.speakHelp) {
     cancelSpeech()
   }
+}
+
+export const isDefaultAlbumName = name => {
+  return name.toLowerCase() === preferences.defaultAlbumName.toLowerCase()
 }
