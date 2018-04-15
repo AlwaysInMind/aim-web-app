@@ -4,7 +4,7 @@ import { withFetchJSON, pathTemplate } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
 import { BackButton, PauseButton } from '../components/Button.js'
 import { Screen } from '../components/Screen'
-import { mkSlideShow } from '../components/SlideShow'
+import { SlideShow } from '../components/SlideShow'
 import { preferences } from '../drivers/preferences'
 
 import '../components/SlideShow.css'
@@ -15,7 +15,6 @@ const btn = { gridColumn: 'span 2' }
 class PhotosScreen extends React.Component {
   constructor(props) {
     super(props)
-    this.slideShow = mkSlideShow(preferences.slideShowRate)
     this.state = {
       slideShowIsPlaying: false,
     }
@@ -28,14 +27,6 @@ class PhotosScreen extends React.Component {
       this.didLoadCalled = true
       this.setState({ slideShowIsPlaying: true })
     }
-    if (this.props.data) {
-      this.slideShow.isPlaying = this.state.slideShowIsPlaying
-    }
-  }
-
-  componentWillUnmount() {
-    this.slideShow.isPlaying = false
-    this.slideShow = undefined
   }
 
   render() {
@@ -53,21 +44,15 @@ class PhotosScreen extends React.Component {
       >
         {helpFn => (
           <React.Fragment>
-            <div className="slides-container">
-              <ul className="slides">
-                {data.length
-                  ? data.map(item => (
-                      <li className="slide" key={item.id}>
-                        <img
-                          style={{ display: 'block' }}
-                          src={item.src}
-                          alt=""
-                        />
-                      </li>
-                    ))
-                  : 'No photos'}
-              </ul>
-            </div>
+            {data.length ? (
+              <SlideShow
+                media={data}
+                rate={preferences.slideShowRate}
+                playing={this.state.slideShowIsPlaying}
+              />
+            ) : (
+              'No photos'
+            )}
 
             {complexity > 0 && (
               <React.Fragment>
