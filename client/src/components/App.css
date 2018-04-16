@@ -3,4 +3,6 @@ body {
   padding: 0;
   background: lightgoldenrodyellow;
   font-family: Comic sans, Comic Sans MS, Chalkboard SE, cursive;
+  overflow: hidden;
+  font-size: calc(0.3em + 1.5vw + 3vh);
 }
