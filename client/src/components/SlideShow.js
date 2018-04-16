@@ -6,6 +6,7 @@ import './SlideShow.css'
 function mkSlideShow(rate = 3000) {
   var slides
   var currentSlide = -1
+  var playing = false
   var timerID
 
   const getSlides = () => document.querySelectorAll('.slides .slide')
@@ -44,6 +45,7 @@ function mkSlideShow(rate = 3000) {
       slides = getSlides()
     }
     advanceSlide(true)
+    playing = true
   }
 
   function stop() {
@@ -52,44 +54,40 @@ function mkSlideShow(rate = 3000) {
     }
     if (slideIsVideo(slides, currentSlide)) {
       playSlide(slides, currentSlide, false)
-      setSlideEndEventHandler(slides, currentSlide, false, advanceSlide)
-    }
-
-    if (timerID) {
+    } else if (timerID) {
       clearTimeout(timerID)
       timerID = undefined
     }
+    playing = false
+  }
+
+  function onVideoEnd() {
+    setSlideEndEventHandler(slides, currentSlide, false, onVideoEnd)
+    //        playSlide(slides, currentSlide, false)
+    advanceSlide(false)
   }
 
   function advanceSlide(resume) {
     if (currentSlide === -1) {
       currentSlide = 0
     } else {
-      if (slideIsVideo(slides, currentSlide) && !resume) {
-        clearTimeout(timerID)
-        setSlideEndEventHandler(slides, currentSlide, false, advanceSlide)
-        playSlide(slides, currentSlide, false)
-      }
-      if (!slideIsVideo(slides, currentSlide) || !resume) {
+      if (!(slideIsVideo(slides, currentSlide) && resume)) {
         hideSlide(slides, currentSlide)
         currentSlide = nextSlide(slides, currentSlide)
       }
     }
+    showSlide(slides, currentSlide)
     if (slideIsVideo(slides, currentSlide)) {
-      timerID = setInterval(advanceSlide, rate * 100)
-      setSlideEndEventHandler(slides, currentSlide, true, () => {
-        advanceSlide(false)
-      })
+      setSlideEndEventHandler(slides, currentSlide, true, onVideoEnd)
       playSlide(slides, currentSlide, true)
     } else {
       timerID = setTimeout(advanceSlide, rate)
     }
-    showSlide(slides, currentSlide)
   }
 
   return {
     get isPlaying() {
-      return timerID !== undefined
+      return playing
     },
     set isPlaying(play) {
       play ? start() : stop()
