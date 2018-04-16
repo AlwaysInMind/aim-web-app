@@ -23,7 +23,7 @@ const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
     <RouterButton
       route="!goHome"
       className="supporter-preferences"
-      label="Save Preferences"
+      label="Save Options"
       helpText="Return to Always in Mind"
       {...props}
     />
@@ -56,7 +56,7 @@ export const SupporterBar = ({ title, helpFn, handleBarHelp }) => (
     />
     <PreferencesButton
       className="sbar-prefs sbar-button"
-      isPreferencesScreen={title === 'Preferences'}
+      isPreferencesScreen={title === 'Options'}
       helpFn={helpFn}
     />
     <AuthButton

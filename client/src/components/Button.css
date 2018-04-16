@@ -9,7 +9,7 @@ button {
 .button-label {
   margin: 0;
   text-overflow: wrap;
-  line-height: 2rem;
+  line-height: 1;
 }
 
 .button-image {
