@@ -126,6 +126,7 @@ export class SlideShow extends React.Component {
                   style={{ width: '100%', height: '100%' }}
                   playsInline="true"
                   src={item.src}
+                  muted="true"
                 />
               )}
             </li>
