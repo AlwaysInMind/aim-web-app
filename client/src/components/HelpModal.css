@@ -30,6 +30,7 @@
 }
 
 .helpScreenName {
-  font-size: 2.6rem;
-  font-weight: 540;
+  font-weight: 600;
+  font-size: 110%;
+  font-family: sans-serif;
 }

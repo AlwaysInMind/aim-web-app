@@ -2,7 +2,6 @@ button {
   width: 100%;
   height: 100%;
   border-radius: 1rem;
-  font-size: 2rem;
   border: 0.3rem solid;
   padding: 0.5rem;
 }
@@ -38,7 +37,7 @@ button {
   color: Darkblue;
   background-color: lightblue;
   border-color: darkblue;
-  font-size: 2.7rem;
+  font-size: 110%;
   font-weight: 500;
 }
 

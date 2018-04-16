@@ -13,9 +13,9 @@ const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
   !isPreferencesScreen ? (
     <RouterButton
       route="/preferences"
-      label="Preferences"
+      label="Options"
       className="supporter-preferences"
-      image={`${process.env.PUBLIC_URL}/preferences.svg`}
+      /*      image={`${process.env.PUBLIC_URL}/preferences.svg`}*/
       helpText="Change user preferences"
       {...props}
     />
