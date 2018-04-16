@@ -45,8 +45,8 @@ export const SupporterBar = ({ title, helpFn, handleBarHelp }) => (
     <div className="sbar-background" />
     <SpeakingButton
       className="sbar-title sbar-button"
-      label="Supporter"
-      helpText="Use these buttons to manage user features."
+      label="Setup"
+      helpText="Use these buttons to change the setup of user features."
       helpFn={helpFn}
     />
     <ExplainButton
