@@ -24,7 +24,6 @@ const modalStyle = small => ({
     borderRadius: '1rem',
     border: '0.3rem solid darkred',
     padding: '0.5rem',
-    fontSize: '2rem',
   },
 })
 
@@ -52,7 +51,7 @@ export const HelpModal = ({
     })(open && speak)}
     <div className="modal-content">
       <div className="help-content">
-        <h1 className="helpScreenName">{title}</h1>
+        <div className="helpScreenName">{title}</div>
         <p>{text}</p>
       </div>
       <div className="button-container">
