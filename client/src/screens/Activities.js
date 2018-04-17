@@ -24,7 +24,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
             style={{ gridColumn: 'span 2', gridRow: 'span 2' }}
             className="button-router"
             image={''}
-            label="Photos"
+            label="View Photos"
             route={`/photos`}
             helpText={`View photos `}
             helpFn={helpFn}
@@ -33,7 +33,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
             style={{ gridColumn: 'span 2', gridRow: 'span 2' }}
             className="button-router"
             image={''}
-            label="Videos"
+            label="Watch Videos"
             route={`/videos`}
             helpText={`View videos `}
             helpFn={helpFn}
