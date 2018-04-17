@@ -4,8 +4,11 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import { PublicRoute, PrivateRoute } from './AuthRoute'
 import { CallbackScreen } from '../screens/Callback'
 import { HomeScreen } from '../screens/Home'
+import { ActivitiesScreen } from '../screens/Activities'
 import { AlbumsScreen } from '../screens/Albums'
+import { PlaylistsScreen } from '../screens/Playlists'
 import { PhotosScreen } from '../screens/Photos'
+import { VideosScreen } from '../screens/Videos'
 import { PreferencesScreen } from '../screens/Preferences'
 import { auth } from '../drivers/auth'
 import { fetchPreferences } from '../drivers/preferences'
@@ -69,16 +72,40 @@ export class App extends React.Component {
           />
           <PrivateRoute
             exact
-            path="/albums"
+            path="/activities"
+            render={() => {
+              return <ActivitiesScreen />
+            }}
+          />
+          <PrivateRoute
+            exact
+            path="/photos"
             render={() => {
               return <AlbumsScreen />
             }}
           />
           <PrivateRoute
+            exact
+            path="/videos"
+            render={() => {
+              return <PlaylistsScreen />
+            }}
+          />
+          <PrivateRoute
             path="/photos/:id"
-            render={({ match: { params: { id } } }) => (
-              <PhotosScreen fetchURLProps={{ id }} />
-            )}
+            render={({
+              match: {
+                params: { id },
+              },
+            }) => <PhotosScreen fetchURLProps={{ id }} />}
+          />
+          <PrivateRoute
+            path="/videos/:id"
+            render={({
+              match: {
+                params: { id },
+              },
+            }) => <VideosScreen playlistId={id} />}
           />
           <PrivateRoute
             path="/preferences"

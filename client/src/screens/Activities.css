@@ -1,9 +1,9 @@
-.screen-grid[data-screen='albums'][data-complexity='0'],
-.screen-grid[data-screen='albums'][data-complexity='1'],
-.screen-grid[data-screen='albums'][data-complexity='2'] {
+.screen-grid[data-screen='activities'][data-complexity='0'],
+.screen-grid[data-screen='activities'][data-complexity='1'],
+.screen-grid[data-screen='activities'][data-complexity='2'] {
   grid-template-areas:
     'sbar  help  help  title  title title title title title title exit '
-    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... back  back '
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... blank blank '
     'sbar  ..... ..... ..... ..... ..... ..... ..... ..... blank blank'
     'sbar  ..... ..... ..... ..... ..... ..... ..... ..... blank blank'
     'sbar  ..... ..... ..... ..... ..... ..... ..... ..... blank blank'

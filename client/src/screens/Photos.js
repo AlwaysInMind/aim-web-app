@@ -10,8 +10,6 @@ import { preferences } from '../drivers/preferences'
 import '../components/SlideShow.css'
 import './Photos.css'
 
-const btn = { gridColumn: 'span 2' }
-
 class PhotosScreen extends React.Component {
   constructor(props) {
     super(props)
@@ -57,14 +55,14 @@ class PhotosScreen extends React.Component {
             {complexity > 0 && (
               <React.Fragment>
                 <BackButton
-                  style={btn}
+                  style={{ gridColumn: 'span 2', gridArea: 'back' }}
                   className="button-router"
                   label="More Photos"
                   helpFn={helpFn}
                   helpText="Choose another photo Album"
                 />
                 <PauseButton
-                  style={btn}
+                  style={{ gridColumn: 'span 2', gridArea: 'pause' }}
                   className="button-pause"
                   isPlaying={this.state.slideShowIsPlaying}
                   playFn={play => {

@@ -1,6 +1,6 @@
-.screen-grid[data-screen='albums'][data-complexity='0'],
-.screen-grid[data-screen='albums'][data-complexity='1'],
-.screen-grid[data-screen='albums'][data-complexity='2'] {
+.screen-grid[data-screen='playlists'][data-complexity='0'],
+.screen-grid[data-screen='playlists'][data-complexity='1'],
+.screen-grid[data-screen='playlists'][data-complexity='2'] {
   grid-template-areas:
     'sbar  help  help  title  title title title title title title exit '
     'sbar  ..... ..... ..... ..... ..... ..... ..... ..... back  back '

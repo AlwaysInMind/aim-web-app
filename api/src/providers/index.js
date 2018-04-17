@@ -70,7 +70,7 @@ exports.handlePreferences = (action, wrapped) => {
       const fn = async prefs => prefsFunction(req.user.sub, prefs)
       preferences = await wrapped(fn, req, res)
     } catch (err) {
-      send(res, err.statusCode, err.message)
+      send(res, err.statusCode || 0, err.message)
       return
     }
     res.setHeader('Content-Type', 'application/json')
