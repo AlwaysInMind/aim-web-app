@@ -10,10 +10,10 @@ const errorText = `Unable to get the Album ${preferences.defaultAlbumName}`
 
 const DefaultAlbumScreen = ({ data, ...props }) => (
   <Screen
-    title="Getting your photo albums"
-    loadingText="Loading your albums..."
+    title="Getting your photo"
+    loadingText="Loading your photos..."
     errorText={errorText}
-    screenHelpText="Press an album button to view the photos."
+    screenHelpText=""
     {...props}
   >
     {helpFn => {
@@ -40,5 +40,5 @@ export const HomeScreen = () => {
     return <WrappedDefaultAlbumScreen />
   }
 
-  return <Redirect to="/albums" />
+  return <Redirect to="/activities" />
 }

@@ -43,7 +43,7 @@
           config.callbackOnLocationHash ? 'token' : 'code',
         params: config.internalOptions,
         connection_scopes: {
-          'google-oauth2': ['https://picasaweb.google.com/data/']
+          'google-oauth2': ['https://picasaweb.google.com/data/', 'https://www.googleapis.com/auth/youtube.readonly']
         },
       },
       assetsUrl: config.assetsUrl,

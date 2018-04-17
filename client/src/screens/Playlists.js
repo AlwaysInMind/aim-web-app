@@ -6,29 +6,29 @@ import { BackButton, RouterButton } from '../components/Button'
 import { Screen } from '../components/Screen'
 import { isDefaultAlbumName } from '../drivers/preferences'
 
-import './Albums.css'
+import './Playlists.css'
 
 const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   <RouterButton
     style={{ gridColumn: 'span 2', gridRow: 'span 2', fontSize: '70%' }}
     image={thumbnail}
     label={title}
-    route={`/photos/${id}`}
-    helpText={`View photos in the album '${title}'`}
+    route={`/videos/${id}`}
+    helpText={`View videos in the playlist '${title}'`}
     {...props}
   />
 )
 
-const AlbumsScreen = ({ data, ...props }) => {
+const PlaylistsScreen = ({ data, ...props }) => {
   //  const { complexity } = preferences
 
   return (
     <Screen
-      screen="albums"
-      title="Choose Photo Album"
-      loadingText="Loading your albums..."
-      errorText="Unable to get albums"
-      screenHelpText="Press an album button to view the photos."
+      screen="playlists"
+      title="Choose Video Playlist"
+      loadingText="Loading your playlists..."
+      errorText="Unable to get playlists"
+      screenHelpText="Press an playlists button to view the videos."
       {...props}
     >
       {helpFn => (
@@ -60,5 +60,5 @@ const AlbumsScreen = ({ data, ...props }) => {
   )
 }
 
-const wrappedScreen = withAuth(withFetchJSON(AlbumsScreen, '/api/albums'))
-export { wrappedScreen as AlbumsScreen }
+const wrappedScreen = withAuth(withFetchJSON(PlaylistsScreen, '/api/playlists'))
+export { wrappedScreen as PlaylistsScreen }
