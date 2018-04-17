@@ -2,7 +2,7 @@ import React from 'react'
 
 import { withFetchJSON, pathTemplate } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
-import { BackButton, PauseButton } from '../components/Button.js'
+import { HomeButton, BackButton, PauseButton } from '../components/Button.js'
 import { Screen } from '../components/Screen'
 import { SlideShow } from '../components/SlideShow'
 import { preferences } from '../drivers/preferences'
@@ -52,17 +52,26 @@ class PhotosScreen extends React.Component {
               'No photos'
             )}
 
+            {complexity === 0 && (
+              <HomeButton
+                style={{ gridArea: 'home' }}
+                className="button-router"
+                label="Go Back"
+                helpFn={helpFn}
+                helpText="Go back to the home screen"
+              />
+            )}
             {complexity > 0 && (
               <React.Fragment>
                 <BackButton
-                  style={{ gridColumn: 'span 2', gridArea: 'back' }}
+                  style={{ gridArea: 'back' }}
                   className="button-router"
                   label="More Photos"
                   helpFn={helpFn}
                   helpText="Choose another photo Album"
                 />
                 <PauseButton
-                  style={{ gridColumn: 'span 2', gridArea: 'pause' }}
+                  style={{ gridArea: 'pause' }}
                   className="button-pause"
                   isPlaying={this.state.slideShowIsPlaying}
                   playFn={play => {

@@ -10,5 +10,10 @@ exports.getPlaylists = async (accessToken, userId) => {
       title: 'Hits of the 50s',
       thumbnail: 'https://i.ytimg.com/vi/gj0Rz-uP4Mk/hqdefault.jpg',
     },
+    {
+      id: 'PL2189B4FCA011C2A1',
+      title: 'Always in Mind',
+      thumbnail: 'https://i.ytimg.com/vi/HpbdcNNGQ_8/hqdefault.jpg',
+    },
   ]
 }

@@ -6,7 +6,7 @@
 
 .screen-grid[data-screen='videos'][data-complexity='0'] {
   grid-template-areas:
-    'sbar  help  help  title title title title title title title title'
+    'sbar  home  help  title title title title title title title title'
     'sbar  video video video video video video video video video video'
     'sbar  video video video video video video video video video video'
     'sbar  video video video video video video video video video video'

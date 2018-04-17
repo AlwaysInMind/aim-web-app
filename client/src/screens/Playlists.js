@@ -1,10 +1,12 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 
 import { withFetchJSON } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
 import { BackButton, RouterButton } from '../components/Button'
 import { Screen } from '../components/Screen'
 import { isDefaultAlbumName } from '../drivers/preferences'
+import { preferences } from '../drivers/preferences'
 
 import './Playlists.css'
 
@@ -19,8 +21,10 @@ const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   />
 )
 
+const errorText = `Unable to get the playlist ${preferences.defaultAlbumName}`
+
 const PlaylistsScreen = ({ data, ...props }) => {
-  //  const { complexity } = preferences
+  const { complexity } = preferences
 
   return (
     <Screen
@@ -42,18 +46,29 @@ const PlaylistsScreen = ({ data, ...props }) => {
             helpText="Choose another Activity"
           />
 
-          {data
-            .filter(item => !isDefaultAlbumName(item.title))
-            .map(item => (
-              <AlbumButton
-                className="button-router"
-                id={item.id}
-                thumbnail={item.thumbnail}
-                title={item.title}
-                key={item.id}
-                helpFn={helpFn}
-              />
-            ))}
+          {complexity === 0 &&
+            data.reduce(
+              (acc, item) =>
+                isDefaultAlbumName(item.title) ? (
+                  <Redirect to={`/videos/${item.id}`} />
+                ) : (
+                  acc
+                ),
+              <div className="page-error">{errorText}</div>
+            )}
+          {complexity > 0 &&
+            data
+              .filter(item => !isDefaultAlbumName(item.title))
+              .map(item => (
+                <AlbumButton
+                  className="button-router"
+                  id={item.id}
+                  thumbnail={item.thumbnail}
+                  title={item.title}
+                  key={item.id}
+                  helpFn={helpFn}
+                />
+              ))}
         </React.Fragment>
       )}
     </Screen>
