@@ -15,26 +15,7 @@ exports.getPlaylists = async googleAccessToken => {
   return titles
 }
 
-/*
-exports.getVideos = async (googleAccessToken, googleUserId, albumId) => {
-  // Get the album list from google
-  const {
-    object: { items },
-  } = await requestVideos(googleAccessToken, albumId)
-  let titles = []
-  if (items) {
-    titles = items.map(ent => ({
-      id: ent.id,
-      title: ent.snippet.title,
-      src: ent.snippet.resourceId.videoId,
-      //        timestamp: ent.gphoto$timestamp.$t,
-    }))
-  }
-  return titles
-}
-*/
-
-// Get user Google Photos album list
+// Get user Google users playlists
 function requestPlaylists(accessToken) {
   const options = {
     method: 'GET',
@@ -46,17 +27,3 @@ function requestPlaylists(accessToken) {
   }
   return requestObject(options)
 }
-
-/*
-// Get user Google Album Photos list
-function requestVideos(accessToken, albumId) {
-  const options = {
-    method: 'GET',
-    url: `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${albumId}`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  }
-  return requestObject(options)
-}
-*/

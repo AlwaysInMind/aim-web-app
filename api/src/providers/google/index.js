@@ -1,4 +1,4 @@
 const { getAlbums, getPhotos } = require('./photos.js')
-const { getPlaylists, getVideos } = require('./videos.js')
+const { getPlaylists } = require('./videos.js')
 
-exports.googleProvider = { getAlbums, getPhotos, getPlaylists, getVideos }
+exports.googleProvider = { getAlbums, getPhotos, getPlaylists }

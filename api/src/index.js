@@ -20,12 +20,6 @@ const handleGetPlaylists = handleProvider('getPlaylists', async (fn, req) => {
   return playlists
 })
 
-const handleGetVideos = handleProvider('getVideos', async (fn, req, res) => {
-  let albumId = req.params.id
-  const photos = await fn(albumId)
-  return photos
-})
-
 const handleGetPreferences = handlePreferences('get', async fnPrefs => {
   const preferences = await fnPrefs()
   return preferences
@@ -45,7 +39,6 @@ module.exports = cors(
     get('/api/albums', handleGetAlbums),
     get('/api/albums/:id', handleGetPhotos),
     get('/api/playlists', handleGetPlaylists),
-    get('/api/playlists/:id', handleGetVideos),
     get('/api/preferences', handleGetPreferences),
     put('/api/preferences', handleSetPreferences),
     get('/*', notFound),

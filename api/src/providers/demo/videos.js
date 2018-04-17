@@ -1,4 +1,4 @@
-exports.getPlaylists = async (accessToken, userId, albumId) => {
+exports.getPlaylists = async (accessToken, userId) => {
   return [
     {
       id: 'PLNM2k7B1D_QWw16vh4PbbgU-k_0Z9HCGh',
