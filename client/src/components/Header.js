@@ -8,7 +8,7 @@ const ExplainButton = ({ explainFn, ...props }) => {
   return (
     <Button
       className="header-help"
-      label="Explain"
+      label="Help"
       actionFn={explainFn}
       {...props}
     />
