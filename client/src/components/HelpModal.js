@@ -6,6 +6,8 @@ import { optionallySpeak } from '../drivers/preferences'
 
 import './HelpModal.css'
 
+ReactModal.setAppElement('#root')
+
 // the Modal className props do not seem to work and can't use this syntaxt in page.css
 const modalStyle = small => ({
   overlay: {
