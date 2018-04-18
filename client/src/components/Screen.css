@@ -3,17 +3,23 @@
   height: 100vh;
   display: grid;
   padding: 0.3rem;
-  grid-gap: 0.6rem;
+  grid-gap: 1.5%;
 }
 .screen-grid[data-sbar='1'] {
-  grid-template-columns: [sbar-start] 1fr [sbar-end screen-start] repeat(10, 8%);
+  grid-template-columns: [sbar-start] minmax(0, 2fr) [sbar-end screen-start] repeat(
+      10,
+      minmax(0, 1fr)
+    );
   grid-template-rows:
-    [sbar-start]1fr [sbar-start] repeat(5, 16% [sbar-start])
+    [sbar-start] minmax(0, 1fr) [sbar-start] repeat(
+      5,
+      minmax(0, 1fr) [sbar-start]
+    )
     [sbar-end];
 }
 .screen-grid[data-sbar='0'] {
-  grid-template-columns: 0 [screen-start] repeat(10, 9.3%);
-  grid-template-rows: 1fr repeat(5, 16%);
+  grid-template-columns: 0% [screen-start] repeat(10, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr) repeat(5, minmax(0, 1fr));
 }
 
 .screen-sbar-blank {
@@ -26,7 +32,7 @@
   grid-column-end: -1;
   grid-row-start: 2;
   grid-row-end: -1;
-  font-size: 200%;
+  font-size: 180%;
   align-self: center;
   justify-self: center;
 }

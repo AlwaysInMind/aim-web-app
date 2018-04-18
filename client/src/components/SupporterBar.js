@@ -45,8 +45,8 @@ export const SupporterBar = ({ title, helpFn, handleBarHelp }) => (
     <div className="sbar-background" />
     <SpeakingButton
       className="sbar-title sbar-button"
-      label="Setup"
-      helpText="Use these buttons to change the setup of user features."
+      image="AiM_Logo.png"
+      helpText="Always in Mind. Use these buttons to change the setup of user features."
       helpFn={helpFn}
     />
     <ExplainButton

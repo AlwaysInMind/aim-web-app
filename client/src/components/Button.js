@@ -28,8 +28,6 @@ export const Button = ({
       onMouseUp={buttonInputHandler}
       onKeyDown={buttonInputHandler}
       onKeyUp={buttonInputHandler}
-      onTouchStart={buttonInputHandler}
-      onTouchEnd={buttonInputHandler}
       {...propsPassThrough}
     >
       {image ? <img className="button-image" src={image} alt="" /> : null}
@@ -77,8 +75,13 @@ export const HomeButton = withRouter(
   }) => <Button actionFn={() => history.push('/')} {...props} />
 )
 
-export const SpeakingButton = ({ label, ...props }) => (
-  <Button actionFn={() => optionallySpeak(label)} label={label} {...props} />
+export const SpeakingButton = ({ label, helpText, ...props }) => (
+  <Button
+    actionFn={() => optionallySpeak(label ? label : helpText)}
+    label={label}
+    helpText={helpText}
+    {...props}
+  />
 )
 
 export const mkToggleButton = ({
