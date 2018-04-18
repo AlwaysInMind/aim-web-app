@@ -1,6 +1,6 @@
 .sbar-background {
   grid-area: sbar-start 1 / sbar-start / sbar-end / sbar-end;
-  background: blueviolet;
+  background: #faaf40;
   z-index: -1;
   border-radius: 0.5rem;
 }
@@ -30,8 +30,13 @@
 .sbar-help,
 .sbar-prefs,
 .sbar-exit {
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
   font-size: 90%;
+}
+
+button.sbar-title > img.button-image {
+  width: 100%;
+  height: 100%;
 }

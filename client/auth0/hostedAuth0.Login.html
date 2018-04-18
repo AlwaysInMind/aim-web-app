@@ -43,7 +43,7 @@
           config.callbackOnLocationHash ? 'token' : 'code',
         params: config.internalOptions,
         connection_scopes: {
-          'google-oauth2': ['https://picasaweb.google.com/data/', 'https://www.googleapis.com/auth/youtube.readonly']
+          'google-oauth2': ['https://picasaweb.google.com/data/']
         },
       },
       assetsUrl: config.assetsUrl,
@@ -52,8 +52,8 @@
       language: language,
       languageDictionary: languageDictionary,
       theme: {
-        //logo:            'YOUR LOGO HERE',
-        //primaryColor:    'green'
+        logo: 'https://alwaysinmind.now.sh/apple-touch-icon-57x57.png',
+        primaryColor: '#f05a28'
       },
       //      prefill: loginHint ? { email: loginHint, username: loginHint } : null,
       closable: false,

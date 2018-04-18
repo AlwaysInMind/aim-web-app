@@ -12,9 +12,9 @@ export const ActivitiesScreen = ({ data, ...props }) => {
     <Screen
       screen="activities"
       title="Choose an Activity to do"
-      loadingText="Loading your albums..."
-      errorText="Unable to get albums"
-      screenHelpText="Press an album button to view the photos."
+      loadingText=""
+      errorText=""
+      screenHelpText="Press a button to do the activity."
       {...props}
     >
       {helpFn => (
@@ -23,7 +23,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
           <RouterButton
             style={{ gridColumn: 'span 2', gridRow: 'span 2' }}
             className="button-router"
-            image={''}
+            image={'picture.svg'}
             label="View Photos"
             route={`/photos`}
             helpText={`View photos `}
@@ -32,7 +32,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
           <RouterButton
             style={{ gridColumn: 'span 2', gridRow: 'span 2' }}
             className="button-router"
-            image={''}
+            image={'film.svg'}
             label="Watch Videos"
             route={`/videos`}
             helpText={`View videos `}
