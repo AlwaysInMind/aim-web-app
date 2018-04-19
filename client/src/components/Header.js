@@ -17,6 +17,7 @@ const ExplainButton = ({ explainFn, ...props }) => {
 
 export const Header = ({ title, helpFn, handleScreenHelp }) => (
   <React.Fragment>
+    <div className="header-background" />
     <ExplainButton
       explainFn={handleScreenHelp}
       helpText="Explains how to use this screen"

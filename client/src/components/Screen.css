@@ -3,7 +3,8 @@
   height: 100vh;
   display: grid;
   padding: 0.3rem;
-  grid-gap: 1.5%;
+  grid-row-gap: 1vh;
+  grid-column-gap: 0.5vw;
 }
 .screen-grid[data-sbar='1'] {
   grid-template-columns: [sbar-start] minmax(0, 2fr) [sbar-end screen-start] repeat(

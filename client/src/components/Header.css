@@ -1,3 +1,11 @@
+.header-background {
+  grid-column: 2 / -1;
+  grid-row: 1 / 2;
+  background: #ffffad;
+  z-index: -1;
+  border-radius: 0.5rem;
+}
+
 .header-help {
   grid-area: help;
 }
@@ -5,4 +13,15 @@
 .header-title {
   grid-area: title;
   grid-column-end: exit;
+}
+
+.header-help,
+.header-title {
+  font-family: 'Montserrat', sans-serif;
+  width: calc(100% - (2 * 0.5vw));
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  height: calc(100% - (2 * 0.75vh));
+  margin-top: 0.75vh;
+  margin-bottom: 0.75vh;
 }
