@@ -9,6 +9,7 @@ import './Button.css'
 
 export const Button = ({
   image,
+  svg,
   label,
   actionFn,
   helpFn,
@@ -30,6 +31,15 @@ export const Button = ({
       onKeyUp={buttonInputHandler}
       {...propsPassThrough}
     >
+      {svg ? (
+        <object
+          className="button-svg"
+          type="image/svg+xml"
+          data={svg}
+          style={{ fill: 'red' }}
+          aria-label=""
+        />
+      ) : null}
       {image ? <img className="button-image" src={image} alt="" /> : null}
       {label ? <p className="button-label">{label}</p> : null}
     </button>

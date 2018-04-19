@@ -23,7 +23,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
           <RouterButton
             style={{ gridColumn: 'span 2', gridRow: 'span 2' }}
             className="button-router"
-            image={'picture.svg'}
+            svg={'picture.svg'}
             label="View Photos"
             route={`/photos`}
             helpText={`View photos `}
@@ -32,7 +32,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
           <RouterButton
             style={{ gridColumn: 'span 2', gridRow: 'span 2' }}
             className="button-router"
-            image={'film.svg'}
+            svg={'film.svg'}
             label="Watch Videos"
             route={`/videos`}
             helpText={`View videos `}

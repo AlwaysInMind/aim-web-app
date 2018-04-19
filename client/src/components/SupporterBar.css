@@ -7,7 +7,6 @@
 
 .sbar-title {
   grid-area: sbar-start 1 / sbar-start / sbar-start 2 / sbar-end;
-  margin-top: 1%;
 }
 
 .sbar-help {
@@ -30,13 +29,23 @@
 .sbar-help,
 .sbar-prefs,
 .sbar-exit {
-  width: 92%;
-  margin-left: 4%;
-  margin-right: 4%;
-  font-size: 90%;
+  width: calc(100% - (2 * 0.5vw));
+  margin-left: 0.5vw;
+  margin-right: 1vw;
+  height: calc(100% - (2 * 1vh));
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  font-family: 'Montserrat', sans-serif;
 }
 
-button.sbar-title > img.button-image {
-  width: 100%;
-  height: 100%;
+.sbar-title {
+  margin-top: 1%;
+  background: #fafad2;
+  border: 0;
+  width: calc(100% - (2 * 3vw));
+  margin-left: 3vw;
+  margin-right: 1vw;
+  height: calc(100% - (2 * 1vh));
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
