@@ -21,7 +21,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^7.0.4",
     "micro-dev": "^2.2.2",
-    "now": "^11.1.6",
+    "now": "^11.1.7",
     "prettier": "^1.12.1"
   },
   "scripts": {
