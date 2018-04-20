@@ -4,8 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Sign In with Auth0</title>
+  <title>Sign In to Always In Mind</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 </head>
 
 <body>
@@ -52,7 +53,7 @@
       language: language,
       languageDictionary: languageDictionary,
       theme: {
-        logo: 'https://alwaysinmind.now.sh/apple-touch-icon-57x57.png',
+        logo: 'https://alwaysinmind.now.sh/AiM_LS_Auth0.png',
         primaryColor: '#f05a28'
       },
       //      prefill: loginHint ? { email: loginHint, username: loginHint } : null,
@@ -62,7 +63,7 @@
       allowForgotPassword: false,
       allowSignUp: false,
       languageDictionary: {
-        title: "Always in Mind"
+        title: ""
       }
 
     });
@@ -110,6 +111,10 @@
     })
   </script>
   <style>
+    .auth0-lock button {
+      font-family: 'Lato', "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, sans-serif;
+    }
+
     .auth0-lock-social-button[data-provider="demo"] {
       background-color: #2dbe60;
     }
