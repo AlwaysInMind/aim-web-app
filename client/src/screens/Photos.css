@@ -6,21 +6,21 @@
 
 .screen-grid[data-screen='photos'][data-complexity='0'] {
   grid-template-areas:
-    'sbar  home  help  title title title title title title title title'
-    'sbar  slide slide slide slide slide slide slide slide slide slide'
-    'sbar  slide slide slide slide slide slide slide slide slide slide'
-    'sbar  slide slide slide slide slide slide slide slide slide slide'
-    'sbar  slide slide slide slide slide slide slide slide slide slide'
-    'sbar  slide slide slide slide slide slide slide slide slide slide';
+    'sbar  home  home  title title title title title title title title title'
+    'sbar  slide slide slide slide slide slide slide slide slide slide slide'
+    'sbar  slide slide slide slide slide slide slide slide slide slide slide'
+    'sbar  slide slide slide slide slide slide slide slide slide slide slide'
+    'sbar  slide slide slide slide slide slide slide slide slide slide slide'
+    'sbar  slide slide slide slide slide slide slide slide slide slide slide';
 }
 
 .screen-grid[data-screen='photos'][data-complexity='1'],
 .screen-grid[data-screen='photos'][data-complexity='2'] {
   grid-template-areas:
-    'sbar  help  help  title  title title title title title title exit '
-    'sbar  slide slide slide slide slide slide slide slide back  back '
-    'sbar  slide slide slide slide slide slide slide slide ..... .....'
-    'sbar  slide slide slide slide slide slide slide slide pause pause'
-    'sbar  slide slide slide slide slide slide slide slide ..... .....'
-    'sbar  slide slide slide slide slide slide slide slide ..... .....';
+    'sbar  help  help  title title title title title title title title exit '
+    'sbar  slide slide slide slide slide slide slide slide slide back  back '
+    'sbar  slide slide slide slide slide slide slide slide slide ..... .....'
+    'sbar  slide slide slide slide slide slide slide slide slide pause pause'
+    'sbar  slide slide slide slide slide slide slide slide slide ..... .....'
+    'sbar  slide slide slide slide slide slide slide slide slide ..... .....';
 }

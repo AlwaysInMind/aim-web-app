@@ -3,41 +3,35 @@
   flex-direction: column;
   justify-content: space-evenly;
   padding: 1vh 1vw;
-  background-color: lightblue;
-  font-size: 80%;
-  font-family: inherit;
-  border-radius: 0.5rem;
   grid-row: span 2;
 }
 
 .prefs-group-label {
-  margin: 0.1rem;
-  margin-top: 0.7rem;
+  margin: 0.5vh 1vw;
   display: inline;
 }
 
 .prefs-group-buttons {
   display: flex;
   justify-content: space-evenly;
-  padding: 0 0 2vh 0;
+  padding: 0 0 1vh 0;
 }
 
 .prefs-button {
   height: 88%;
-  margin: 0.3rem;
 }
 .prefs-button .button-image {
   width: 45%;
   height: 45%;
-  margin-bottom: 0.3em;
+  margin-bottom: 1vh;
 }
 
 .screen-grid[data-screen='preferences'] {
   grid-template-areas:
-    'sbar  help  help  title  title title title title title title exit '
-    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... .....  ..... '
-    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....'
-    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....'
-    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....'
-    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....';
+    'sbar  help  help  title title title title title title title title exit '
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... .....  ..... '
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... ..... .....'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... ..... .....'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... ..... .....'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... ..... .....';
 }

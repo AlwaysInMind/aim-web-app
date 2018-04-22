@@ -1,73 +1,39 @@
 button {
-  border-radius: calc((1vw + 1vh) * 2);
-  border: 1rem solid;
-  padding: 0.4rem;
+  padding: 0.4vh 0.4vw;
   width: calc(100% - (2 * 0.5vw));
   margin-left: 0.5vw;
   margin-right: 0.5vw;
-  height: calc(100% - (2 * 1vh));
+  height: calc(100% - (2 * 0.5vh));
   margin-top: 0.5vh;
   margin-bottom: 0.5vh;
+  overflow: hidden;
 }
 
 .button-label {
   margin: 0;
-  text-overflow: wrap;
   line-height: 1;
 }
 
 .button-image,
 .button-svg {
-  width: 70%;
-  height: 70%;
+  width: 80%;
+  height: 80%;
   object-fit: contain;
-  border-radius: 0.4rem;
-  margin: 0;
-}
-
-.button-image {
-  margin-bottom: 8%;
+  vertical-align: none;
 }
 .button-svg {
-  margin-bottom: -10%;
+  width: 70%;
+  height: 70%;
+}
+.button-image {
+  margin-bottom: 1%;
+}
+.button-svg {
+  margin-bottom: -2;
 }
 
 .button-image:only-child,
 .button-svg:only-child {
   width: 90%;
   height: 90%;
-}
-
-button {
-  color: #ffffff;
-  background-color: #2c7dcf;
-  border-color: #2c7dcf;
-}
-
-.header,
-.header-title,
-.sbar-title {
-  color: #1b75bb;
-  background-color: #ffffad;
-  border-color: #1b75bb;
-  font-weight: 600;
-  border-radius: 10rem;
-}
-
-.header-help,
-.sbar-help {
-  color: #8bc53f;
-  background-color: #ffffad;
-  border-color: #8bc53f;
-  border-radius: 6rem;
-}
-
-.button-router {
-  color: #ffffff;
-  background-color: #25a9e0;
-  border-color: #25a9e0;
-}
-
-button.show-focus:focus {
-  border-color: red;
 }

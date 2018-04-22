@@ -12,7 +12,6 @@ import './Playlists.css'
 
 const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   <RouterButton
-    style={{ gridColumn: 'span 2', gridRow: 'span 2', fontSize: '70%' }}
     image={thumbnail}
     label={title}
     route={`/videos/${id}`}
@@ -61,7 +60,7 @@ const PlaylistsScreen = ({ data, ...props }) => {
               .filter(item => !isDefaultAlbumName(item.title))
               .map(item => (
                 <AlbumButton
-                  className="button-router"
+                  className="button-router button-choice"
                   id={item.id}
                   thumbnail={item.thumbnail}
                   title={item.title}

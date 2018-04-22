@@ -1,30 +1,23 @@
 import React from 'react'
 
-import { Button, SpeakingButton } from '../components/Button.js'
+import { ExplainButton, SpeakingButton } from '../components/Button.js'
+import { preferences } from '../drivers/preferences'
 
 import './Header.css'
-
-const ExplainButton = ({ explainFn, ...props }) => {
-  return (
-    <Button
-      className="header-help"
-      label="Help"
-      actionFn={explainFn}
-      {...props}
-    />
-  )
-}
 
 export const Header = ({ title, helpFn, handleScreenHelp }) => (
   <React.Fragment>
     <div className="header-background" />
-    <ExplainButton
-      explainFn={handleScreenHelp}
-      helpText="Explains how to use this screen"
-      helpFn={helpFn}
-    />
+    {(preferences.complexity !== 0 || title === 'Choose an Activity to do') && ( // FIXME remove dep on title
+      <ExplainButton
+        className="header-button button-explain"
+        explainFn={handleScreenHelp}
+        helpText="Explains how to use this screen"
+        helpFn={helpFn}
+      />
+    )}
     <SpeakingButton
-      className="header-title"
+      className="header-button button-title"
       label={title}
       helpText={title}
       helpFn={helpFn}

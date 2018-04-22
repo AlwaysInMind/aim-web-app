@@ -94,6 +94,17 @@ export const SpeakingButton = ({ label, helpText, ...props }) => (
   />
 )
 
+export const ExplainButton = ({ explainFn, ...props }) => {
+  return (
+    <Button
+      className="button-explain"
+      label="Help"
+      actionFn={explainFn}
+      {...props}
+    />
+  )
+}
+
 export const mkToggleButton = ({
   actionA,
   actionB,

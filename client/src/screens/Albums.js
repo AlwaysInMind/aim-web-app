@@ -12,7 +12,6 @@ import './Albums.css'
 
 const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   <RouterButton
-    style={{ gridColumn: 'span 2', gridRow: 'span 2', fontSize: '70%' }}
     image={thumbnail}
     label={title}
     route={`/photos/${id}`}
@@ -24,7 +23,6 @@ const AlbumButton = ({ id, title, thumbnail, ...props }) => (
 const errorText = `Unable to get the Album ${preferences.defaultAlbumName}`
 
 const AlbumsScreen = ({ data, ...props }) => {
-  //  const { complexity } = preferences
   const { complexity } = preferences
 
   return (
@@ -62,7 +60,7 @@ const AlbumsScreen = ({ data, ...props }) => {
               .filter(item => !isDefaultAlbumName(item.title))
               .map(item => (
                 <AlbumButton
-                  className="button-router"
+                  className="button-router button-choice"
                   id={item.id}
                   thumbnail={item.thumbnail}
                   title={item.title}
