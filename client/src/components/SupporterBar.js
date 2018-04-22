@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {
-  Button,
+  ExplainButton,
   RouterButton,
   SpeakingButton,
   AuthButton,
@@ -29,38 +29,28 @@ const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
     />
   )
 
-const ExplainButton = ({ explainFn, ...props }) => {
-  return (
-    <Button
-      className="sbar-help sbar-button"
-      label="Explain"
-      actionFn={explainFn}
-      {...props}
-    />
-  )
-}
-
 export const SupporterBar = ({ title, helpFn, handleBarHelp }) => (
   <React.Fragment>
     <div className="sbar-background" />
     <SpeakingButton
-      className="sbar-title sbar-button"
-      image="AiM_Logo.png"
+      className="button-logo sbar-button"
+      image="/AiM_Logo.png"
       helpText="Always in Mind. Use these buttons to change the setup of user features."
       helpFn={helpFn}
     />
     <ExplainButton
+      className="button-explain sbar-button"
       explainFn={handleBarHelp}
       helpText="Use these buttons to manage user features."
       helpFn={helpFn}
     />
     <PreferencesButton
-      className="sbar-prefs sbar-button"
-      isPreferencesScreen={title === 'Options'}
+      className="button-prefs sbar-button"
+      isPreferencesScreen={title === 'Change User Options'} // FIXME remove dep on title name
       helpFn={helpFn}
     />
     <AuthButton
-      className="sbar-exit sbar-button"
+      className="button-exit sbar-button"
       helpText="Stop using Always In Mind"
       helpFn={helpFn}
     />

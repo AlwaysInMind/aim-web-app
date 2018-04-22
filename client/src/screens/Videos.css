@@ -6,21 +6,21 @@
 
 .screen-grid[data-screen='videos'][data-complexity='0'] {
   grid-template-areas:
-    'sbar  home  help  title title title title title title title title'
-    'sbar  video video video video video video video video video video'
-    'sbar  video video video video video video video video video video'
-    'sbar  video video video video video video video video video video'
-    'sbar  video video video video video video video video video video'
-    'sbar  video video video video video video video video video video';
+    'sbar  home  help  title title title title title title title title title'
+    'sbar  video video video video video video video video video video video'
+    'sbar  video video video video video video video video video video video'
+    'sbar  video video video video video video video video video video video'
+    'sbar  video video video video video video video video video video video'
+    'sbar  video video video video video video video video video video video';
 }
 
 .screen-grid[data-screen='videos'][data-complexity='1'],
 .screen-grid[data-screen='videos'][data-complexity='2'] {
   grid-template-areas:
-    'sbar  help  help  title  title title title title title title exit '
-    'sbar  video video video video video video video video back  back '
-    'sbar  video video video video video video video video ..... .....'
-    'sbar  video video video video video video video video pause pause'
-    'sbar  video video video video video video video video next  next '
-    'sbar  video video video video video video video video ..... .....';
+    'sbar  help  help  title title title title title title title title exit '
+    'sbar  video video video video video video video video video back  back '
+    'sbar  video video video video video video video video video ..... .....'
+    'sbar  video video video video video video video video video pause pause'
+    'sbar  video video video video video video video video video next  next '
+    'sbar  video video video video video video video video video ..... .....';
 }

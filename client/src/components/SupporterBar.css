@@ -1,51 +1,43 @@
 .sbar-background {
   grid-area: sbar-start 1 / sbar-start / sbar-end / sbar-end;
-  background: #faaf40;
   z-index: -1;
-  border-radius: 0.5rem;
-}
-
-.sbar-title {
-  grid-area: sbar-start 1 / sbar-start / sbar-start 2 / sbar-end;
-}
-
-.sbar-help {
-  grid-area: sbar-start 2 / sbar-start / sbar-start 3 / sbar-end;
-}
-
-.sbar-prefs {
-  grid-area: sbar-start 3 / sbar-start / sbar-start 4 / sbar-end;
-}
-
-.sbar-exit {
-  grid-area: sbar-start 4 / sbar-start / sbar-start 5 / sbar-end;
 }
 
 .sbar-blank {
   grid-area: sbar-start 5 / sbar-start / sbar-end / sbar-end;
 }
 
-.sbar-title,
-.sbar-help,
-.sbar-prefs,
-.sbar-exit {
+.sbar-button.button-logo {
+  grid-area: sbar-start 1 / sbar-start / sbar-start 2 / sbar-end;
+}
+
+.sbar-button.button-explain {
+  grid-area: sbar-start 2 / sbar-start / sbar-start 3 / sbar-end;
+}
+
+.sbar-button.button-prefs {
+  grid-area: sbar-start 3 / sbar-start / sbar-start 4 / sbar-end;
+}
+
+.sbar-button.button-exit {
+  grid-area: sbar-start 4 / sbar-start / sbar-start 5 / sbar-end;
+}
+
+.sbar-button.button-explain,
+.sbar-button.button-prefs,
+.sbar-button.button-exit {
   width: calc(100% - (2 * 0.5vw));
   margin-left: 0.5vw;
   margin-right: 1vw;
   height: calc(100% - (2 * 1vh));
   margin-top: 1vh;
   margin-bottom: 1vh;
-  font-family: 'Montserrat', sans-serif;
 }
-
-.sbar-title {
-  margin-top: 1%;
-  background: #fafad2;
-  border: 0;
-  width: calc(100% - (2 * 3vw));
-  margin-left: 3vw;
-  margin-right: 1vw;
-  height: calc(100% - (2 * 1vh));
-  margin-top: 1vh;
+.sbar-button.button-logo {
+  width: calc(100% - (2 * 4vw));
+  margin-left: 4vw;
+  margin-right: 4vw;
+  height: calc(100% - (2vh + 1vh));
+  margin-top: 2vh;
   margin-bottom: 1vh;
 }

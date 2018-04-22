@@ -57,7 +57,7 @@ class PreferencesScreen extends React.Component {
     return (
       <Screen
         screen="preferences"
-        title="Options"
+        title="Change User Options"
         loadingText=""
         errorText=""
         screenHelpText="Use the buttons to change the way Always In Mind works."

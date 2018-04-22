@@ -14,6 +14,7 @@ import { auth } from '../drivers/auth'
 import { fetchPreferences } from '../drivers/preferences'
 
 import './App.css'
+import './Theme.css'
 
 const handleAuthentication = ({ location }) => {
   if (/access_token|id_token|error/.test(location.hash)) {

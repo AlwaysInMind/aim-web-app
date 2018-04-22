@@ -21,8 +21,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
         // closure so can access data prop
         <React.Fragment>
           <RouterButton
-            style={{ gridColumn: 'span 2', gridRow: 'span 2' }}
-            className="button-router"
+            className="button-router button-choice"
             svg={'picture.svg'}
             label="View Photos"
             route={`/photos`}
@@ -30,8 +29,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
             helpFn={helpFn}
           />
           <RouterButton
-            style={{ gridColumn: 'span 2', gridRow: 'span 2' }}
-            className="button-router"
+            className="button-router button-choice"
             svg={'film.svg'}
             label="Watch Videos"
             route={`/videos`}

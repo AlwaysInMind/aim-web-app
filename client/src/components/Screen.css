@@ -8,7 +8,7 @@
 }
 .screen-grid[data-sbar='1'] {
   grid-template-columns: [sbar-start] minmax(0, 2fr) [sbar-end screen-start] repeat(
-      10,
+      11,
       minmax(0, 1fr)
     );
   grid-template-rows:
@@ -19,12 +19,17 @@
     [sbar-end];
 }
 .screen-grid[data-sbar='0'] {
-  grid-template-columns: 0% [screen-start] repeat(10, minmax(0, 1fr));
+  grid-template-columns: 0% [screen-start] repeat(11, minmax(0, 1fr));
   grid-template-rows: minmax(0, 1fr) repeat(5, minmax(0, 1fr));
 }
 
 .screen-sbar-blank {
   grid-area: sbar-start / sbar-start / sbar-end / sbar-end;
+}
+
+.button-choice {
+  grid-column: span 3;
+  grid-row: span 2;
 }
 
 .page-error,
@@ -33,7 +38,6 @@
   grid-column-end: -1;
   grid-row-start: 2;
   grid-row-end: -1;
-  font-size: 180%;
   align-self: center;
   justify-self: center;
 }
