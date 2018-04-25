@@ -4,7 +4,7 @@
   "engines": { "node": "8.11.1" },
   "dependencies": {
     "express-jwt": "5.3.1",
-    "micro": "9.1.4",
+    "micro": "9.3.0",
     "microrouter": "3.1.2",
     "request": "2.85.0"
   },
