@@ -56,9 +56,9 @@ export class VideosScreen extends React.Component {
               <HomeButton
                 style={{ gridArea: 'home' }}
                 className="button-router"
-                label="Go Back"
+                label="More..."
                 helpFn={helpFn}
-                helpText="Go back to the home screen"
+                helpText="Choose more things to do"
               />
             )}
             {complexity > 0 && (

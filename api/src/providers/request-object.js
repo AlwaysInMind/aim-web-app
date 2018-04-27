@@ -1,7 +1,7 @@
 const request = require('request') // TODO swap to fetch
 
 // Call a remote HTTP endpoint and return a JSON object
-exports.requestObject = options => {
+exports.request = options => {
   return new Promise((resolve, reject) => {
     request(options, function(error, response, body) {
       if (error) {
@@ -15,8 +15,13 @@ exports.requestObject = options => {
           )
         )
       } else {
-        const object = typeof body === 'string' ? JSON.parse(body) : body // FIXME throws
-        resolve({ code: response.statusCode, object })
+        const json = typeof body === 'object'
+        resolve({
+          code: response.statusCode,
+          headers: response.headers,
+          ...(json && { object: body }),
+          ...(!json && { body }),
+        })
       }
     })
   })

@@ -24,6 +24,7 @@ button {
 .button-svg {
   width: 70%;
   height: 70%;
+  transform: scaleY(-1);
 }
 .button-image {
   margin-bottom: 1%;

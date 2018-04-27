@@ -49,6 +49,7 @@ export const HelpModal = ({
       if (speak) {
         optionallySpeak(title)
         optionallySpeak(text)
+        return undefined
       }
     })(open && speak)}
     <div className="modal-content">
