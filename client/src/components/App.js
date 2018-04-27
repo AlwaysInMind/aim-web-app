@@ -7,8 +7,10 @@ import { HomeScreen } from '../screens/Home'
 import { ActivitiesScreen } from '../screens/Activities'
 import { AlbumsScreen } from '../screens/Albums'
 import { PlaylistsScreen } from '../screens/Playlists'
+import { ChooseInfoScreen } from '../screens/ChooseInfo'
 import { PhotosScreen } from '../screens/Photos'
 import { VideosScreen } from '../screens/Videos'
+import { InfoScreen } from '../screens/Info'
 import { PreferencesScreen } from '../screens/Preferences'
 import { auth } from '../drivers/auth'
 import { fetchPreferences } from '../drivers/preferences'
@@ -54,9 +56,7 @@ export class App extends React.Component {
             render={props => {
               handleAuthentication(props)
                 .then(() => {
-                  fetchPreferences(auth.accessToken).then(
-                    props.history.replace('/')
-                  )
+                  fetchPreferences().then(props.history.replace('/'))
                 })
                 .catch(error => {
                   console.error(`Problem processing Auth0 redirect ${error}`)
@@ -93,6 +93,13 @@ export class App extends React.Component {
             }}
           />
           <PrivateRoute
+            exact
+            path="/chooseinfo"
+            render={() => {
+              return <ChooseInfoScreen />
+            }}
+          />
+          <PrivateRoute
             path="/photos/:id"
             render={({
               match: {
@@ -107,6 +114,14 @@ export class App extends React.Component {
                 params: { id },
               },
             }) => <VideosScreen playlistId={id} />}
+          />
+          <PrivateRoute
+            path="/info/:url"
+            render={({
+              match: {
+                params: { url },
+              },
+            }) => <InfoScreen fetchURLProps={{ url }} />}
           />
           <PrivateRoute
             path="/preferences"

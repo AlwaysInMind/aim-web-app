@@ -178,7 +178,7 @@ export class Screen extends React.Component {
     const state =
       isOn === undefined ? '' : `. It is switched ${isOn ? 'on' : 'off'}`
     const text = helpText ? `${helpText}${state}.` : 'is not described'
-    if (preferences.showHelp || preferences.showHelp) {
+    if (preferences.showHelp || preferences.speakHelp) {
       this.setState({
         showButtonModal: true,
         buttonModalContent: { title, text },

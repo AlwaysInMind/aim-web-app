@@ -1,36 +1,14 @@
 //import history from '../history'
 import auth0 from 'auth0-js'
+
 import { AUTH0_CONFIG, LOGIN_CALLBACK_PATH, DEMO_USER } from './auth0-variables'
-
-// A basic promisify for functions with node style callbacks ie (err, value)
-function promisify(original) {
-  function fn(...args) {
-    const promise = new Promise((resolve, reject) => {
-      try {
-        original.call(this, ...args, (err, ...values) => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve(values[0])
-          }
-        })
-      } catch (err) {
-        reject(err)
-      }
-    })
-    return promise
-  }
-
-  Object.setPrototypeOf(fn, Object.getPrototypeOf(original))
-  return Object.defineProperties(fn, Object.getOwnPropertyDescriptors(original))
-}
+import { promisify } from './promisify'
 
 function pathToURL(path) {
   return `${window.location.protocol}//${window.location.hostname}:${
     window.location.port
   }${path}`
 }
-
 class Auth0 {
   auth0 = new auth0.WebAuth({
     domain: AUTH0_CONFIG.DOMAIN,

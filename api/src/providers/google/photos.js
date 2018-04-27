@@ -1,4 +1,4 @@
-const { requestObject } = require('../request-object')
+const { request } = require('../request-object')
 
 exports.getAlbums = async googleAccessToken => {
   const ignore = ['Profile Photos', 'Auto Backup']
@@ -46,8 +46,9 @@ function requestAlbums(accessToken) {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
+    json: true,
   }
-  return requestObject(options)
+  return request(options)
 }
 
 // Get user Google Album Photos list
@@ -58,8 +59,9 @@ function requestPhotos(accessToken, userId, albumId) {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
+    json: true,
   }
-  return requestObject(options)
+  return request(options)
 }
 
 // Get photo meta data

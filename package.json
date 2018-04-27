@@ -2,11 +2,14 @@
   "name": "always-in-mind",
   "version": "0.1.0",
   "private": true,
-  "engines": { "node": "8.11.1" },
+  "engines": {
+    "node": "8.11.1"
+  },
   "dependencies": {
     "express-jwt": "5.3.1",
     "micro": "9.3.0",
     "microrouter": "3.1.2",
+    "node-readability": "3.0.0",
     "request": "2.85.0"
   },
   "devDependencies": {

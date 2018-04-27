@@ -1,4 +1,4 @@
-const { requestObject } = require('../request-object')
+const { request } = require('../request-object')
 
 exports.getPlaylists = async googleAccessToken => {
   //  const ignore = ['']
@@ -24,6 +24,7 @@ function requestPlaylists(accessToken) {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
+    json: true,
   }
-  return requestObject(options)
+  return request(options)
 }

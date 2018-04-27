@@ -1,5 +1,5 @@
 const AUTH_CONFIG = require('./auth0-variables')
-const { requestObject } = require('../request-object')
+const { request } = require('../request-object')
 
 // Get an access token for the Auth0 Admin API
 exports.getAdminAccessToken = () => {
@@ -15,14 +15,16 @@ exports.getAdminAccessToken = () => {
     },
     json: true,
   }
-  return requestObject(options)
+  return request(options)
 }
 
 /* eslint-disable camelcase */
 /* API payloads include snakecase identifiers */
 
 async function callManagementAPI(verb, path, body = undefined) {
-  const { object: { access_token } } = await exports.getAdminAccessToken()
+  const {
+    object: { access_token },
+  } = await exports.getAdminAccessToken()
   const options = {
     method: verb,
     url: `${AUTH_CONFIG.AUTH0_DOMAIN_URL}${path}`,
@@ -30,17 +32,19 @@ async function callManagementAPI(verb, path, body = undefined) {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${access_token}`,
     },
+    json: true,
   }
   if (body) {
     options.body = body
-    options.json = true
   }
 
-  return requestObject(options)
+  return request(options)
 }
 
 exports.getUserMetadata = async userId => {
-  const { object: { user_metadata } } = await callManagementAPI(
+  const {
+    object: { user_metadata },
+  } = await callManagementAPI(
     'GET',
     `/api/v2/users/${userId}?fields=user_metadata&include_fields=true`
   )
@@ -51,11 +55,9 @@ exports.setUserMetadata = async (userId, metadata) => {
   const payload = {
     user_metadata: metadata,
   }
-  const { object: { user_metadata } } = await callManagementAPI(
-    'PATCH',
-    `/api/v2/users/${userId}`,
-    payload
-  )
+  const {
+    object: { user_metadata },
+  } = await callManagementAPI('PATCH', `/api/v2/users/${userId}`, payload)
   return user_metadata
 }
 

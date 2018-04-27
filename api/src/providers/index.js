@@ -1,4 +1,7 @@
 const { send, createError } = require('micro')
+const read = require('node-readability')
+
+const promisify = require('../promisify')
 
 const { withAuth0 } = require('./auth0')
 const {
@@ -53,7 +56,7 @@ exports.handleProvider = (fnName, wrapped) => {
       send(res, err.statusCode, err.message)
       return
     }
-    res.setHeader('Content-Type', 'application/json')
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
     send(res, 200, obj)
   })
 }
@@ -73,7 +76,45 @@ exports.handlePreferences = (action, wrapped) => {
       send(res, err.statusCode || 0, err.message)
       return
     }
-    res.setHeader('Content-Type', 'application/json')
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
     send(res, 200, preferences)
+  })
+}
+
+const { request } = require('./request-object')
+
+exports.handleReadable = wrapped => {
+  return withAuth0(async (req, res) => {
+    if (!req.user) {
+      send(res, 400, 'Problem with Authorization token')
+      return
+    }
+    let readable
+    try {
+      const readify = promisify(read)
+      const fn = async url => {
+        const urld = decodeURIComponent(url)
+        const page = await request({
+          method: 'GET',
+          url: urld,
+        })
+        const iframeCompat = page.headers['x-frame-options'] === undefined
+        const article = await readify(page.body)
+        const res = {
+          title: article.title,
+          content: article.content,
+          iframeCompat,
+        }
+        article.close()
+        return res
+      }
+      readable = await wrapped(fn, req, res)
+    } catch (err) {
+      send(res, err.statusCode || 0, err.message)
+      return
+    }
+    // NB the source content may NOT be utf-8.
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
+    send(res, 200, readable)
   })
 }
