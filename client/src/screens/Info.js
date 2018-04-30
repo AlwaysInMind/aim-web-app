@@ -2,19 +2,42 @@ import React from 'react'
 
 import { withFetchJSON, pathTemplate } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
-import { HomeButton, BackButton } from '../components/Button.js'
+import { Button, HomeButton, BackButton } from '../components/Button.js'
 import { Screen } from '../components/Screen'
 import { preferences } from '../drivers/preferences'
 
 import './Info.css'
 
-const Info = ({ title, content }) => {
+function parseReadableInfo(info) {
+  const script = `<script>
+  </script>`
+  const style = `<style>
+  body {
+    font-family: 'Lato', sans-serif;
+    font-size: calc((4vh + 0.4vw));
+  }
+  body {
+    pointer-events: none;
+    touch-action: none;
+    user-select: none;
+  }
+ </style>
+  `
+  const inactiveInfo = info.replace(/<a/gi, '<span').replace(/<\/a/gi, '</span')
+  const wrappedInfo = `<div>${inactiveInfo}</div>`
+
+  return script + style + wrappedInfo
+}
+
+const Info = ({ title, url, content }) => {
+  const displayContent = content ? parseReadableInfo(content) : undefined
+
   return (
     <iframe
-      title="infoIframe"
+      title="Information content"
       className="info"
-      srcDoc={content}
-      //      src={url}
+      srcDoc={displayContent}
+      src={url}
       referrerPolicy="origin"
       sandbox=""
     />
@@ -22,8 +45,15 @@ const Info = ({ title, content }) => {
 }
 
 class InfoScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      original: false,
+    }
+  }
+
   render() {
-    const { data, ...props } = this.props
+    const { url, data, ...props } = this.props
     const { complexity } = preferences
 
     return (
@@ -38,9 +68,11 @@ class InfoScreen extends React.Component {
         {helpFn => (
           <React.Fragment>
             <Info
-              style={{ zpointerEvents: 'none' }}
+              complexity={complexity}
+              style={{ pointerEvents: 'none' }}
               title={data.title}
-              content={data.content}
+              url={this.state.original ? url : undefined}
+              content={this.state.original ? undefined : data.content}
             />
 
             {complexity === 0 && (
@@ -61,6 +93,20 @@ class InfoScreen extends React.Component {
                   helpFn={helpFn}
                   helpText="Choose another Info page"
                 />
+                {data.iframeCompat && (
+                  <Button
+                    label="View Website"
+                    style={{ gridArea: 'orig' }}
+                    className=""
+                    actionFn={() => {
+                      if (data.iframeCompat) {
+                        this.setState({ original: true })
+                      }
+                    }}
+                    helpFn={helpFn}
+                    helpText="Pause or restart the slideshow"
+                  />
+                )}
               </React.Fragment>
             )}
           </React.Fragment>

@@ -121,7 +121,12 @@ export class App extends React.Component {
               match: {
                 params: { url },
               },
-            }) => <InfoScreen fetchURLProps={{ url }} />}
+            }) => (
+              <InfoScreen
+                url={decodeURIComponent(url)}
+                fetchURLProps={{ url }}
+              />
+            )}
           />
           <PrivateRoute
             path="/preferences"
