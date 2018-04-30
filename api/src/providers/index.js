@@ -110,7 +110,7 @@ exports.handleReadable = wrapped => {
       }
       readable = await wrapped(fn, req, res)
     } catch (err) {
-      send(res, err.statusCode || 0, err.message)
+      send(res, 404, err.message)
       return
     }
     // NB the source content may NOT be utf-8.
