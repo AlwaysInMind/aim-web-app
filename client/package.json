@@ -7,7 +7,7 @@
   },
   "proxy": "http://localhost:3001/",
   "dependencies": {
-    "auth0-js": "9.4.2",
+    "auth0-js": "9.5.1",
     "react": "16.3.2",
     "react-dom": "16.3.2",
     "react-modal": "^3.4.4",

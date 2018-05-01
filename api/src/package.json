@@ -6,8 +6,7 @@
     "express-jwt": "5.3.1",
     "micro": "9.3.0",
     "microrouter": "3.1.2",
-    "node-readability": "^3.0.0",
-
+    "node-readability": "3.0.0",
     "request": "2.85.0"
   },
   "scripts": {
