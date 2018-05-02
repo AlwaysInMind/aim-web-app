@@ -48,7 +48,7 @@ class InfoScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      original: false,
+      showingOriginal: false,
     }
   }
 
@@ -71,8 +71,8 @@ class InfoScreen extends React.Component {
               complexity={complexity}
               style={{ pointerEvents: 'none' }}
               title={data.title}
-              url={this.state.original ? url : undefined}
-              content={this.state.original ? undefined : data.content}
+              url={this.state.showingOriginal ? url : undefined}
+              content={this.state.showingOriginal ? undefined : data.content}
             />
 
             {complexity === 0 && (
@@ -95,16 +95,20 @@ class InfoScreen extends React.Component {
                 />
                 {data.iframeCompat && (
                   <Button
-                    label="View Website"
                     style={{ gridArea: 'orig' }}
                     className=""
+                    label={
+                      this.state.showingOriginal
+                        ? 'View Readable'
+                        : 'View Web Page'
+                    }
                     actionFn={() => {
-                      if (data.iframeCompat) {
-                        this.setState({ original: true })
-                      }
+                      this.setState((prevState, props) => {
+                        return { showingOriginal: !prevState.showingOriginal }
+                      })
                     }}
                     helpFn={helpFn}
-                    helpText="Pause or restart the slideshow"
+                    helpText="Show the original webpage or the readable version"
                   />
                 )}
               </React.Fragment>
