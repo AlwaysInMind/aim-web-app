@@ -1,3 +1,8 @@
+:root {
+  --font-size: calc((4vh + 0.4vw));
+  --border-radius: calc(1vh + 1vw);
+}
+
 button {
   color: #ffffff;
   background-color: #2c7dcf;
@@ -34,10 +39,14 @@ button.show-focus:focus {
   border-color: red;
 }
 
-button {
+body {
   font-family: 'Lato', sans-serif;
-  font-size: calc((4vh + 0.4vw));
-  border-radius: calc((2vh + 2vw));
+  font-size: var(--font-size);
+}
+
+button {
+  font-size: var(--font-size);
+  border-radius: calc(var(--border-radius) * 2);
   border-width: calc((1vh + 0.1vw));
   border-style: solid;
 }
@@ -45,31 +54,51 @@ button {
 .header-button,
 .sbar-button {
   font-family: 'Montserrat', sans-serif;
-  font-size: calc((4vh + 0.4vw) * 1.1);
+  font-size: calc(var(--font-size) * 1.1);
 }
 .header-button.button-title {
-  font-size: calc((4vh + 0.4vw) * 1.5);
+  font-size: calc(var(--font-size) * 1.5);
 }
 
 .header-background {
   background: #ffffad;
-  border-radius: calc((1vw + 1vh));
+  border-radius: var(--border-radius);
 }
 
 .sbar-background {
   background: #faaf40;
-  border-radius: calc((1vw + 1vh));
+  border-radius: var(--border-radius);
 }
 
 .prefs-group {
   background-color: lightblue;
-  font-family: 'Lato', sans-serif;
-  font-size: calc((4vh + 0.4vw) * 0.8);
+  font-size: calc(var(--font-size) * 0.8);
   font-family: inherit;
-  border-radius: calc((1vh + 1vw));
+  border-radius: var(--border-radius);
+}
+
+.oops {
+  margin: 1rem;
+}
+.techy {
+  font-size: calc(var(--font-size) * 0.8);
+  margin: 2rem;
+  padding: 1rem;
+  border: grey 1px solid;
+  color: grey;
+  border-radius: var(--border-radius);
+}
+.oops button {
+  width: 25vw;
 }
 
 .page-error,
 .page-loading {
-  font-size: 180%;
+  font-size: calc(var(--font-size) * 1.8);
+}
+
+.helpScreenName {
+  font-weight: 600;
+  font-size: 110%;
+  font-family: sans-serif;
 }
