@@ -55,6 +55,7 @@ class InfoScreen extends React.Component {
   render() {
     const { url, data, ...props } = this.props
     const { complexity } = preferences
+    const isOriginal = this.state.showingOriginal
 
     return (
       <Screen
@@ -71,8 +72,8 @@ class InfoScreen extends React.Component {
               complexity={complexity}
               style={{ pointerEvents: 'none' }}
               title={data.title}
-              url={this.state.showingOriginal ? url : undefined}
-              content={this.state.showingOriginal ? undefined : data.content}
+              url={isOriginal ? url : undefined}
+              content={isOriginal ? undefined : data.content}
             />
 
             {complexity === 0 && (
@@ -97,18 +98,16 @@ class InfoScreen extends React.Component {
                   <Button
                     style={{ gridArea: 'orig' }}
                     className=""
-                    label={
-                      this.state.showingOriginal
-                        ? 'View Readable'
-                        : 'View Web Page'
-                    }
+                    label={isOriginal ? 'View Readable' : 'View Web Page'}
                     actionFn={() => {
                       this.setState((prevState, props) => {
                         return { showingOriginal: !prevState.showingOriginal }
                       })
                     }}
                     helpFn={helpFn}
-                    helpText="Show the original webpage or the readable version"
+                    helpText={`Show the ${
+                      isOriginal ? 'more readable' : 'original web'
+                    } version of this information`}
                   />
                 )}
               </React.Fragment>
