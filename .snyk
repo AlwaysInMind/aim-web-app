@@ -1,0 +1,81 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.12.0
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'npm:hoek:20180212':
+    - node-readability > jsdom > request > hawk > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - node-readability > jsdom > request > hawk > boom > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - node-readability > jsdom > request > hawk > sntp > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - node-readability > jsdom > request > hawk > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - request > hawk > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - request > hawk > boom > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - request > hawk > sntp > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - request > hawk > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - node-readability > request > hawk > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - node-readability > request > hawk > boom > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - node-readability > request > hawk > sntp > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - node-readability > request > hawk > cryptiles > boom > hoek:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+  'npm:sshpk:20180409':
+    - node-readability > jsdom > request > http-signature > sshpk:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+    - request > http-signature > sshpk:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+  'npm:hawk:20160119':
+    - node-readability > request > hawk:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+  'npm:request:20160119':
+    - node-readability > request:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+  'npm:content-type-parser:20170905':
+    - node-readability > jsdom > content-type-parser:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+  'npm:http-signature:20150122':
+    - node-readability > request > http-signature:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+  'npm:mime:20170907':
+    - node-readability > request > form-data > mime:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+  'npm:nwmatcher:20180305':
+    - node-readability > jsdom > nwmatcher:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+  'npm:qs:20170213':
+    - node-readability > request > qs:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+  'npm:tunnel-agent:20170305':
+    - node-readability > request > tunnel-agent:
+        reason: None given
+        expires: '2018-06-02T21:08:47.328Z'
+patch: {}
