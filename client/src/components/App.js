@@ -5,8 +5,8 @@ import { PublicRoute, PrivateRoute } from './AuthRoute'
 import { CallbackScreen } from '../screens/Callback'
 import { HomeScreen } from '../screens/Home'
 import { ActivitiesScreen } from '../screens/Activities'
-import { AlbumsScreen } from '../screens/Albums'
-import { PlaylistsScreen } from '../screens/Playlists'
+import { ChoosePhotosScreen } from '../screens/ChoosePhotos'
+import { ChooseVideosScreen } from '../screens/ChooseVideos'
 import { ChooseInfoScreen } from '../screens/ChooseInfo'
 import { PhotosScreen } from '../screens/Photos'
 import { VideosScreen } from '../screens/Videos'
@@ -82,19 +82,19 @@ export class App extends React.Component {
             exact
             path="/photos"
             render={() => {
-              return <AlbumsScreen />
+              return <ChoosePhotosScreen />
             }}
           />
           <PrivateRoute
             exact
             path="/videos"
             render={() => {
-              return <PlaylistsScreen />
+              return <ChooseVideosScreen />
             }}
           />
           <PrivateRoute
             exact
-            path="/chooseinfo"
+            path="/info"
             render={() => {
               return <ChooseInfoScreen />
             }}

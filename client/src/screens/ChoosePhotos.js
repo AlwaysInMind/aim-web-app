@@ -8,7 +8,7 @@ import { Screen } from '../components/Screen'
 import { isDefaultAlbumName } from '../drivers/preferences'
 import { preferences } from '../drivers/preferences'
 
-import './Albums.css'
+import './ChoosePhotos.css'
 
 const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   <RouterButton
@@ -22,16 +22,16 @@ const AlbumButton = ({ id, title, thumbnail, ...props }) => (
 
 const errorText = `Unable to get the Album ${preferences.defaultAlbumName}`
 
-const AlbumsScreen = ({ data, ...props }) => {
+const ChoosePhotosScreen = ({ data, ...props }) => {
   const { complexity } = preferences
 
   return (
     <Screen
-      screen="albums"
+      screen="choosephotos"
       title="Choose Photo Album"
-      loadingText="Loading your albums..."
-      errorText="Unable to get albums"
-      screenHelpText="Press an album button to view the photos."
+      loadingText="Loading your photo albums..."
+      errorText="Unable to get photo albums"
+      screenHelpText="Press a photo album button to view the photos."
       {...props}
     >
       {helpFn => (
@@ -74,5 +74,5 @@ const AlbumsScreen = ({ data, ...props }) => {
   )
 }
 
-const wrappedScreen = withAuth(withFetchJSON(AlbumsScreen, '/api/albums'))
-export { wrappedScreen as AlbumsScreen }
+const wrappedScreen = withAuth(withFetchJSON(ChoosePhotosScreen, '/api/albums'))
+export { wrappedScreen as ChoosePhotosScreen }

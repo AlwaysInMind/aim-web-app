@@ -40,7 +40,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
             className="button-router button-choice"
             svg={'info.svg'}
             label="Read Info"
-            route={`/chooseinfo`}
+            route={`/info`}
             helpText={`Read pages of information`}
             helpFn={helpFn}
           />
