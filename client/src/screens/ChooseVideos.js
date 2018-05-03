@@ -8,7 +8,7 @@ import { Screen } from '../components/Screen'
 import { isDefaultAlbumName } from '../drivers/preferences'
 import { preferences } from '../drivers/preferences'
 
-import './Playlists.css'
+import './ChooseVideos.css'
 
 const AlbumButton = ({ id, title, thumbnail, ...props }) => (
   <RouterButton
@@ -22,16 +22,16 @@ const AlbumButton = ({ id, title, thumbnail, ...props }) => (
 
 const errorText = `Unable to get the playlist ${preferences.defaultAlbumName}`
 
-const PlaylistsScreen = ({ data, ...props }) => {
+const ChooseVideosScreen = ({ data, ...props }) => {
   const { complexity } = preferences
 
   return (
     <Screen
-      screen="playlists"
+      screen="videos"
       title="Choose Video Playlist"
-      loadingText="Loading your playlists..."
-      errorText="Unable to get playlists"
-      screenHelpText="Press an playlists button to view the videos."
+      loadingText="Loading your video playlists..."
+      errorText="Unable to get video playlists"
+      screenHelpText="Press a video playlist button to view the videos."
       {...props}
     >
       {helpFn => (
@@ -74,5 +74,7 @@ const PlaylistsScreen = ({ data, ...props }) => {
   )
 }
 
-const wrappedScreen = withAuth(withFetchJSON(PlaylistsScreen, '/api/playlists'))
-export { wrappedScreen as PlaylistsScreen }
+const wrappedScreen = withAuth(
+  withFetchJSON(ChooseVideosScreen, '/api/playlists')
+)
+export { wrappedScreen as ChooseVideosScreen }

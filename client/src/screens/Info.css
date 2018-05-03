@@ -1,8 +1,11 @@
 .info {
   grid-area: info;
-  border-radius: 0.4rem;
+  border-radius: calc((1vh + 1vw));
+  border-width: calc((1vh + 0.1vw));
+  border-style: solid;
+  padding: 0.5rem;
+  overflow: hidden;
 }
-
 .screen-grid[data-screen='info'][data-complexity='0'] {
   grid-template-areas:
     'sbar  home home title title title title title title title title title'
