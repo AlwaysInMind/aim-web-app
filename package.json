@@ -10,7 +10,8 @@
     "micro": "9.3.0",
     "microrouter": "3.1.2",
     "node-readability": "3.0.0",
-    "request": "2.85.0"
+    "request": "2.85.0",
+    "snyk": "^1.78.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.1",
@@ -41,7 +42,8 @@
     "deploy:clean": "now rm -s alwaysinmind alwaysinmindapi",
     "deploy:ls": "now ls && now alias ls",
     "pause":
-      "rem node -e \"((time) => new Promise((resolve) => setTimeout(resolve, time)))(process.argv[1]).then(() => process.exit(0))\" 30000"
+      "rem node -e \"((time) => new Promise((resolve) => setTimeout(resolve, time)))(process.argv[1]).then(() => process.exit(0))\" 30000",
+    "test": "snyk test"
   },
   "lint-staged": {
     "client/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"],
