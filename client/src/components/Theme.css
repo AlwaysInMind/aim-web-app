@@ -51,13 +51,16 @@ button {
   border-style: solid;
 }
 
-.header-button,
-.sbar-button {
+.header-button {
   font-family: 'Montserrat', sans-serif;
   font-size: calc(var(--font-size) * 1.1);
 }
 .header-button.button-title {
   font-size: calc(var(--font-size) * 1.5);
+}
+.sbar-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: calc(var(--font-size) * 0.9);
 }
 
 .header-background {

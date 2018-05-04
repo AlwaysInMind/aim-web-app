@@ -32,11 +32,16 @@ const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
 export const SupporterBar = ({ title, helpFn, handleBarHelp }) => (
   <React.Fragment>
     <div className="sbar-background" />
+    <SpeakingButton
+      className="button-logo sbar-button"
+      image="/AiM_Logo.png"
+      helpText="Always in Mind. Designed for people living with dementia and low digital literacy. Share pictures, messages and more with family a friends"
+      helpFn={helpFn}
+    />
     <ExplainButton
       className="button-explain sbar-button"
       explainFn={handleBarHelp}
       label="Support Help"
-      image="/AiM_Logo.png"
       helpText="Support Bar help button. Press to find out more about the Support Bar."
       helpFn={helpFn}
     />
