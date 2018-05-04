@@ -7,8 +7,8 @@ exports.getInfo = async (accessToken, userId) => {
     },
     {
       id: '1',
-      title: 'BBC News',
-      url: 'https://www.bbc.co.uk/news',
+      title: 'Always in Mind',
+      url: 'http://www.bbc.co.uk/news/entertainment_and_arts',
     },
     {
       id: '2',

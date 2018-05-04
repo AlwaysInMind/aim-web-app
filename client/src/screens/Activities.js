@@ -23,23 +23,23 @@ export const ActivitiesScreen = ({ data, ...props }) => {
           <RouterButton
             className="button-router button-choice"
             svg={'picture.svg'}
-            label="Look at Photos"
+            label="Photos"
             route={`/photos`}
-            helpText={`View photos`}
+            helpText={`Look at photos`}
             helpFn={helpFn}
           />
           <RouterButton
             className="button-router button-choice"
             svg={'film.svg'}
-            label="See Videos & Music"
+            label="Videos and Music"
             route={`/videos`}
-            helpText={`Watch videos and music`}
+            helpText={`Watch videos and listen to music`}
             helpFn={helpFn}
           />
           <RouterButton
             className="button-router button-choice"
             svg={'info.svg'}
-            label="Read Info"
+            label="Information"
             route={`/info`}
             helpText={`Read pages of information`}
             helpFn={helpFn}

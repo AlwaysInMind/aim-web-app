@@ -64,7 +64,7 @@ class PreferencesScreen extends React.Component {
         {...props}
       >
         {helpFn => [
-          <ButtonGroup label="Help" span="4" key="help">
+          <ButtonGroup label="How Help works" span="4" key="help">
             <this.PrefsButton
               label="Speak"
               helpFn={helpFn}
@@ -78,7 +78,11 @@ class PreferencesScreen extends React.Component {
               pref="showHelp"
             />
           </ButtonGroup>,
-          <ButtonGroup label="Slideshow Speed" span="4" key="slideshowSpeed">
+          <ButtonGroup
+            label="Speed that photos change"
+            span="4"
+            key="slideshowSpeed"
+          >
             <this.PrefsButton
               label="Fast"
               helpFn={helpFn}
@@ -92,23 +96,27 @@ class PreferencesScreen extends React.Component {
               pref="slideShowRate:10000"
             />
           </ButtonGroup>,
-          <ButtonGroup label="Ease of Use" span="6" key="uiComplexity">
+          <ButtonGroup
+            label="User's technical comfort"
+            span="6"
+            key="uiComplexity"
+          >
             <this.PrefsButton
-              label="Easiest"
+              label="Beginner"
               helpFn={helpFn}
-              helpText="Easiest ease of use"
+              helpText="Makes Always in Mind very easy to use"
               pref="complexity:0"
             />
             <this.PrefsButton
-              label="Medium"
+              label="Average"
               helpFn={helpFn}
-              helpText="Average ease of use"
+              helpText="Makes Always in Mind easy to use"
               pref="complexity:1"
             />
             <this.PrefsButton
-              label="Full Use"
+              label="Confident"
               helpFn={helpFn}
-              helpText="Most complicated ease of use"
+              helpText="Adds most features to Always in Mind"
               pref="complexity:2"
             />
           </ButtonGroup>,

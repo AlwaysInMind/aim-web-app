@@ -12,7 +12,7 @@
 }
 
 .sbar-button.button-explain {
-  grid-area: sbar-start 2 / sbar-start / sbar-start 3 / sbar-end;
+  grid-area: sbar-start 1 / sbar-start / sbar-start 3 / sbar-end;
 }
 
 .sbar-button.button-prefs {
@@ -40,4 +40,8 @@
   height: calc(100% - (2vh + 1vh));
   margin-top: 2vh;
   margin-bottom: 1vh;
+}
+
+.sbar-button.button-explain .button-image {
+  height: 50%;
 }

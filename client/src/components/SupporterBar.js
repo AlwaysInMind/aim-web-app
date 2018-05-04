@@ -32,16 +32,12 @@ const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
 export const SupporterBar = ({ title, helpFn, handleBarHelp }) => (
   <React.Fragment>
     <div className="sbar-background" />
-    <SpeakingButton
-      className="button-logo sbar-button"
-      image="/AiM_Logo.png"
-      helpText="Always in Mind. Use these buttons to change the setup of user features."
-      helpFn={helpFn}
-    />
     <ExplainButton
       className="button-explain sbar-button"
       explainFn={handleBarHelp}
-      helpText="Use these buttons to manage user features."
+      label="Support Help"
+      image="/AiM_Logo.png"
+      helpText="Support Bar help button. Press to find out more about the Support Bar."
       helpFn={helpFn}
     />
     <PreferencesButton

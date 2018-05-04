@@ -31,7 +31,7 @@ const ChoosePhotosScreen = ({ data, ...props }) => {
       title="Choose Photo Album"
       loadingText="Loading your photo albums..."
       errorText="Unable to get photo albums"
-      screenHelpText="Press a photo album button to view the photos."
+      screenHelpText="Use a photo album button to view the photos."
       {...props}
     >
       {helpFn => (

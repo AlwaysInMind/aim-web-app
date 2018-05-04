@@ -31,7 +31,7 @@ const ChooseVideosScreen = ({ data, ...props }) => {
       title="Choose Video Playlist"
       loadingText="Loading your video playlists..."
       errorText="Unable to get video playlists"
-      screenHelpText="Press a video playlist button to view the videos."
+      screenHelpText="Use a video playlist button to view the videos."
       {...props}
     >
       {helpFn => (
