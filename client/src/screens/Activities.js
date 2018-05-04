@@ -31,7 +31,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
           <RouterButton
             className="button-router button-choice"
             svg={'film.svg'}
-            label="Videos and Music"
+            label="Videos / Music"
             route={`/videos`}
             helpText={`Watch videos and listen to music`}
             helpFn={helpFn}
