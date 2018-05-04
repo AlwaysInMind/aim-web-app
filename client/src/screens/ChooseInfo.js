@@ -31,7 +31,7 @@ const ChooseInfoScreen = ({ data, ...props }) => {
       title="Choose Info Page"
       loadingText="Loading your info pages..."
       errorText="Unable to load info pages"
-      screenHelpText="Press an info page button to view the info."
+      screenHelpText="Use an info button to view the info."
       {...props}
     >
       {helpFn => (
@@ -49,7 +49,7 @@ const ChooseInfoScreen = ({ data, ...props }) => {
             data.reduce(
               (acc, item) =>
                 isDefaultAlbumName(item.title) ? (
-                  <Redirect to={`/info/${item.id}`} />
+                  <Redirect to={`/info/${encodeURIComponent(item.url)}`} />
                 ) : (
                   acc
                 ),

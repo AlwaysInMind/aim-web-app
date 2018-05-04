@@ -20,9 +20,12 @@ But don't worry, just try a button and nothing bad will happen.
 `,
 }
 
-const barHelpTitle = `The column on the left is the Setup bar`
-const barHelpText = `Use the buttons to change the features and operation of the user screen.
- You can hide or show the bar at any time. Swipe left to hide the bar, swipe right to show it. Or use the 's' key on the keyboard to show and hide the bar.`
+const barHelpTitle = `The column on the left is the Support Bar`
+const barHelpText = `Use the Support Bar buttons to change the user experience and alter which features appear on the screens.
+You can also exit Always In Mind, alowing you to log in again later.
+Press a button for more than 1 second to learn what it does.
+You can hide or show the bar at any time. Swipe left to hide the bar, swipe right to show it.
+Or use the 's' key on the keyboard to show and hide the bar.`
 
 const GeneralHelpModal = ({ title, text, open, speak, closeFn, ...props }) => (
   <HelpModal

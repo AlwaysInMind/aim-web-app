@@ -62,14 +62,14 @@ export const HelpModal = ({
           <Button
             className="button help-more"
             actionFn={moreFn}
-            label="Explain More"
+            label="Learn More"
             helpFn={() => {}} //no helpFn as gets recursive!
           />
         )}
         <Button
           className="button help-close"
           actionFn={closeFn}
-          label="Carry On"
+          label="Continue"
           helpFn={() => {}} //no helpFn as gets recursive!
         />
       </div>

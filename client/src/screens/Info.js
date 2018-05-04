@@ -61,8 +61,8 @@ class InfoScreen extends React.Component {
       <Screen
         screen="info"
         title="View Information page"
-        loadingText="Loading your page..."
-        errorText="Unable to get page"
+        loadingText="Loading your information page..."
+        errorText="Unable to get information page"
         screenHelpText="View the info age. Use the Down and Up buttons to see more "
         {...props}
       >
