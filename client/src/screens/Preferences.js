@@ -79,7 +79,7 @@ class PreferencesScreen extends React.Component {
             />
           </ButtonGroup>,
           <ButtonGroup
-            label="Speed that photos change"
+            label="Speed of next photo"
             span="4"
             key="slideshowSpeed"
           >
