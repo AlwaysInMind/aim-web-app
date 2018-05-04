@@ -27,12 +27,21 @@ Press a button for more than 1 second to learn what it does.
 You can hide or show the bar at any time. Swipe left to hide the bar, swipe right to show it.
 Or use the 's' key on the keyboard to show and hide the bar.`
 
-const GeneralHelpModal = ({ title, text, open, speak, closeFn, ...props }) => (
+const GeneralHelpModal = ({
+  title,
+  text,
+  open,
+  speak,
+  show,
+  closeFn,
+  ...props
+}) => (
   <HelpModal
     title={title}
     text={text}
     open={open}
     speak={speak}
+    show={show}
     closeFn={closeFn}
     small="false"
     {...props}
@@ -44,6 +53,7 @@ const ScreenHelpModal = ({
   text,
   open,
   speak,
+  show,
   closeFn,
   moreFn,
   ...props
@@ -53,6 +63,7 @@ const ScreenHelpModal = ({
     text={text}
     open={open}
     speak={speak}
+    show={show}
     closeFn={closeFn}
     small="false"
     moreFn={moreFn}
@@ -60,12 +71,21 @@ const ScreenHelpModal = ({
   />
 )
 
-const ButtonHelpModal = ({ title, text, open, speak, closeFn, ...props }) => (
+const ButtonHelpModal = ({
+  title,
+  text,
+  open,
+  speak,
+  show,
+  closeFn,
+  ...props
+}) => (
   <HelpModal
     title={title}
     text={text}
     open={open}
     speak={speak}
+    show={show}
     closeFn={closeFn}
     small="true"
   />
@@ -149,12 +169,10 @@ export class Screen extends React.Component {
   }
 
   handleBarHelp = () => {
-    if (preferences.showHelp || preferences.speakHelp) {
-      this.setState({
-        showScreenHelpModal: true,
-        screenModalContent: { title: barHelpTitle, text: barHelpText },
-      })
-    }
+    this.setState({
+      showScreenHelpModal: true,
+      screenModalContent: { title: barHelpTitle, text: barHelpText },
+    })
   }
 
   handleCloseModals = () => {
@@ -219,6 +237,7 @@ export class Screen extends React.Component {
             text={generalHelpContent.text}
             open={this.state.showGeneralHelpModal}
             speak={preferences.speakHelp}
+            show={preferences.showHelp}
             closeFn={this.handleCloseModals}
             helpFn={this.handleButtonHelp}
           />
@@ -227,6 +246,7 @@ export class Screen extends React.Component {
             text={this.state.screenModalContent.text}
             open={this.state.showScreenHelpModal}
             speak={preferences.speakHelp}
+            show={preferences.showHelp}
             closeFn={this.handleCloseModals}
             helpFn={this.handleButtonHelp}
             moreFn={this.handleMoreHelp}
@@ -236,6 +256,7 @@ export class Screen extends React.Component {
             text={this.state.buttonModalContent.text}
             open={this.state.showButtonModal}
             speak={preferences.speakHelp}
+            show={preferences.showHelp}
             closeFn={this.handleCloseModals}
             helpFn={this.handleButtonHelp}
           />
