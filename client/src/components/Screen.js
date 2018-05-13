@@ -4,6 +4,7 @@ import { Header } from './Header'
 import { SupporterBar } from './SupporterBar'
 import { HelpModal } from './HelpModal'
 import { Swipe } from './Swipe'
+import { BackButton } from '../components/Button'
 
 import './Screen.css'
 import './Button.css'
@@ -277,10 +278,19 @@ export class Screen extends React.Component {
           />
           {// isLoaded wil be undefined if page not wraped by withFetchJSON
           isLoaded !== undefined && isLoaded && error ? (
-            <div className="page-error">
-              {errorText}
-              {console.log(error.message)}
-            </div>
+            <React.Fragment>
+              <div className="page-error">
+                {errorText}
+                {console.log(error.message)}
+              </div>
+              <BackButton
+                style={{ gridColumn: 'span 2', gridArea: 'back' }}
+                className="button-router"
+                label="Continue"
+                helpFn={this.handleButtonHelp}
+                helpText="Continue"
+              />
+            </React.Fragment>
           ) : isLoaded !== undefined && !isLoaded ? (
             <div className="page-loading">{loadingText}</div>
           ) : (

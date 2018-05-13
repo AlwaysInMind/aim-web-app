@@ -34,8 +34,8 @@
 
 .page-error,
 .page-loading {
-  grid-column-start: screen-start;
-  grid-column-end: -1;
+  grid-column-start: sbar-end;
+  grid-column-end: -3;
   grid-row-start: 2;
   grid-row-end: -1;
   align-self: center;
