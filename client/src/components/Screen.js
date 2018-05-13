@@ -265,6 +265,7 @@ export class Screen extends React.Component {
               {...this.props}
               helpFn={this.handleButtonHelp}
               handleBarHelp={this.handleBarHelp}
+              sBarHideFn={this.onSwipeLeft}
             />
           ) : (
             <div className="screen-sbar-blank " />

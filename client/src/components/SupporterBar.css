@@ -3,10 +3,6 @@
   z-index: -1;
 }
 
-.sbar-blank {
-  grid-area: sbar-start 5 / sbar-start / sbar-end / sbar-end;
-}
-
 .sbar-button.button-logo {
   grid-area: sbar-start 1 / sbar-start / sbar-start 2 / sbar-end;
 }
@@ -19,13 +15,22 @@
   grid-area: sbar-start 3 / sbar-start / sbar-start 4 / sbar-end;
 }
 
-.sbar-button.button-exit {
+.sbar-button.button-hide {
   grid-area: sbar-start 4 / sbar-start / sbar-start 5 / sbar-end;
+}
+
+.sbar-button.button-exit {
+  grid-area: sbar-start 5 / sbar-start / sbar-start 6 / sbar-end;
+}
+
+.sbar-blank {
+  grid-area: sbar-start 6 / sbar-start / sbar-end / sbar-end;
 }
 
 .sbar-button.button-explain,
 .sbar-button.button-prefs,
-.sbar-button.button-exit {
+.sbar-button.button-exit,
+.sbar-button.button-hide {
   width: calc(100% - (2 * 0.5vw));
   margin-left: 0.5vw;
   margin-right: 1vw;
