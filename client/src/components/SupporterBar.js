@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {
+  Button,
   ExplainButton,
   RouterButton,
   SpeakingButton,
@@ -29,7 +30,11 @@ const PreferencesButton = ({ isPreferencesScreen, ...props }) =>
     />
   )
 
-export const SupporterBar = ({ title, helpFn, handleBarHelp }) => (
+const HIDE_LABEL = 'Hide Support'
+const HIDE_HELP_TEXT =
+  'Hides the Support Bar. You can then restore the Support Bar with a right swipe or the S key'
+
+export const SupporterBar = ({ title, helpFn, handleBarHelp, sBarHideFn }) => (
   <React.Fragment>
     <div className="sbar-background" />
     <SpeakingButton
@@ -49,6 +54,16 @@ export const SupporterBar = ({ title, helpFn, handleBarHelp }) => (
       className="button-prefs sbar-button"
       isPreferencesScreen={title === 'Change User Options'} // FIXME remove dep on title name
       helpFn={helpFn}
+    />
+    <Button
+      label={HIDE_LABEL}
+      className="button-hide sbar-button"
+      helpText={HIDE_HELP_TEXT}
+      helpFn={helpFn}
+      actionFn={() => {
+        helpFn(HIDE_LABEL, HIDE_HELP_TEXT, {})
+        sBarHideFn()
+      }}
     />
     <AuthButton
       className="button-exit sbar-button"
