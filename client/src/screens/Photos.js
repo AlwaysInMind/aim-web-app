@@ -14,7 +14,8 @@ import { preferences } from '../drivers/preferences'
 
 import '../components/SlideShow.css'
 import './Photos.css'
-class Caption extends React.Component {
+
+class CaptionButton extends React.Component {
   render() {
     return <SpeakingButton {...this.props} />
   }
@@ -32,7 +33,6 @@ class PhotosScreen extends React.Component {
   onChangeCaption = caption => {
     const capitalise = string =>
       `${string.charAt(0).toUpperCase()}${string.slice(1)}`
-    console.log(caption)
     this.setState({ caption: capitalise(caption) })
   }
 
@@ -82,13 +82,12 @@ class PhotosScreen extends React.Component {
             )}
             {complexity > 0 && (
               <React.Fragment>
-                <Caption
+                <CaptionButton
                   style={{ gridArea: 'captn' }}
                   className="button-title"
                   label={this.state.caption}
                   helpFn={helpFn}
-                  helpText=""
-                  ref={this.myRef}
+                  helpText={this.state.caption}
                 />
 
                 <BackButton
