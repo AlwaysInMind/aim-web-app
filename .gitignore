@@ -22,4 +22,4 @@ yarn-debug.log*
 yarn-error.log*
 
 client/src/drivers/auth0-variables.js
-api/src/drivers/auth0-variables.js
+api/src/providers/auth0/auth0-variables.js

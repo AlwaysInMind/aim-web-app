@@ -3,7 +3,7 @@ import React from 'react'
 import './SlideShow.css'
 
 // for now this is a pure DOM component - just updates classes
-function mkSlideShow(rate = 3000) {
+function mkSlideShow(rate = 3000, onChange) {
   var slides
   var currentSlide = -1
   var playing = false
@@ -21,6 +21,12 @@ function mkSlideShow(rate = 3000) {
     const node = slides[slide].children[0]
     return node.tagName === 'VIDEO'
   }
+  const notify = (slides, slide) => {
+    if (playing) {
+      onChange(slides[currentSlide].childNodes[0].alt)
+    }
+  }
+
   const setSlideEndEventHandler = (slides, slide, add, handler) => {
     const node = slides[slide].children[0]
     if (add) {
@@ -44,8 +50,8 @@ function mkSlideShow(rate = 3000) {
     if (!slides) {
       slides = getSlides()
     }
-    advanceSlide(true)
     playing = true
+    advanceSlide(true)
   }
 
   function stop() {
@@ -70,10 +76,12 @@ function mkSlideShow(rate = 3000) {
   function advanceSlide(resume) {
     if (currentSlide === -1) {
       currentSlide = 0
+      notify(slides, currentSlide)
     } else {
       if (!(slideIsVideo(slides, currentSlide) && resume)) {
         hideSlide(slides, currentSlide)
         currentSlide = nextSlide(slides, currentSlide)
+        notify(slides, currentSlide)
       }
     }
     showSlide(slides, currentSlide)
@@ -90,7 +98,11 @@ function mkSlideShow(rate = 3000) {
       return playing
     },
     set isPlaying(play) {
-      play ? start() : stop()
+      if (play && !playing) {
+        start()
+      } else if (!play && playing) {
+        stop()
+      }
     },
   }
 }
@@ -98,16 +110,19 @@ function mkSlideShow(rate = 3000) {
 export class SlideShow extends React.Component {
   constructor(props) {
     super(props)
-    this.slideShow = mkSlideShow(this.props.rate)
+    this.state = { caption: '' }
+    this.slideShow = mkSlideShow(this.props.rate, props.onChangeCaption)
   }
 
   componentDidUpdate() {
     if (this.props.media) {
+      console.log('du')
       this.slideShow.isPlaying = this.props.playing
     }
   }
 
   componentWillUnmount() {
+    this.slideShow.isPlaying = false
     this.slideShow = undefined
   }
 
@@ -120,7 +135,11 @@ export class SlideShow extends React.Component {
           {media.map(item => (
             <li className="slide" key={item.id}>
               {item.medium === 'image' ? (
-                <img style={{ display: 'block' }} src={item.src} alt="" />
+                <img
+                  style={{ display: 'block' }}
+                  src={item.src}
+                  alt={item.description}
+                />
               ) : (
                 <video
                   style={{ width: '100%', height: '100%' }}

@@ -2,20 +2,38 @@ import React from 'react'
 
 import { withFetchJSON, pathTemplate } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
-import { HomeButton, BackButton, PauseButton } from '../components/Button.js'
+import {
+  HomeButton,
+  BackButton,
+  PauseButton,
+  SpeakingButton,
+} from '../components/Button.js'
 import { Screen } from '../components/Screen'
 import { SlideShow } from '../components/SlideShow'
 import { preferences } from '../drivers/preferences'
 
 import '../components/SlideShow.css'
 import './Photos.css'
+class Caption extends React.Component {
+  render() {
+    return <SpeakingButton {...this.props} />
+  }
+}
 
 class PhotosScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       slideShowIsPlaying: false,
+      caption: '',
     }
+  }
+
+  onChangeCaption = caption => {
+    const capitalise = string =>
+      `${string.charAt(0).toUpperCase()}${string.slice(1)}`
+    console.log(caption)
+    this.setState({ caption: capitalise(caption) })
   }
 
   didLoadCalled = false
@@ -47,6 +65,7 @@ class PhotosScreen extends React.Component {
                 media={data}
                 rate={preferences.slideShowRate}
                 playing={this.state.slideShowIsPlaying}
+                onChangeCaption={this.onChangeCaption}
               />
             ) : (
               'No photos'
@@ -63,6 +82,15 @@ class PhotosScreen extends React.Component {
             )}
             {complexity > 0 && (
               <React.Fragment>
+                <Caption
+                  style={{ gridArea: 'captn' }}
+                  className="button-title"
+                  label={this.state.caption}
+                  helpFn={helpFn}
+                  helpText=""
+                  ref={this.myRef}
+                />
+
                 <BackButton
                   style={{ gridArea: 'back' }}
                   className="button-router"
