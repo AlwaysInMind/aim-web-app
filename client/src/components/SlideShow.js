@@ -23,7 +23,8 @@ function mkSlideShow(rate = 3000, onChange) {
   }
   const notify = (slides, slide) => {
     if (playing) {
-      onChange(slides[currentSlide].childNodes[0].alt)
+      const caption = slides[currentSlide].childNodes[0].alt
+      onChange(caption ? caption : '')
     }
   }
 
