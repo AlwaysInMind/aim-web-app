@@ -1,4 +1,5 @@
 const { request } = require('../request-object')
+const { MS_COG_SERVICES_KEY } = require('../auth0/auth0-variables')
 
 exports.getAlbums = async googleAccessToken => {
   const ignore = ['Profile Photos', 'Auto Backup']
@@ -24,9 +25,9 @@ exports.getPhotos = async (googleAccessToken, googleUserId, albumId) => {
       feed: { entry },
     },
   } = await requestPhotos(googleAccessToken, googleUserId, albumId)
-  let titles = []
+  let photos = []
   if (entry) {
-    titles = entry.map(ent => ({
+    photos = entry.map(ent => ({
       id: ent.gphoto$id.$t,
       title: ent.title.$t,
       src: ent.media$group.media$content.slice(-1)[0].url,
@@ -34,7 +35,20 @@ exports.getPhotos = async (googleAccessToken, googleUserId, albumId) => {
       //        timestamp: ent.gphoto$timestamp.$t,
     }))
   }
-  return titles
+  const enhancedPhotos = await enhancePhotos(photos)
+  return enhancedPhotos
+}
+
+function enhancePhotos(photos) {
+  const requests = photos.map(({ src }) =>
+    requestDescription(src).catch(e => undefined)
+  )
+  return Promise.all(requests).then(descriptions => {
+    const enhanced = descriptions
+      .map(d => (d ? d.object.description.captions[0].text : ''))
+      .map((d, i) => ({ ...photos[i], description: d }))
+    return enhanced
+  })
 }
 
 // Get user Google Photos album list
@@ -64,5 +78,15 @@ function requestPhotos(accessToken, userId, albumId) {
   return request(options)
 }
 
-// Get photo meta data
-// https://picasaweb.google.com/data/feed/projection/user/userID/albumid/albumID/photoid/photoID
+function requestDescription(url) {
+  const options = {
+    method: 'POST',
+    url: `https://westeurope.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description&language=en`,
+    headers: {
+      'Ocp-Apim-Subscription-Key': MS_COG_SERVICES_KEY,
+    },
+    body: { url },
+    json: true,
+  }
+  return request(options)
+}
