@@ -48,6 +48,9 @@ class PhotosScreen extends React.Component {
   render() {
     const { data, ...props } = this.props
     const { complexity } = preferences
+    const slideArea = preferences.slideShowCaption
+      ? 'slide'
+      : 'slide / slide / captn / slide'
 
     return (
       <Screen
@@ -62,6 +65,7 @@ class PhotosScreen extends React.Component {
           <React.Fragment>
             {data.length ? (
               <SlideShow
+                style={{ gridArea: slideArea }}
                 media={data}
                 rate={preferences.slideShowRate}
                 playing={this.state.slideShowIsPlaying}
@@ -71,6 +75,15 @@ class PhotosScreen extends React.Component {
               'No photos'
             )}
 
+            {preferences.slideShowCaption && (
+              <CaptionButton
+                style={{ gridArea: 'captn' }}
+                className="button-title"
+                label={this.state.caption}
+                helpFn={helpFn}
+                helpText={this.state.caption}
+              />
+            )}
             {complexity === 0 && (
               <HomeButton
                 style={{ gridArea: 'home' }}
@@ -82,14 +95,6 @@ class PhotosScreen extends React.Component {
             )}
             {complexity > 0 && (
               <React.Fragment>
-                <CaptionButton
-                  style={{ gridArea: 'captn' }}
-                  className="button-title"
-                  label={this.state.caption}
-                  helpFn={helpFn}
-                  helpText={this.state.caption}
-                />
-
                 <BackButton
                   style={{ gridArea: 'back' }}
                   className="button-router"

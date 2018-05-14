@@ -128,10 +128,10 @@ export class SlideShow extends React.Component {
   }
 
   render() {
-    const { media } = this.props
+    const { media, style } = this.props
 
     return (
-      <div className="slides-container">
+      <div className="slides-container" style={style}>
         <ul className="slides">
           {media.map(item => (
             <li className="slide" key={item.id}>

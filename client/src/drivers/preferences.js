@@ -4,6 +4,7 @@ import { speak, cancelSpeech } from '../drivers/speech'
 
 const defaults = {
   slideShowRate: 4000,
+  slideShowCaption: false,
   speakHelp: true,
   showHelp: false,
   complexity: 0,

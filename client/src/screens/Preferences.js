@@ -78,11 +78,7 @@ class PreferencesScreen extends React.Component {
               pref="showHelp"
             />
           </ButtonGroup>,
-          <ButtonGroup
-            label="Speed of next photo"
-            span="4"
-            key="slideshowSpeed"
-          >
+          <ButtonGroup label="Slide Show" span="6" key="slideshow">
             <this.PrefsButton
               label="Fast"
               helpFn={helpFn}
@@ -95,7 +91,14 @@ class PreferencesScreen extends React.Component {
               helpText="Slowly change slide show photos"
               pref="slideShowRate:10000"
             />
+            <this.PrefsButton
+              label="Caption"
+              helpFn={helpFn}
+              helpText="Show a caption for photos"
+              pref="slideShowCaption"
+            />
           </ButtonGroup>,
+
           <ButtonGroup
             label="User's technical comfort"
             span="6"
