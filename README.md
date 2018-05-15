@@ -8,9 +8,9 @@ Always in Mind is a web app providing simplified, friendly and safe access to th
 
 Support for people with cognitive disabilities lags far behind other users so innovation is critical and largely missing. So we are fully open source in order to share ideas and encourage open innovation through an active community of people interested in improving provision. Both the front end and back end code can be found here in this repositry
 
-However, people want to be customers of a reliable and well supported service. So we need to develop a self sustaing product. This requires a crystal clear problem and solution that people will be will into to subscribe to. We are currently exploring ideas and are keen to colaborate. 
+However, people want to be customers of a reliable and well supported service. So we need to develop a self sustaing product. This requires a crystal clear problem and solution that people will be will into to subscribe to. We are currently exploring ideas and are keen to collaborate in order to get this into the hands of people whom will benefit. 
 
-# Benfits 
+# Benefits 
 * Provides simplified, friendly and safe access to everyday digital resources and communications
 * Reduces isolation through simplified digital sharing with friends, both local and remote
 * Easy access to remote family and friend's activites through photos, videos and video calls
@@ -55,7 +55,7 @@ We have decided to bootstrap rather than seek funding as we think the constraint
 
 It's a React powered SPA web app for maximum portability and we use a nodejs backend to abstract the various services and handle senstive operations.
 
-# A "Shout out" to some of the great tools we use (also see #integrations above)
+# A "Shout out" to some of the great tools we use 
 
 * Visual Studio Code - for the best dev experience
 * Zeit now - for the best devops experience
@@ -66,3 +66,5 @@ It's a React powered SPA web app for maximum portability and we use a nodejs bac
 * nodejs
 * Yarn
 * webpack, ESLint, prettier and many other great tools and libs
+
+Also see #integrations above.
