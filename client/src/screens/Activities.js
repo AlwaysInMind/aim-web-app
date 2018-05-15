@@ -46,7 +46,7 @@ export const ActivitiesScreen = ({ data, ...props }) => {
           />
           <RouterButton
             className="button-router button-choice"
-            //svg={'info.svg'}
+            svg={'message.svg'}
             label="Message"
             route={`/message`}
             helpText={`Read your message`}
