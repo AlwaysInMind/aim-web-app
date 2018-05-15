@@ -1,6 +1,6 @@
 # Always in Mind
 
-This project is a flexible platform designed to improve the quality of life of people such as those in later stages of life who may be becoming isolated. Often, people at this stage of life are not technology users but could benefit from the social aspects of online digital activities. For example, they can share photos, videos, access interesting information resources or engage with others via messages and video calls, for example with remote family and friends. 
+This project is a flexible platform designed to improve the quality of life of people such as those in later stages of life who may be becoming isolated. Often, people at this stage of life are not technology users but could benefit from the social aspects of online digital activities. For example, they can share photos, videos, access interesting information resources or engage with others via messages and video calls, for example with remote family and friends. The design is also suitable for people with learning disabilities wanting to access online resources and activities.
 
 Always in Mind is a web app providing simplified, friendly and safe access to the digital websites and communications services that we use daily. Services such as Google Photos, YouTube, GMail, Facebook are transformed and complexity removed. A friend can use these services to share photos and images and Always In Mind makes them easily accessible through a very simple user experience runing on an PC, tablet, or even a TV. There are levels of complexity to suit the users pereferences. Help is always available to provide a ready reminder.
 
@@ -55,7 +55,7 @@ We have decided to bootstrap rather than seek funding as we think the constraint
 
 It's a React powered SPA web app for maximum portability and we use a nodejs backend to abstract the various services and handle senstive operations.
 
-# A Shout to some of the great tools we use
+# A "Shout out" to some of the great tools we use (also see #integrations above)
 
 * Visual Studio Code - for the best dev experience
 * Zeit now - for the best devops experience
