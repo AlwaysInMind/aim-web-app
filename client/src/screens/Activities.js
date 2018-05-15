@@ -44,6 +44,14 @@ export const ActivitiesScreen = ({ data, ...props }) => {
             helpText={`Read pages of information`}
             helpFn={helpFn}
           />
+          <RouterButton
+            className="button-router button-choice"
+            //svg={'info.svg'}
+            label="Message"
+            route={`/message`}
+            helpText={`Read your message`}
+            helpFn={helpFn}
+          />
         </React.Fragment>
       )}
     </Screen>

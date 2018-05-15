@@ -1,0 +1,27 @@
+.message {
+  grid-area: msg;
+  border-radius: calc((1vh + 1vw));
+  border-width: calc((1vh + 0.1vw));
+  border-style: solid;
+  padding: 0.5rem;
+}
+.screen-grid[data-screen='message'][data-complexity='0'] {
+  grid-template-areas:
+    'sbar  home home title title title title title title title title title'
+    'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg '
+    'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg '
+    'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg '
+    'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg '
+    'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg ';
+}
+
+.screen-grid[data-screen='message'][data-complexity='1'],
+.screen-grid[data-screen='message'][data-complexity='2'] {
+  grid-template-areas:
+    'sbar  help  help  title title title title title title title title exit '
+    'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  back  back '
+    'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  ..... .....'
+    'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  down  down'
+    'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  up    up '
+    'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  orig  orig';
+}
