@@ -63,7 +63,7 @@ class InfoScreen extends React.Component {
         title="View Information page"
         loadingText="Loading your information page..."
         errorText="Unable to get information page"
-        screenHelpText="View the info age. Use the Down and Up buttons to see more "
+        screenHelpText="View the information page. Use the Down and Up buttons to see more "
         {...props}
       >
         {helpFn => (

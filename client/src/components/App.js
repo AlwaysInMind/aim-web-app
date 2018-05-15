@@ -12,6 +12,7 @@ import { ChooseInfoScreen } from '../screens/ChooseInfo'
 import { PhotosScreen } from '../screens/Photos'
 import { VideosScreen } from '../screens/Videos'
 import { InfoScreen } from '../screens/Info'
+import { MessageScreen } from '../screens/Message'
 import { PreferencesScreen } from '../screens/Preferences'
 import { auth } from '../drivers/auth'
 import { fetchPreferences, preferences } from '../drivers/preferences'
@@ -88,6 +89,13 @@ export class App extends React.Component {
               path="/info"
               render={() => {
                 return <ChooseInfoScreen />
+              }}
+            />
+            <PrivateRoute
+              exact
+              path="/message"
+              render={() => {
+                return <MessageScreen />
               }}
             />
             <PrivateRoute

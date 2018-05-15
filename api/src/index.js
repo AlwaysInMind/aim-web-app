@@ -29,6 +29,11 @@ const handleGetInfo = handleProvider('getInfo', async (fn, req) => {
   return info
 })
 
+const handleGetMessage = handleProvider('getMessage', async (fn, req) => {
+  const msg = await fn()
+  return msg
+})
+
 const handleGetReadable = handleReadable(async (fn, req, res) => {
   let url = req.params.url // decodeURIComponent()
   const article = await fn(url)
@@ -57,6 +62,7 @@ module.exports = cors(
     get('/api/albums/:id', handleGetPhotos),
     get('/api/playlists', handleGetPlaylists),
     get('/api/info', handleGetInfo),
+    get('/api/message', handleGetMessage),
     get(
       new UrlPattern('/api/readable/:url', {
         segmentValueCharset: 'a-zA-Z0-9-_~ %.',
