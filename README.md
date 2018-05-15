@@ -32,16 +32,16 @@ However, people want to be customers of a reliable and well supported service. S
 # Possible extensions
 * Reminders - eg to take medication
 * Reminiscence activites
-* Integration with sensors and alarms (eg IoT)
+* Integration with controls, sensors and alarms (eg smart homes and IoT)
 * Utilises AI to support users
-* Speech input
+* Speech input using Echo, Cortana etc
 
 # Current Integrations
 
 * Google photos - shows albums and photos including videos
 * YouTube - shows videos in playlists
 * GMail - read latest email
-* GMail Tasks - taks list provide list of informative web pages to view (under review)
+* Google Tasks - tasklist used to provide a list of web pages to view (under review)
 * Microsoft cognitive services picture description AI - creates descriptions of photos
 * Auth0 - secure authorisation and access management
 
