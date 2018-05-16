@@ -35,6 +35,7 @@ Currently we have decided to bootstrap rather than seek seed funding as we think
 * Entertains and educates through online resources such as information, music and videos
 * Encourage and reassure digital engagement can be safe, fun and useful
 * Support varying abilities over time thus supporting reducing or increasing capabilities
+* As the UK Government design principles state, we [do the hard work to make it simple](https://www.gov.uk/guidance/government-design-principles#do-the-hard-work-to-make-it-simple)
 
 # Features
 * Supports people with various cognitive disabilities and low digital literacy
