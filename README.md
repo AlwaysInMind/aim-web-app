@@ -9,7 +9,7 @@ Always in Mind is a web app providing simplified, friendly and safe access to th
 ![A screenshot showing buttons, text and a photo of a dog](screenshots/photos.png "The photos slideshow screen showing Google photos")
 
 
-This project is a flexible platform designed to help reduce isolation and improve the quality of life of people who may have be in later stages of life, cognitive disabilities, such as dementia or adults with learning difficulties someone who has recently had a stroke. They could potentially benefit greatly from the social connectivity and ready access to media provided by online digital services . For example, they can share photos, or videos, access music or interesting information resources or engage with others via messages and video calls. This can enable closer communication with remote family and friends or even extend social connections to new people. 
+This project is a flexible platform designed to help reduce isolation, boost confidence and improve the quality of life of people who may have be in later stages of life, cognitive disabilities, such as dementia or adults with learning difficulties someone who has recently had a stroke. They could potentially benefit greatly from the social connectivity and ready access to media provided by online digital services . For example, they can share photos, or videos, access music or interesting information resources or engage with others via messages and video calls. This can enable closer communication with remote family and friends or even extend social connections to new people. 
 
 A relative, friend or supporter can use their favourite digital services as usual, for example to share photos or send a message, and Always In Mind integrates with the services to make the media and messages easily accessible through an alternative and simplified user experience running on an PC, tablet, a TV or kiosk. The user can select from various levels of UI complexity are provided to suit the user’s preferences. Plus help is always available to provide a ready reminder and reduce stress.
 
@@ -29,7 +29,7 @@ Currently we have decided to bootstrap rather than seek seed funding as we think
 
 # Benefits of Always In Mind
 * Provides simplified, friendly and safe access to everyday digital resources and communications
-* Reduces isolation through simplified digital sharing with friends, both local and remote
+* Reduces isolation and boost confidence through simplified digital sharing with friends, both local and remote
 * Easy access to remote family and friend's activities through photos, videos, messages and video calls
 * Enables engagement in social activities being promoted or organised online.
 * Entertains and educates through online resources such as information, music and videos
