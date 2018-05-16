@@ -6,11 +6,13 @@ This project is a flexible platform designed to help reduce isolation and improv
 
 A relative, friend or supporter can use their favourite digital services as usual, for example to share photos or send a message, and Always In Mind integrates with the services to make the media and messages easily accessible through an alternative and simplified user experience running on an PC, tablet, a TV or kiosk. The user can select from various levels of UI complexity are provided to suit the user’s preferences. Plus help is always available to provide a ready reminder and reduce stress.
 
-# Live demo
+# Live Demo
 
-Try the latest version at https://alwaysinmind.now.sh using the demo user (no account required) or log in with a Google account for the user. Here is the [User Guide](https://github.com/AlwaysInMind/aim-web-app/wiki/User-Guide-for-Always-in-Mind) which can be found on the wiki 
+Try the latest version at https://alwaysinmind.now.sh using the demo user (no account required) or log in with a Google account for the user. Here is the [User Guide](https://github.com/AlwaysInMind/aim-web-app/wiki/User-Guide-for-Always-in-Mind) which can be found on the wiki.
 
-# Open Source project and a Self Sustaining service
+Follow us on [Twitter](https://twitter.com/AlwaysInMind_).
+
+# Open Source Project and a Self Sustaining Service
 
 General accessibility knowledge and support for people with cognitive disabilities lags far behind others such as sensory and motor. Thus, innovation needs to be encouraged and nurtured. As a small step, Always In Mind is fully open source in order to encourage open innovation and collaboration. We hope to encourage an active community of people interested in improving provision. Both the front end and back end code can be found here in this repository and by using readily available dependencies and services we hope others can readily reproduce and experiment with innovative ideas. We've used the permissive MIT licence but hope contributions will be made back to us.
 
