@@ -62,18 +62,19 @@ We now have enough a useable technical prototype at https://alwaysinmind.now.sh 
 
 # Technical notes
 
-It's a React powered SPA web app for maximum portability and we use a nodejs backend to abstract the various services and handle sensitive operations.
+A Reactjs powered SPA web app for maximum portability. A nodejs backend to abstract the various services and handle sensitive operations.
 
 # A "Shout out" to some of the great tools we use 
 
-* Visual Studio Code - for the best dev experience
-* Zeit now - for the best devops experience
-* Auth0 - for the best identity management and authentication experience
 * Web Standards - for the most portable solution
+* Visual Studio Code - for the best dev experience
+* Zeit now - for a great serverless devops experience
+* Auth0 - for the best identity management and authentication experience
+* Synk - security auditing
 * Javascript - because...
-* React
+* Reactjs - well it works well
 * nodejs
 * Yarn
-* webpack, ESLint, prettier and many other great tools and libs
+* Webpack, ESLint, prettier and many other great tools and libs used in modern web dev
 
-Also see #Current Integrations above.
+Also see [Current Service Integrations](#current-service-integrations) above.
