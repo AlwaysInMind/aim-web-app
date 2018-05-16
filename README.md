@@ -71,6 +71,12 @@ We now have enough a useable technical prototype at https://alwaysinmind.now.sh 
 
 A Reactjs powered SPA web app for maximum portability. A nodejs backend to abstract the various services and handle sensitive operations.
 
+# History
+
+Several years ago I developed an accademic prototype for Prof Peter Cudd and others at Sheffield University ScHARR RATS group (Now CATCH) designed to explore people with dementia using technology in a care home environment. This was [MAAVIS](http://maavis.fullmeasure.co.uk/) and was fairly successful in getting people to engage and socialise through the tech. We even had Silvia Syms liking it. While care and adult education staff expressed considerable interest, it was clear they needed a product and service, but this was an EU funded project at the end of the term.
+
+As little like it has appeared since then, I decided to take some time to develop a product (well a service) using modern Web technology that has enabled many of the original ideas and more. Thus Always in Mind was born.
+
 # A "Shout out" to some of the great tools we use 
 
 * Web Standards - for the most portable solution
