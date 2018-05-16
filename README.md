@@ -46,14 +46,6 @@ Currently we have decided to bootstrap rather than seek seed funding as we think
 * Personalisation through selectable levels of UI complexity - eg more available buttons and actions
 * Works on any device with a modern web browser and internet connectivity - tablet, desktop, TV, kiosk or larger phone.
 
-# Possible Enhancements
-
-* Reminders - e.g. to take medication
-* Reminiscence activities
-* Integration with controls, sensors and alarms (eg smart homes and IoT)
-* Utilises AI to support users
-* Speech input using Echo, Cortana etc
-
 # Current Service Integrations
 
 * Google photos - shows albums and photos including videos
@@ -63,9 +55,19 @@ Currently we have decided to bootstrap rather than seek seed funding as we think
 * Microsoft cognitive services picture description AI - creates descriptions of photos
 * Auth0 - secure authorisation and access management
 
+# Possible Enhancements
+
+* Reminders - e.g. to take medication
+* Reminiscence activities
+* Integration with controls, sensors and alarms (eg smart homes and IoT)
+* Utilises AI to support users - Microsoft [cognitive services](https://azure.microsoft.com/en-us/services/cognitive-services/) are a great place to start
+* Speech input using Echo, Cortana etc
+
 # Roadmap
 
 We now have enough a useable technical prototype at https://alwaysinmind.now.sh suitable to to put before users to find out what their needs and preferences really are. Thus, the next steps is user research, We then want to get the live paid services working ASAP so people can start benefiting. Call it LEAN product development if you like :)
+
+* Add activites that require text entry - eg reply to an message
 
 # Technical notes
 
