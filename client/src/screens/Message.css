@@ -7,7 +7,7 @@
 }
 .screen-grid[data-screen='message'][data-complexity='0'] {
   grid-template-areas:
-    'sbar  home home title title title title title title title title title'
+    'sbar  title title title title title title title title title home home'
     'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg '
     'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg '
     'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg '
@@ -18,7 +18,7 @@
 .screen-grid[data-screen='message'][data-complexity='1'],
 .screen-grid[data-screen='message'][data-complexity='2'] {
   grid-template-areas:
-    'sbar  help  help  title title title title title title title title exit '
+    'sbar  title title title title title title title title title help  help'
     'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  back  back '
     'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  ..... .....'
     'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  down  down'
