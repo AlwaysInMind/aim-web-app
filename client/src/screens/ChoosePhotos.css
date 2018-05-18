@@ -2,7 +2,7 @@
 .screen-grid[data-screen='choosephotos'][data-complexity='1'],
 .screen-grid[data-screen='choosephotos'][data-complexity='2'] {
   grid-template-areas:
-    'sbar  help  help  title title title title title title title title exit '
+    'sbar  title title title title title title title title exit  help  help '
     'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... back  back '
     'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank'
     'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank'
