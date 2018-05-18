@@ -17,7 +17,7 @@
 .screen-grid[data-screen='photos'][data-complexity='1'],
 .screen-grid[data-screen='photos'][data-complexity='2'] {
   grid-template-areas:
-    'sbar  title title title title title title title title exit help  help  '
+    'sbar  title title title title title title title title title help  help  '
     'sbar  slide slide slide slide slide slide slide slide slide back  back '
     'sbar  slide slide slide slide slide slide slide slide slide ..... .....'
     'sbar  slide slide slide slide slide slide slide slide slide pause pause'

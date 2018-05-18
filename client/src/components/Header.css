@@ -10,7 +10,6 @@
 
 .header-button.button-title {
   grid-area: title;
-  grid-column-end: exit;
 }
 
 .header-button.button-help,
