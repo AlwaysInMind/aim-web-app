@@ -7,11 +7,11 @@
   },
   "dependencies": {
     "express-jwt": "5.3.1",
-    "micro": "9.3.0",
+    "micro": "9.3.1",
     "microrouter": "3.1.3",
     "node-readability": "3.0.0",
-    "request": "2.85.0",
-    "snyk": "^1.80.0"
+    "request": "2.87.0",
+    "snyk": "1.80.1"
   },
   "devDependencies": {
     "concurrently": "^3.5.1",
@@ -23,7 +23,7 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.1.0",
     "husky": "^0.14.3",
-    "lint-staged": "^7.1.1",
+    "lint-staged": "^7.1.2",
     "micro-dev": "^3.0.0",
     "now": "^11.1.12",
     "prettier": "^1.12.1"
