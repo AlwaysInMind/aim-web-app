@@ -16,5 +16,10 @@ exports.getInfo = async (accessToken, userId) => {
       url:
         'https://www.nhs.uk/Livewell/fitness/pages/physical-activity-guidelines-for-adults.aspx',
     },
+    {
+      id: '4',
+      title: 'Daily Mail',
+      url: 'http://www.dailymail.co.uk/home/index.html',
+    },
   ]
 }
