@@ -2,7 +2,7 @@ import React from 'react'
 
 import { withFetchJSON, pathTemplate } from '../hocs/withFetchJSON'
 import { withAuth } from '../hocs/withAuth'
-import { Button, HomeButton, BackButton } from '../components/Button.js'
+import { HomeButton, BackButton } from '../components/Button.js'
 import { Screen } from '../components/Screen'
 import { preferences } from '../drivers/preferences'
 
