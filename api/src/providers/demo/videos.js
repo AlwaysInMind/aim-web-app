@@ -15,5 +15,10 @@ exports.getPlaylists = async (accessToken, userId) => {
       title: 'Always in Mind',
       thumbnail: 'https://i.ytimg.com/vi/HpbdcNNGQ_8/hqdefault.jpg',
     },
+    {
+      id: 'PLjeWthSvNYsgqPng5g2d1A8NRSNhFfrjn',
+      title: 'RL / HFT',
+      thumbnail: 'https://i.ytimg.com/vi/7uxXapnWK2o/hqdefault.jpg',
+    },
   ]
 }
