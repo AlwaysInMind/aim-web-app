@@ -43,8 +43,8 @@
         responseType: (config.internalOptions || {}).response_type ||
           config.callbackOnLocationHash ? 'token' : 'code',
         params: config.internalOptions,
-        connection_scopes: {
-          'google-oauth2': ['https://picasaweb.google.com/data/']
+        connectionScopes: {
+          'google-oauth2': ['https://picasaweb.google.com/data/', 'https://www.googleapis.com/auth/gmail.readonly']
         },
       },
       assetsUrl: config.assetsUrl,
