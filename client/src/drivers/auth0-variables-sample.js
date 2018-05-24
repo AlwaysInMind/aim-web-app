@@ -6,8 +6,6 @@ export const AUTH0_CONFIG = {
 
 export const LOGIN_CALLBACK_PATH = '/auth/signed-in'
 
-export const DEMO_USER = {
-  REALM: '<REALM>',
-  EMAIL: '<EMAIL>',
-  PWD: '<PWD>',
-}
+// This user in Auth0 is the one logedin with the 'Demo' option
+// It also defines the initial preferences for the demo.
+export const DEMO_USER_EMAIL = 'demo@alwaysinmind.info'

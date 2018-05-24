@@ -1,7 +1,11 @@
 //import history from '../history'
 import auth0 from 'auth0-js'
 
-import { AUTH0_CONFIG, LOGIN_CALLBACK_PATH, DEMO_USER } from './auth0-variables'
+import {
+  AUTH0_CONFIG,
+  LOGIN_CALLBACK_PATH,
+  DEMO_USER_EMAIL,
+} from './auth0-variables'
 import { promisify } from './promisify'
 
 function pathToURL(path) {
@@ -96,7 +100,7 @@ class Auth0 {
   }
 
   get isDemo() {
-    return this.user === DEMO_USER.EMAIL
+    return this.user === DEMO_USER_EMAIL
   }
 
   get accessToken() {
