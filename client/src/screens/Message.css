@@ -6,6 +6,7 @@
   padding: 0.5rem;
   white-space: pre-wrap;
 }
+
 .screen-grid[data-screen='message'][data-complexity='0'] {
   grid-template-areas:
     'sbar  title title title title title title title title title home home'
@@ -15,7 +16,6 @@
     'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg '
     'sbar  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg  msg ';
 }
-
 .screen-grid[data-screen='message'][data-complexity='1'],
 .screen-grid[data-screen='message'][data-complexity='2'] {
   grid-template-areas:

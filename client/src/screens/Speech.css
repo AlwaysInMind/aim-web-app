@@ -1,0 +1,20 @@
+.screen-grid[data-screen='speech'][data-complexity='0'] {
+  grid-template-areas:
+    'sbar  title title title title title title title title title home  home'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank '
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank';
+}
+
+.screen-grid[data-screen='speech'][data-complexity='1'],
+.screen-grid[data-screen='speech'][data-complexity='2'] {
+  grid-template-areas:
+    'sbar  title title title title title title title title title help  help'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... back  back '
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank'
+    'sbar  ..... ..... ..... ..... ..... ..... ..... ..... ..... blank blank';
+}

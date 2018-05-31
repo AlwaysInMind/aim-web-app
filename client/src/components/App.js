@@ -13,6 +13,7 @@ import { PhotosScreen } from '../screens/Photos'
 import { VideosScreen } from '../screens/Videos'
 import { InfoScreen } from '../screens/Info'
 import { MessageScreen } from '../screens/Message'
+import { SpeechScreen } from '../screens/Speech'
 import { PreferencesScreen } from '../screens/Preferences'
 import { auth } from '../drivers/auth'
 import { fetchPreferences, preferences } from '../drivers/preferences'
@@ -96,6 +97,13 @@ export class App extends React.Component {
               path="/message"
               render={() => {
                 return <MessageScreen />
+              }}
+            />
+            <PrivateRoute
+              exact
+              path="/speech"
+              render={() => {
+                return <SpeechScreen />
               }}
             />
             <PrivateRoute
