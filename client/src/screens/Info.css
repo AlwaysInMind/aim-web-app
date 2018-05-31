@@ -15,11 +15,11 @@
 .screen-grid[data-screen='info'][data-complexity='0'] {
   grid-template-areas:
     'sbar  title title title title title title title title title home home'
-    'sbar  info info info info info info info info info info info'
-    'sbar  info info info info info info info info info info info'
+    'sbar  info info info info info info info info info ..... .....'
+    'sbar  info info info info info info info info info ..... .....'
     'sbar  info info info info info info info info info down down'
     'sbar  info info info info info info info info info up   up'
-    'sbar  info info info info info info info info info info info';
+    'sbar  info info info info info info info info info ..... .....';
 }
 
 .screen-grid[data-screen='info'][data-complexity='1'],
