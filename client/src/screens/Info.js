@@ -14,7 +14,7 @@ function parseReadableInfo(info) {
   const style = `<style>
   body {
     font-family: 'Lato', sans-serif;
-    font-size: calc((4vh + 0.4vw));
+    font-size: calc((4vw));
   }
   body {
     pointer-events: none;
@@ -29,19 +29,46 @@ function parseReadableInfo(info) {
   return script + style + wrappedInfo
 }
 
-const Info = ({ title, url, content }) => {
-  const displayContent = content ? parseReadableInfo(content) : undefined
+class Info extends React.Component {
+  constructor(props) {
+    super(props)
+    this.scrollingDiv = React.createRef()
+    this.frame = React.createRef()
+  }
 
-  return (
-    <iframe
-      title="Information content"
-      className="info"
-      srcDoc={displayContent}
-      src={url}
-      referrerPolicy="origin"
-      sandbox=""
-    />
-  )
+  componentDidUpdate() {
+    this.scrollingDiv.current.scrollTop = 0
+  }
+
+  scrollDown() {
+    const div = this.scrollingDiv.current
+    div.scrollTop += div.clientHeight
+    console.log(this.frame.current.scrollHeight)
+  }
+
+  scrollUp() {
+    const div = this.scrollingDiv.current
+    div.scrollTop -= div.clientHeight
+  }
+
+  render() {
+    const { title, url, content } = this.props
+
+    const displayContent = content ? parseReadableInfo(content) : undefined
+    return (
+      <div ref={this.scrollingDiv} className="info-wrapper">
+        <iframe
+          ref={this.frame}
+          className="info"
+          title={title}
+          srcDoc={displayContent}
+          src={url}
+          referrerPolicy="origin"
+          sandbox=""
+        />
+      </div>
+    )
+  }
 }
 
 class InfoScreen extends React.Component {
@@ -50,6 +77,7 @@ class InfoScreen extends React.Component {
     this.state = {
       showingOriginal: false,
     }
+    this.infoRef = React.createRef()
   }
 
   render() {
@@ -74,6 +102,7 @@ class InfoScreen extends React.Component {
               title={data.title}
               url={isOriginal ? url : undefined}
               content={isOriginal ? undefined : data.content}
+              ref={this.infoRef}
             />
 
             {complexity === 0 && (
@@ -85,6 +114,26 @@ class InfoScreen extends React.Component {
                 helpText="Choose more things to do"
               />
             )}
+            <Button
+              style={{ gridArea: 'down' }}
+              className=""
+              label="Show More"
+              actionFn={() => {
+                this.infoRef.current.scrollDown()
+              }}
+              helpFn={helpFn}
+              helpText={`Show next page of this information`}
+            />
+            <Button
+              style={{ gridArea: 'up' }}
+              className=""
+              label="Show Prev"
+              actionFn={() => {
+                this.infoRef.current.scrollUp()
+              }}
+              helpFn={helpFn}
+              helpText={`Show previous page of this information`}
+            />
             {complexity > 0 && (
               <React.Fragment>
                 <BackButton
@@ -97,7 +146,6 @@ class InfoScreen extends React.Component {
                 {data.iframeCompat && (
                   <Button
                     style={{ gridArea: 'orig' }}
-                    className=""
                     label={isOriginal ? 'View Readable' : 'View Web Page'}
                     actionFn={() => {
                       this.setState((prevState, props) => {

@@ -1,18 +1,24 @@
-.info {
+.info-wrapper {
   grid-area: info;
-  border-radius: calc((1vh + 1vw));
+  border-radius: calc((0.8vh + 0.8vw));
   border-width: calc((1vh + 0.1vw));
   border-style: solid;
-  padding: 0.5rem;
   overflow: hidden;
+  display: flex;
 }
+.info {
+  height: 20000px;
+  width: 100%;
+  border-style: none;
+}
+
 .screen-grid[data-screen='info'][data-complexity='0'] {
   grid-template-areas:
     'sbar  title title title title title title title title title home home'
     'sbar  info info info info info info info info info info info'
     'sbar  info info info info info info info info info info info'
-    'sbar  info info info info info info info info info info info'
-    'sbar  info info info info info info info info info info info'
+    'sbar  info info info info info info info info info down down'
+    'sbar  info info info info info info info info info up   up'
     'sbar  info info info info info info info info info info info';
 }
 
