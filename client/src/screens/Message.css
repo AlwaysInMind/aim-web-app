@@ -4,6 +4,7 @@
   border-width: calc((1vh + 0.1vw));
   border-style: solid;
   padding: 0.5rem;
+  white-space: pre-wrap;
 }
 .screen-grid[data-screen='message'][data-complexity='0'] {
   grid-template-areas:
