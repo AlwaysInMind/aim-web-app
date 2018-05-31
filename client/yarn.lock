@@ -274,9 +274,9 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-auth0-js@9.5.1:
-  version "9.5.1"
-  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-9.5.1.tgz#34dea6b0f11b5e5ee139605611f49b1c0f15dbb1"
+auth0-js@9.6.0:
+  version "9.6.0"
+  resolved "https://registry.yarnpkg.com/auth0-js/-/auth0-js-9.6.0.tgz#d9ae3014807366d3b479c2ad18a3537f3e0c9699"
   dependencies:
     base64-js "^1.2.0"
     idtoken-verifier "^1.2.0"
