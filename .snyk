@@ -78,4 +78,11 @@ ignore:
     - node-readability > request > tunnel-agent:
         reason: None given
         expires: '2018-06-02T21:08:47.328Z'
-patch: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:hawk:20160119':
+    - node-readability > request > hawk:
+        patched: '2018-06-03T02:27:19.283Z'
+  'npm:request:20160119':
+    - node-readability > request:
+        patched: '2018-06-03T02:27:19.283Z'
