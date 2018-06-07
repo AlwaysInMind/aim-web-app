@@ -9,9 +9,17 @@ Always in Mind is a web app providing simplified, friendly and safe access to th
 ![A screenshot showing buttons, text and a photo of a dog](screenshots/photos.png "The photos slideshow screen showing Google photos")
 
 
-This project is a flexible platform designed to help reduce isolation, boost confidence and improve the quality of life of people who may have be in later stages of life, cognitive disabilities, such as dementia or adults with learning difficulties someone who has recently had a stroke. They could potentially benefit greatly from the social connectivity and ready access to media provided by online digital services . For example, they can share photos, or videos, access music or interesting information resources or engage with others via messages and video calls. This can enable closer communication with remote family and friends or even extend social connections to new people. 
+The vision of Always In Mind is to be a flexible 'eWellbeing' platform designed to help reduce isolation, boost confidence and improve the quality of life of people who may have be in later stages of life, have cognitive disabilities including dementia or and learning difficulties or be someone who has recently had a stroke. These may be excluded from using the available social connectivity and media access provided by popular online digital services. For example, with Always In Mind they can share photos, or videos, access music or interesting information resources or engage with others via messages and video calls. All this without need to navigate or learn complex User Interfaces. This can enable closer communication with remote family and friends, extend social connections to new people or carers and even public services. 
 
-A relative, friend or supporter can use their favourite digital services as usual, for example to share photos or send a message, and Always In Mind integrates with the services to make the media and messages easily accessible through an alternative and simplified user experience running on an PC, tablet, a TV or kiosk. The user can select from various levels of UI complexity are provided to suit the user’s preferences. Plus help is always available to provide a ready reminder and reduce stress.
+With Always in Mind, a relative, friend or supporter can use their favourite digital services as usual, for example to share photos or send a message, and Always In Mind integrates with the services to make the media and messages easily accessible through an alternative and simplified user experience running on an PC, tablet, a TV or kiosk. The user can select from various levels of UI complexity are provided to suit the user’s preferences. Plus help is always available to provide a ready reminder and reduce stress.
+
+To summerise, Always In Mind:
+
+* Provides users with simplified access to media and communications enabled by popular services or indeed custom services
+* Provides users a friendly uncluttered and consistent experience 
+* Integrates with external services to provide access to managed resources and communications
+* Features of external services are used to mark resources to be accessed or communicate
+* Provides an open source platform to encourage the use ogf and innovate cognitive accessibility and low digital literacy 
 
 # Live Demo
 
