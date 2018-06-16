@@ -101,4 +101,6 @@ As little like it has appeared since then, I decided to take some time to develo
 * Yarn
 * Webpack, ESLint, prettier and many other great tools and libs used in modern web dev
 
+We use the [Mulberry Symbols](https://github.com/straight-street/mulberry-symbols) in the speech activity.
+
 Also see [Current Service Integrations](#current-service-integrations) above.
