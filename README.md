@@ -23,6 +23,8 @@ To summerise, Always In Mind:
 
 # Live Demo
 
+See the [video](http://youtu.be/LyJbLxjIls8?a)
+
 Try the latest version at https://alwaysinmind.now.sh using the demo user (no account required) or log in with a Google account for the user. Here is the [User Guide](https://github.com/AlwaysInMind/aim-web-app/wiki/User-Guide-for-Always-in-Mind) which can be found on the wiki.
 
 Follow us on [Twitter](https://twitter.com/AlwaysInMind_).
