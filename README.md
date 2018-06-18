@@ -1,7 +1,7 @@
 
-# Stop Press
+# Stop Press!
 
-We're finalists in the AbilityNet and BT [Tech4GoodAwards](https://www.tech4goodawards.com/finalist/always-in-mind/). You can vote for us in the People ward using #T4GAlwaysinMind on twitter or instagram or on the previous webpage. Thanks.
+We're finalists in the AbilityNet and BT [Tech4GoodAwards](https://www.tech4goodawards.com/finalist/always-in-mind/). You can vote for us in the Peoples Award using #T4GAlwaysinMind on twitter or instagram or on the previous webpage. Thanks.
 
 # Always in Mind
 
