@@ -107,6 +107,7 @@ As little like it has appeared since then, I decided to take some time to develo
 * nodejs
 * Yarn
 * Webpack, ESLint, prettier and many other great tools and libs used in modern web dev
+* Egghead.io for the absolute best teaching in JavaScript tools and frameworks from industry pros
 
 We use the [Mulberry Symbols](https://github.com/straight-street/mulberry-symbols) in the speech activity.
 
