@@ -1,3 +1,8 @@
+
+# Stop Press
+
+We're finalists in the AbilityNet and BT [Tech4GoodAwards](https://www.tech4goodawards.com/finalist/always-in-mind/). You can vote for us in the People ward using #T4GAlwaysinMind on twitter or instagram or on the previous webpage. Thanks.
+
 # Always in Mind
 
 Always in Mind is a web app providing simplified, friendly and safe access to the websites and digital communications services that we use daily. Services such as Google Photos, YouTube, Gmail and Facebook are transformed so they can be easily accessed by people who would otherwise not want to use technology, have certain cognitive disabilities or do not have the digital skills required by complex services.
@@ -88,7 +93,7 @@ A Reactjs powered SPA web app for maximum portability. A nodejs backend to abstr
 
 Several years ago I developed an accademic prototype for Prof Peter Cudd and others at Sheffield University ScHARR RATS group (Now CATCH) designed to explore people with dementia using technology in a care home environment. This was [MAAVIS](http://maavis.fullmeasure.co.uk/) and was fairly successful in getting people to engage and socialise through the tech. We even had Silvia Syms liking it. While care and adult education staff expressed considerable interest, it was clear they needed a product and service, but this was an EU funded project at the end of the term.
 
-As little like it has appeared since then, I decided to take some time to develop a product (well a service) using modern Web technology that has enabled many of the original ideas and more. Thus Always in Mind was born.
+As little like it has appeared since then, I decided to take some time to develop a product (well a service) using modern Web technology that has enabled many of the original ideas and more. Thus Always in Mind was born. We greatfull for the GPII related EU FP7 projects Cloud4All and Prosperity4All for providing funding that enabled us to explore some of the ideas and code that ALwaysInMind Builds on.
 
 # A "Shout out" to some of the great tools we use 
 
