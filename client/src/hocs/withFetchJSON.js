@@ -1,7 +1,10 @@
 import React from 'react'
 import { callAPI } from '../drivers/api'
 
-// simple tagged template string function to apply a dict to a string
+// Simple tagged template string function to allow later binding of url parts
+// Returns a function that applies a dict to a string
+// EG invoke with with: const fn = pathTemplate`/api/albums/${'id'}
+//    then later apply with: const url =  fn({id: 'item1')
 export function pathTemplate(strings, ...keys) {
   return function(dict) {
     var result = [strings[0]]
