@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "8.11.1"
+    "node": "8.11"
   },
   "dependencies": {
     "express-jwt": "5.3.1",
@@ -11,10 +11,10 @@
     "microrouter": "3.1.3",
     "node-readability": "3.0.0",
     "request": "2.87.0",
-    "snyk": "1.82.0"
+    "snyk": "1.83.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.1",
+    "concurrently": "^3.6.0",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
@@ -23,10 +23,10 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "husky": "^0.14.3",
-    "lint-staged": "^7.1.2",
+    "lint-staged": "^7.2.0",
     "micro-dev": "^3.0.0",
-    "now": "^11.1.16",
-    "prettier": "^1.13.3"
+    "now": "^11.2.4",
+    "prettier": "^1.13.5"
   },
   "scripts": {
     "postinstall": "cd client && yarn && cd ..",
@@ -41,13 +41,18 @@
     "deploy:both": "yarn run deploy:api && yarn run deploy:client",
     "deploy:clean": "now rm -s alwaysinmind alwaysinmindapi",
     "deploy:ls": "now ls && now alias ls",
-    "pause":
-      "rem node -e \"((time) => new Promise((resolve) => setTimeout(resolve, time)))(process.argv[1]).then(() => process.exit(0))\" 30000",
+    "pause": "rem node -e \"((time) => new Promise((resolve) => setTimeout(resolve, time)))(process.argv[1]).then(() => process.exit(0))\" 30000",
     "test": "snyk test"
   },
   "lint-staged": {
-    "client/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"],
-    "api/src/**/*.{js,jsx,json,css,md}": ["prettier --write", "git add"]
+    "client/src/**/*.{js,jsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "api/src/**/*.{js,jsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "now": {
     "name": "alwaysinmindapi"
