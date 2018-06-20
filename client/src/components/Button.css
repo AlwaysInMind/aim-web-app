@@ -7,6 +7,18 @@ button {
   margin-top: 0.5vh;
   margin-bottom: 0.5vh;
   overflow: hidden;
+  /* so overlay works */
+  position: relative;
+}
+
+/* add an overlay over the svg to get clicks */
+button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .button-label {

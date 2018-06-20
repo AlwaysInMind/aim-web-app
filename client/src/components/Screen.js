@@ -16,15 +16,13 @@ const generalHelpContent = {
   text: `Press the buttons to make things happen.
 The text, pictures and button colour show what will happen.
 Some buttons show a new screen so you can do something new.
-Press a button for more than 1 second to learn what it does.
 But don't worry, just try a button and nothing bad will happen.
 `,
 }
 
 const barHelpTitle = `The column on the left is the Support Bar`
 const barHelpText = `Use the Support Bar buttons to change the user experience and alter which features appear on the screens.
-You can also exit Always In Mind, alowing you to log in again later.
-Press a button for more than 1 second to learn what it does.
+Use 'Finish' to exit Always In Mind, allowing you to log in again later.
 You can hide or show the bar at any time. Swipe left to hide the bar, swipe right to show it.
 Or use the 's' key on the keyboard to show and hide the bar.`
 
@@ -189,9 +187,14 @@ export class Screen extends React.Component {
     if (preferences.showHelp || preferences.speakHelp) {
       stopSpeech()
       this.setState({
-        showGeneralHelpModal: true,
+        showGeneralHelpModal: false,
         showScreenHelpModal: false,
       })
+      window.open(
+        'https://github.com/AlwaysInMind/aim-web-app/wiki/User-Guide-for-Always-in-Mind',
+        '_blank',
+        'scrollbars=yes,resizable=yes,top=10,left=10'
+      )
     }
   }
 
