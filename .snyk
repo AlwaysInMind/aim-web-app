@@ -78,4 +78,11 @@ ignore:
     - node-readability > request > tunnel-agent:
         reason: None given
         expires: '2018-06-02T21:08:47.328Z'
-patch: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:mime:20170907':
+    - node-readability > request > form-data > mime:
+        patched: '2018-06-25T23:14:39.426Z'
+  'npm:tunnel-agent:20170305':
+    - node-readability > request > tunnel-agent:
+        patched: '2018-06-25T23:14:39.426Z'
