@@ -78,4 +78,8 @@ ignore:
     - node-readability > request > tunnel-agent:
         reason: None given
         expires: '2018-06-02T21:08:47.328Z'
-patch: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:http-signature:20150122':
+    - node-readability > request > http-signature:
+        patched: '2018-07-02T23:09:35.831Z'
