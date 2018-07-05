@@ -117,7 +117,6 @@ export class SlideShow extends React.Component {
 
   componentDidUpdate() {
     if (this.props.media) {
-      console.log('du')
       this.slideShow.isPlaying = this.props.playing
     }
   }
