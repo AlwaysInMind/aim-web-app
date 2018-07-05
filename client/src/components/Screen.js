@@ -144,8 +144,8 @@ export class Screen extends React.Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKeyDown, false)
     stopSpeech()
+    document.removeEventListener('keydown', this.onKeyDown, false)
   }
 
   screenHelpModalTitle() {

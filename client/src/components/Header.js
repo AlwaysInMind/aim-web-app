@@ -21,6 +21,7 @@ export const Header = ({ title, helpFn, handleScreenHelp }) => (
       label={title}
       helpText={title}
       helpFn={helpFn}
+      announceOnLoad="true"
     />
   </React.Fragment>
 )

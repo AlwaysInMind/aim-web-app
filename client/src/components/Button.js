@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { auth } from '../drivers/auth'
-import { optionallySpeak } from '../drivers/preferences'
+import { optionallySpeak, stopSpeech } from '../drivers/preferences'
 import { mkContextHelpHandler } from '../drivers/userIntents'
 
 import './Button.css'
@@ -85,14 +85,45 @@ export const HomeButton = withRouter(
   }) => <Button actionFn={() => history.push('/')} {...props} />
 )
 
-export const SpeakingButton = ({ label, helpText, ...props }) => (
-  <Button
-    actionFn={() => optionallySpeak(label ? label : helpText)}
-    label={label}
-    helpText={helpText}
-    {...props}
-  />
-)
+export class SpeakingButton extends React.Component {
+  constructor(props) {
+    super(props)
+    this.t = undefined
+  }
+
+  speak() {
+    const { label, helpText } = this.props
+    optionallySpeak(label ? label : helpText)
+  }
+
+  componentDidMount() {
+    const { announceOnLoad } = this.props
+    if (announceOnLoad) {
+      this.t = setTimeout(() => {
+        this.speak()
+      }, 800)
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.t) {
+      clearTimeout(this.t)
+    }
+    stopSpeech()
+  }
+
+  render() {
+    const { label, helpText, announceOnLoad, ...props } = this.props
+    return (
+      <Button
+        actionFn={() => this.speak()}
+        label={label}
+        helpText={helpText}
+        {...props}
+      />
+    )
+  }
+}
 
 export const ExplainButton = ({ explainFn, ...props }) => {
   return (
