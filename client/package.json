@@ -8,13 +8,13 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "auth0-js": "9.7.3",
-    "react": "16.5.1",
-    "react-dom": "16.5.1",
-    "react-modal": "3.5.1",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
+    "react-modal": "3.6.1",
     "react-router-dom": "4.3.1"
   },
   "devDependencies": {
-    "react-scripts": "^1.1.5"
+    "react-scripts": "^2.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,5 +28,11 @@
   },
   "now": {
     "name": "alwaysinmind"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
