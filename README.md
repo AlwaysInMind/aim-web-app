@@ -103,7 +103,7 @@ As little like it has appeared since then, I decided to take some time to develo
 - Javascript - because...
 - Reactjs - well it works well
 - nodejs
-- Yarn
+- npm
 - Webpack, ESLint, prettier and many other great tools and libs used in modern web dev
 - Egghead.io for the absolute best teaching in JavaScript tools and frameworks from industry pros
 
